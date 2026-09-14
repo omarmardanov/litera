@@ -1,0 +1,72 @@
+    <section class="ls-lead-form" id="zayavka">
+        <svg class="ls-lead-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+    <h2>Посчитаем и подскажем</h2>
+    <p class="ls-sub">Оставьте контакт — вернёмся со сметой и вариантами. Если задача решается проще, так и скажем.</p>
+    <form>
+      <!-- Телефон и почта парные: на широком экране встают в строку,
+           на телефоне остаются друг под другом. -->
+      <div class="ls-pair">
+        <label class="ls-sr-only" for="contact">Телефон</label>
+        <input id="contact" type="tel" name="phone" placeholder="Телефон"
+          autocomplete="tel" inputmode="tel" required
+          pattern="\s*[\d\s\(\)\+\-]{7,}\s*">
+        <label class="ls-sr-only" for="mail">Почта</label>
+        <input id="mail" type="email" name="email" placeholder="Почта, если удобнее" autocomplete="email"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}">
+      </div>
+      <label class="ls-sr-only" for="fname">Имя</label>
+      <input id="fname" type="text" name="first-name" placeholder="Имя, если хотите" autocomplete="given-name">
+
+<!-- @slot what -->
+      <label class="ls-sr-only" for="task">Что нужно напечатать</label>
+      <textarea id="task" name="comment" rows="1" maxlength="2000"
+        placeholder="Что печатаем, тираж, срок, комментарии"></textarea>
+<!-- @endslot -->
+
+      <fieldset class="ls-way">
+        <legend>Как удобнее ответить</legend>
+        <div class="ls-way-row">
+        <label><input type="radio" name="methodofcommunication" value="telegram" checked><span>Telegram</span></label>
+        <label><input type="radio" name="methodofcommunication" value="whatsapp"><span>WhatsApp</span></label>
+        <label><input type="radio" name="methodofcommunication" value="max"><span>Max</span></label>
+        <label><input type="radio" name="methodofcommunication" value="звонок"><span>Звонок</span></label>
+        <label><input type="radio" name="methodofcommunication" value="почта"><span>Почта</span></label>
+        </div>
+      </fieldset>
+
+      <ul class="ls-file-list" hidden></ul>
+      <label class="ls-file">
+        <input type="file" name="fileattached[]" multiple accept=".pdf,.ai,.cdr,.eps,.psd,.tif,.tiff,.jpg,.jpeg,.png,.heic,.heif,.webp,.zip,.rar">
+        <span>Прикрепить файлы</span>
+      </label>
+      <p class="ls-file-note">PDF, AI, CDR, PSD, фото или архив — до 25&nbsp;МБ</p>
+      <label class="ls-agree">
+        <input type="checkbox" name="agreement" required>
+        <span>Даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank" rel="noopener">согласие</a> ООО&nbsp;«МДМпринт» на обработку моих персональных данных для ответа на заявку и подтверждаю, что ознакомлен с <a href="/politika-obrabotki-personalnyh-dannyh" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+      </label>
+      <!-- Как отозвать согласие — прямо в форме, а не только в документе:
+           так сделано на mdmprint.ru. Номер телефона нужен, чтобы найти заявку. -->
+      <p class="ls-agree-note">Отозвать согласие можно письмом на
+        <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a> — укажите
+        в нём телефон, оставленный в форме.</p>
+      <button class="ls-btn ls-btn-main" type="submit">Обсудить задачу</button>
+    </form>
+    <!-- Справа не дубль каналов (полный перечень уже в колонке вопросов выше),
+         а что произойдёт после отправки. Снимает тревогу в момент решения. -->
+    <div class="ls-lead-side">
+      <h3>Что дальше</h3>
+      <ol class="ls-lead-next">
+        <li>Посмотрим задачу и уточним, если чего-то не хватает</li>
+        <li>Посчитаем стоимость под ваш тираж и сроки</li>
+        <li>Пришлём смету и первый вариант макета</li>
+      </ol>
+        <p class="ls-or">Не любите формы — напишите в
+          <a href="https://t.me/litera_studio">Telegram</a>,
+          <a href="https://api.whatsapp.com/send?phone=79777936481">WhatsApp</a>
+          или <a href="https://max.ru/u/f9LHodD0cOIV9InOx6ulNiryFx5jU7n5eIY9DliBnMiKjsrZAmOxnfX0e38">Max</a>,
+          позвоните <a href="tel:+74950213577">+7&nbsp;495&nbsp;021-35-77</a>
+          или напишите на <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a>.</p>
+
+    
+</div>
+  </section>

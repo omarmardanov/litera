@@ -1,0 +1,17 @@
+  <!-- Ролик поверх страницы. Плеер «ВКонтакте» подставляется скриптом
+       по клику и снимается при закрытии — иначе звук идёт с невидимой
+       страницы. Без скрипта плитка просто ведёт на ролик во «ВКонтакте». -->
+  <dialog class="ls-modal ls-modal-video">
+    <iframe title="Ролик Литеры" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    <button type="button" class="ls-modal-close" aria-label="Закрыть"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </dialog>
+
+  <!-- Памятка крупно. Строка «Требования к макетам» остаётся ссылкой на
+       страницу требований: без скрипта клик просто уводит туда, и это рабочий
+       запасной путь. Со скриптом клик показывает ту же схему поверх страницы,
+       не уводя человека со страницы услуги. -->
+  <dialog class="ls-modal ls-modal-pic">
+    <img src="assets/img/trebovaniya.webp" width="1430" height="1055" loading="lazy" decoding="async"
+      alt="Требования к макетам: CMYK, 300 dpi, шрифты в кривые, вылеты не менее 3 мм, отступы от края реза не менее 5 мм">
+    <button type="button" class="ls-modal-close" aria-label="Закрыть"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </dialog>

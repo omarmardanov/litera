@@ -31,6 +31,10 @@
    у `dd` снимаем, колонку держит сам компонент. */
 .ls-qa p,.ls-qa dd{margin:-4px 0 0;padding-bottom:17px;font-size:var(--t-ui);line-height:1.45;
   color:var(--ink-2)}
+/* Ссылки на услуги под ответом (пары на категории): контурные кнопки
+   в ряд, чтобы их было видно и в них попадал палец. */
+.ls-qa .ls-qa-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:-6px;padding-bottom:20px}
+.ls-qa .ls-qa-links a{display:inline-flex;text-decoration:none}
 /* Ссылки внутри ответов. Глобального стиля ссылок в проекте нет — каждая
    оформляется в своём компоненте, этот случай был пропущен и ссылка
    выпадала синей браузерной. */

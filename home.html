@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- СОБРАНО build.py. Не править этот файл: правки затрутся при следующей сборке.
-     Исходник страницы — _pages/index.html, общие части — _parts/. -->
+     Исходник страницы — _pages/home.html, общие части — _parts/. -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
@@ -20,101 +20,74 @@
      на классах с приставкой `ls-`.
      Сюда же входят компоненты шапки, меню, футера, виджета и куки-баннера —
      они помечены ниже. -->
-<link rel="stylesheet" href="assets/css/tokens.css?v=440">
-<link rel="stylesheet" href="assets/css/base.css?v=435">
+<link rel="stylesheet" href="assets/css/tokens.css?v=500">
+<link rel="stylesheet" href="assets/css/base.css?v=500">
 
 <!-- ── Только для шаблонов нового дизайна ──────────────────────────────
      Правила на голых `html`, `body` и `h2`. На чужой странице покрасят фон
      в тёмный и переведут заголовки на Raptor. -->
-<link rel="stylesheet" href="assets/css/page.css?v=435">
+<link rel="stylesheet" href="assets/css/page.css?v=500">
 
 <!-- Кнопка — базовый компонент, поэтому идёт сразу за базой:
      остальные компоненты должны иметь возможность её перебить.
      Нужна и общему набору: кнопки есть в шапке, виджете и куки-баннере. -->
-<link rel="stylesheet" href="assets/css/components/button.css?v=435">
+<link rel="stylesheet" href="assets/css/components/button.css?v=500">
 
 <!-- Компоненты. Список одинаков для всех страниц: набор блоков у них
      разный, но система одна, и лишний файл на 20 строк дешевле, чем два
      расходящихся списка. Порядок — по следованию на странице, он важен
      при равной специфичности. -->
-<link rel="stylesheet" href="assets/css/components/shell.css?v=435">
+<link rel="stylesheet" href="assets/css/components/shell.css?v=500">
 <!-- общие: идут на любой странице сайта -->
-<link rel="stylesheet" href="assets/css/components/header.css?v=435">
-<link rel="stylesheet" href="assets/css/components/menu.css?v=435">
-<link rel="stylesheet" href="assets/css/components/cookie.css?v=435">
-<link rel="stylesheet" href="assets/css/components/hero.css?v=435">
-<link rel="stylesheet" href="assets/css/components/intro.css?v=435">
-<link rel="stylesheet" href="assets/css/components/can.css?v=19">
-<link rel="stylesheet" href="assets/css/components/home.css?v=13">
-<link rel="stylesheet" href="assets/css/components/small.css?v=9">
-<link rel="stylesheet" href="assets/css/components/dirs.css?v=46">
-<link rel="stylesheet" href="assets/css/components/before-after.css?v=19">
-<link rel="stylesheet" href="assets/css/components/value.css?v=443">
-<link rel="stylesheet" href="assets/css/components/works.css?v=452">
-<link rel="stylesheet" href="assets/css/components/shorts.css?v=7">
-<link rel="stylesheet" href="assets/css/components/rows.css?v=435">
-<link rel="stylesheet" href="assets/css/components/catalog.css?v=435">
-<link rel="stylesheet" href="assets/css/components/specs.css?v=436">
-<link rel="stylesheet" href="assets/css/components/steps.css?v=445">
-<link rel="stylesheet" href="assets/css/components/faq.css?v=435">
-<link rel="stylesheet" href="assets/css/components/clients.css?v=8">
-<link rel="stylesheet" href="assets/css/components/figures.css?v=435">
-<link rel="stylesheet" href="assets/css/components/form.css?v=440">
-<link rel="stylesheet" href="assets/css/components/modal.css?v=6">
-<link rel="stylesheet" href="assets/css/components/text.css?v=435">
-<link rel="stylesheet" href="assets/css/components/related.css?v=435">
+<link rel="stylesheet" href="assets/css/components/header.css?v=500">
+<link rel="stylesheet" href="assets/css/components/menu.css?v=500">
+<link rel="stylesheet" href="assets/css/components/cookie.css?v=500">
+<link rel="stylesheet" href="assets/css/components/hero.css?v=500">
+<link rel="stylesheet" href="assets/css/components/intro.css?v=500">
+<link rel="stylesheet" href="assets/css/components/can.css?v=500">
+<link rel="stylesheet" href="assets/css/components/case.css?v=500">
+<link rel="stylesheet" href="assets/css/components/home.css?v=500">
+<link rel="stylesheet" href="assets/css/components/small.css?v=500">
+<link rel="stylesheet" href="assets/css/components/dirs.css?v=500">
+<link rel="stylesheet" href="assets/css/components/before-after.css?v=500">
+<link rel="stylesheet" href="assets/css/components/value.css?v=500">
+<link rel="stylesheet" href="assets/css/components/works.css?v=500">
+<link rel="stylesheet" href="assets/css/components/shorts.css?v=500">
+<link rel="stylesheet" href="assets/css/components/rows.css?v=500">
+<link rel="stylesheet" href="assets/css/components/catalog.css?v=500">
+<link rel="stylesheet" href="assets/css/components/specs.css?v=500">
+<link rel="stylesheet" href="assets/css/components/steps.css?v=500">
+<link rel="stylesheet" href="assets/css/components/faq.css?v=500">
+<link rel="stylesheet" href="assets/css/components/clients.css?v=500">
+<link rel="stylesheet" href="assets/css/components/figures.css?v=500">
+<link rel="stylesheet" href="assets/css/components/form.css?v=500">
+<link rel="stylesheet" href="assets/css/components/modal.css?v=500">
+<link rel="stylesheet" href="assets/css/components/text.css?v=500">
+<link rel="stylesheet" href="assets/css/components/related.css?v=500">
 <!-- общие: идут на любой странице сайта -->
-<link rel="stylesheet" href="assets/css/components/footer.css?v=435">
-<link rel="stylesheet" href="assets/css/components/copy-tip.css?v=435">
-<link rel="stylesheet" href="assets/css/components/chat.css?v=437">
+<link rel="stylesheet" href="assets/css/components/footer.css?v=500">
+<link rel="stylesheet" href="assets/css/components/copy-tip.css?v=500">
+<link rel="stylesheet" href="assets/css/components/chat.css?v=500">
 
 <!-- Раскладка идёт последней: её медиазапросы должны перебивать компоненты,
      иначе обёртка-телефон для десктопа не срабатывает. -->
-<link rel="stylesheet" href="assets/css/layout.css?v=444">
-<link rel="stylesheet" href="assets/css/motion.css?v=436">
+<link rel="stylesheet" href="assets/css/layout.css?v=500">
+<link rel="stylesheet" href="assets/css/motion.css?v=500">
 <title>Литера.Студия — дизайн и печать в Москве</title>
-<meta name="description" content="Дизайн подарочных сертификатов: нарисуем с нуля или подготовим готовый макет. Печатаем на своём производстве.">
-
-<!-- Канонический адрес: страница доступна и по адресу с параметрами utm,
-     без этого поиск считает их разными страницами. -->
-<link rel="canonical" href="https://litera.studio/dizajn-sertifikata">
-
-<meta property="og:title" content="Подарочный сертификат — дизайн и печать">
-<meta property="og:description" content="Дизайн подарочных сертификатов: нарисуем с нуля или подготовим готовый макет. Печатаем на своём производстве.">
-<meta property="og:url" content="https://litera.studio/dizajn-sertifikata">
-<meta property="og:image" content="https://litera.studio/assets/img/p1.jpg">
-
-<!-- Путь для поиска: в выдаче он показывается вместо адреса страницы.
-     Здесь он полный, а на экране крошка сокращена до одного шага вверх —
-     на телефоне цепочка из четырёх звеньев занимает две строки и режется.
-     Разметку нельзя вынести в отдельный файл: по внешней ссылке поисковики
-     структурированные данные не читают. -->
+<meta name="description" content="Дизайн-студия со своей типографией в Москве: полиграфия, упаковка, логотипы и фирменный стиль, корпоративный брендинг. Нарисуем макет и напечатаем тираж.">
+<link rel="canonical" href="https://litera.studio/">
+<meta property="og:title" content="Литера.Студия — дизайн и печать в Москве">
+<meta property="og:description" content="Дизайн-студия со своей типографией: полиграфия, упаковка, логотипы, корпоративный брендинг.">
+<meta property="og:url" content="https://litera.studio/">
+<meta property="og:image" content="https://litera.studio/assets/img/home-hero.jpg">
+<!-- Организация: адрес, телефон, почта — то, что поиск показывает в карточке
+     компании. Разметку нельзя вынести в отдельный файл: по внешней ссылке
+     поисковики структурированные данные не читают. -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-{"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
-{"@type":"ListItem","position":2,"name":"Полиграфия","item":"https://litera.studio/poligrafiya"},
-{"@type":"ListItem","position":3,"name":"Листовая полиграфия","item":"https://litera.studio/listovaya-poligrafiya"},
-{"@type":"ListItem","position":4,"name":"Подарочный сертификат","item":"https://litera.studio/dizajn-sertifikata"}]}
-</script>
-<!-- Услуга: цена «от», валюта и город. Даёт в выдаче строку с ценой.
-     Числа держать в согласии с первым экраном — при правке менять оба места. -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Дизайн и печать подарочных сертификатов",
-"serviceType":"Полиграфия","url":"https://litera.studio/dizajn-sertifikata",
-"areaServed":{"@type":"City","name":"Москва"},
-"provider":{"@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/",
+{"@context":"https://schema.org","@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/",
 "telephone":"+7 495 021-35-77","email":"zakaz@litera.studio",
 "address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU",
-"streetAddress":"Холодильный пер., 3к1с3"}},
-"offers":{"@type":"Offer","price":"1500","priceCurrency":"RUB",
-"availability":"https://schema.org/InStock","url":"https://litera.studio/dizajn-sertifikata"}}
-</script>
-
-<!-- Вопросы: собраны из блока «Частые вопросы» на этой же странице.
-     Правило поиска — разметка обязана дословно совпадать с видимым текстом,
-     поэтому при правке вопросов правится и здесь. -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что входит в цену?","acceptedAnswer":{"@type":"Answer","text":"В 1 500 ₽ входит печать тиража от 50 штук на нашей бумаге. Дизайн считаем отдельно: готовый макет печатаем как есть, а если рисуем с нуля — назовём стоимость после первого разговора, она зависит от сложности."}},{"@type":"Question","name":"А если у меня нет макета?","acceptedAnswer":{"@type":"Answer","text":"Сделаем сами: соберём из вашего текста и логотипа или придумаем концепцию. Стоимость дизайна зависит от сложности, назовём её до начала работы."}},{"@type":"Question","name":"Сколько правок входит в стоимость?","acceptedAnswer":{"@type":"Answer","text":"Две по согласованному направлению. Обычно хватает: до отрисовки мы обсуждаем повод, текст и стиль, поэтому первый вариант редко расходится с ожиданием. Дальнейшие правки считаем отдельно и предупреждаем заранее."}},{"@type":"Question","name":"А если макет не понравился?","acceptedAnswer":{"@type":"Answer","text":"Скажите, что не так — покажем второй вариант, он входит в стоимость. Если не совпало само направление, вернёмся к разговору о задаче и начнём заново, а не будем чинить неподходящий макет правками."}},{"@type":"Question","name":"В каком виде присылать файл?","acceptedAnswer":{"@type":"Answer","text":"Лучше всего PDF в CMYK с вылетами от 3 мм. Принимаем и рабочие файлы: AI, CDR, PSD, EPS. Подробнее — в требованиях к макетам. Не уверены, что с файлом всё в порядке — пришлите как есть, проверим и скажем, что поправить."}},{"@type":"Question","name":"Есть ли минимальный тираж?","acceptedAnswer":{"@type":"Answer","text":"Печатаем от 50 штук. Меньше — тоже возьмёмся, но за штуку выйдет заметно дороже: подготовка стоит одинаково и на 20 экземплярах, и на 500."}},{"@type":"Question","name":"Почему цвет на экране и на бумаге разный?","acceptedAnswer":{"@type":"Answer","text":"Экран светится, бумага отражает свет — часть экранных цветов на ней просто недостижима. Поэтому перед тиражом показываем распечатку: по ней видно, каким цвет будет на самом деле."}},{"@type":"Question","name":"Можно допечатать тираж позже?","acceptedAnswer":{"@type":"Answer","text":"Можно, файлы храним. Но цвет второй партии может немного отличаться от первой, а небольшой доптираж выходит дороже за штуку. Если знаете, что понадобится ещё, лучше заложить запас сразу."}}]}
+"streetAddress":"Холодильный пер., 3к1с3"}}
 </script>
 </head>
 <body>
@@ -317,7 +290,6 @@
         <a href="#zayavka">Опишите задачу</a> — разберёмся.</p>
     </section>
 
-
     <!-- Снимает главный страх: «возьмутся ли за мои тридцать штук».
          По дампу заявок тираж назван в 135 письмах, медиана — сто штук,
          61% не больше сотни. Спрашивают об этом прямо: 3,7% заявок начинаются
@@ -338,7 +310,6 @@
         <li><svg class="ls-small-ico" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="4" width="17" height="12" rx="1.5"/><path d="M2 5l8 6 8-6"/></svg><div><q>Сориентируйте, пожалуйста, сможете ли вы сделать суперобложку для книг? Тираж: 50 шт.</q><span>Заявка с сайта, ноябрь 2025</span></div></li>
       </ul>
     </section>
-
 
     <section class="ls-works">
       <!-- Надзаголовок объясняет, что это за блок, а режимы набраны как
@@ -473,9 +444,6 @@
         </a></li>
       </ul>
     </section>
-
-
-
 
     <!-- Группы обёрнуты, чтобы не разрывались между колонками на десктопе:
        заголовок, строки и раскрытие «Ещё…» должны остаться вместе. -->
@@ -686,7 +654,6 @@
       <p>Цены на сайте справочные и не являются публичной офертой</p>
     </div>
   </footer>
-
 <!-- Cookie-баннер. У них он перекрывает H1 на мобильной категории — ставим внизу.
      Показывается один раз, выбор запоминается. -->
 <div class="ls-cookie" id="cookie" role="region" aria-label="О сборе данных" hidden>
@@ -694,7 +661,6 @@
     а что мешает. Подробности в <a href="/polozhenie-ob-obrabotke-fajlov-cookies" target="_blank" rel="noopener">положении о файлах cookies</a>.</p>
   <button class="ls-btn ls-btn-light ls-btn-s ls-cookie-ok" type="button">Хорошо</button>
 </div>
-
 <!-- Виджет связи — наш вид «Кнопки на сайт» Битрикс24 (на живом сайте грузится
      из crm.litera.studio/upload/crm/site_button/loader_1_rd8v7d.js). Как у них:
      угол экрана с отступом, по клику раскрывается список каналов.
@@ -716,29 +682,6 @@
     </svg>
   </button>
 </div>
-
-<script src="assets/js/header.js?v=436" defer></script>
-<script src="assets/js/menu.js?v=435" defer></script>
-<script src="assets/js/menu-sections.js?v=435" defer></script>
-<script src="assets/js/menu-search.js?v=435" defer></script>
-<script src="assets/js/cookie.js?v=435" defer></script>
-<script src="assets/js/contact-validation.js?v=435" defer></script>
-<script src="assets/js/form-task.js?v=435" defer></script>
-<script src="assets/js/form-service.js?v=1" defer></script>
-<script src="assets/js/file-attach.js?v=435" defer></script>
-<script src="assets/js/modal.js?v=1" defer></script>
-<script src="assets/js/pic-modal.js?v=5" defer></script>
-<script src="assets/js/works-tabs.js?v=3" defer></script>
-<script src="assets/js/can-scroll.js?v=1" defer></script>
-<script src="assets/js/before-after.js?v=4" defer></script>
-<script src="assets/js/ba-check.js?v=1" defer></script>
-<script src="assets/js/cursor-label.js?v=1" defer></script>
-<script src="assets/js/form-submit.js?v=435" defer></script>
-<script src="assets/js/faq-accordion.js?v=435" defer></script>
-<script src="assets/js/copy-contact.js?v=435" defer></script>
-<script src="assets/js/thumb-zoom.js?v=435" defer></script>
-<script src="assets/js/chat.js?v=435" defer></script>
-
   <!-- Ролик поверх страницы. Плеер «ВКонтакте» подставляется скриптом
        по клику и снимается при закрытии — иначе звук идёт с невидимой
        страницы. Без скрипта плитка просто ведёт на ролик во «ВКонтакте». -->
@@ -756,5 +699,27 @@
       alt="Требования к макетам: CMYK, 300 dpi, шрифты в кривые, вылеты не менее 3 мм, отступы от края реза не менее 5 мм">
     <button type="button" class="ls-modal-close" aria-label="Закрыть"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </dialog>
+<script src="assets/js/header.js?v=500" defer></script>
+<script src="assets/js/menu.js?v=500" defer></script>
+<script src="assets/js/menu-sections.js?v=500" defer></script>
+<script src="assets/js/menu-search.js?v=500" defer></script>
+<script src="assets/js/cookie.js?v=500" defer></script>
+<script src="assets/js/contact-validation.js?v=500" defer></script>
+<script src="assets/js/form-task.js?v=500" defer></script>
+<script src="assets/js/form-service.js?v=500" defer></script>
+<script src="assets/js/file-attach.js?v=500" defer></script>
+<script src="assets/js/modal.js?v=500" defer></script>
+<script src="assets/js/pic-modal.js?v=500" defer></script>
+<script src="assets/js/works-tabs.js?v=500" defer></script>
+<script src="assets/js/can-scroll.js?v=500" defer></script>
+<script src="assets/js/before-after.js?v=500" defer></script>
+<script src="assets/js/ba-check.js?v=500" defer></script>
+<script src="assets/js/cursor-label.js?v=500" defer></script>
+<script src="assets/js/form-submit.js?v=500" defer></script>
+<script src="assets/js/faq-accordion.js?v=500" defer></script>
+<script src="assets/js/copy-contact.js?v=500" defer></script>
+<script src="assets/js/thumb-zoom.js?v=500" defer></script>
+<script src="assets/js/case-layout.js?v=500" defer></script>
+<script src="assets/js/chat.js?v=500" defer></script>
 </body>
 </html>
