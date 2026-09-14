@@ -44,9 +44,8 @@
 | `styles.html` | все стили, список один для всех страниц | `wp_enqueue_style` |
 | `top.html` | шапка, метка прокрутки, панель меню | `header.php` + `menu.php` |
 | `how.html` | «Как мы работаем» — общие шаги без сроков | `template-parts/how.php` |
-| `figures.html` | цифры «13 / 820+ / 640+» полосой перед формой | `template-parts/figures.php` |
-| `figures-inline.html` | те же цифры в колонке рядом с вопросами | — |
-| `faq-side.html` | колонка рядом с «Частыми вопросами» на карточке | `template-parts/faq-side.php` |
+| `proof.html` | довод перед формой на всех страницах: `figures.html` + `clients.html` | `template-parts/proof.php` |
+| `figures.html` | цифры «13 / 820+ / 640+» | `template-parts/figures.php` |
 | `clients.html` | лента логотипов клиентов | `template-parts/clients.php` |
 | `lead.html` | форма заявки; слот `what` — поле услуги (на главной список) | `template-parts/lead.php` |
 | `footer.html` | подвал | `footer.php` |
