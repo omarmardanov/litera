@@ -14,6 +14,18 @@
 .ls-lead-form input{height:52px;padding:0 16px;border:1.5px solid var(--line-strong);background:var(--paper);
   font-family:inherit;font-size:var(--t-base);color:var(--ink)}
 .ls-lead-form input::placeholder{color:var(--muted)}
+/* Список услуг (главная). Снаружи — как поле ввода: та же рамка, высота
+   и кегль, справа стрелка, что и в меню. Внутри — нативный список: сам
+   выпадающий контрол должен выглядеть так, как человек привык на своём
+   устройстве. Пока ничего не выбрано, строка серая, как плейсхолдер. */
+.ls-lead-form select{margin-top:10px;width:100%;height:52px;padding:0 44px 0 16px;
+  border:1.5px solid var(--line-strong);border-radius:0;
+  background:var(--paper) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23111112' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 6.5l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center;
+  appearance:none;-webkit-appearance:none;
+  font-family:inherit;font-size:var(--t-base);color:var(--ink);cursor:pointer}
+.ls-lead-form select:has(option:checked[value=""]){color:var(--muted)}
+.ls-lead-form select:focus{outline:none;border-color:var(--ink)}
+.ls-lead-form select:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
 
 /* Что нужно напечатать: одна строка, растёт по мере ввода (assets/js/form-task.js) */
 /* Поле в две строки на телефоне: подсказка «Что печатаем, тираж, срок,

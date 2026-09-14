@@ -221,3 +221,12 @@
    Тон светлее исходных съёмок: тёмно-серая полоса тяжелила страницу
    и спорила с белым фоном соседних блоков. */
 .ls-dirs{--shot-bg:var(--surface-2)}
+
+/* Строка после списка: «не нашли своё — напишите». Стоит в полях страницы,
+   как текст, а не как пятая плитка. */
+.ls-dirs-else{margin:22px 0 0;font-size:var(--t-base);
+  line-height:1.5;color:var(--ink-2);max-width:52ch}
+/* Ссылка внутри абзаца: правила плитки `.ls-dirs a` (сетка, блок) на неё
+   не распространяются. */
+.ls-dirs-else a{display:inline;position:static;padding:0;margin:0;
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px}
