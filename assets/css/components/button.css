@@ -27,3 +27,6 @@
 .ls-btn-light{background:var(--paper);color:var(--ink)}
 .ls-btn-light:hover{background:var(--line)}
 .ls-btn-light:focus-visible{outline-color:var(--paper)}
+/* контурная: второе действие рядом с текстом — заметна, но не спорит с главной */
+.ls-btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ls-btn-line:hover{background:var(--ink);color:var(--paper)}

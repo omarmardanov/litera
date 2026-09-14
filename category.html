@@ -31,7 +31,7 @@
 <!-- Кнопка — базовый компонент, поэтому идёт сразу за базой:
      остальные компоненты должны иметь возможность её перебить.
      Нужна и общему набору: кнопки есть в шапке, виджете и куки-баннере. -->
-<link rel="stylesheet" href="assets/css/components/button.css?v=435">
+<link rel="stylesheet" href="assets/css/components/button.css?v=436">
 
 <!-- Компоненты. Список одинаков для всех страниц: набор блоков у них
      разный, но система одна, и лишний файл на 20 строк дешевле, чем два
@@ -47,14 +47,14 @@
 <link rel="stylesheet" href="assets/css/components/value.css?v=443">
 <link rel="stylesheet" href="assets/css/components/works.css?v=452">
 <link rel="stylesheet" href="assets/css/components/rows.css?v=435">
-<link rel="stylesheet" href="assets/css/components/catalog.css?v=435">
+<link rel="stylesheet" href="assets/css/components/catalog.css?v=439">
 <link rel="stylesheet" href="assets/css/components/specs.css?v=436">
 <link rel="stylesheet" href="assets/css/components/steps.css?v=445">
 <link rel="stylesheet" href="assets/css/components/faq.css?v=435">
 <link rel="stylesheet" href="assets/css/components/figures.css?v=435">
 <link rel="stylesheet" href="assets/css/components/form.css?v=438">
 <link rel="stylesheet" href="assets/css/components/modal.css?v=1">
-<link rel="stylesheet" href="assets/css/components/text.css?v=435">
+<link rel="stylesheet" href="assets/css/components/text.css?v=437">
 <link rel="stylesheet" href="assets/css/components/related.css?v=435">
 <!-- общие: идут на любой странице сайта -->
 <link rel="stylesheet" href="assets/css/components/footer.css?v=435">
@@ -66,12 +66,12 @@
 <link rel="stylesheet" href="assets/css/layout.css?v=444">
 <link rel="stylesheet" href="assets/css/motion.css?v=436">
 <title>Листовая полиграфия — Литера.Студия</title>
-<meta name="description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг, от 300 ₽.">
+<meta name="description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг.">
 
 <!-- Канонический адрес и карточка для мессенджеров — как на карточке услуги. -->
 <link rel="canonical" href="https://litera.studio/listovaya-poligrafiya">
 <meta property="og:title" content="Листовая полиграфия — дизайн и печать">
-<meta property="og:description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг, от 300 ₽.">
+<meta property="og:description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг.">
 <meta property="og:url" content="https://litera.studio/listovaya-poligrafiya">
 <meta property="og:image" content="https://litera.studio/assets/img/p1.jpg">
 
@@ -230,167 +230,71 @@
     <h1 class="ls-title">Листовая полиграфия</h1>
     <p class="ls-desc">Всё, что печатается на одном листе: от визитки до наградного диплома.
       Нарисуем макет или напечатаем ваш.</p>
-    <p class="ls-meta">
-      <span class="ls-price">17 услуг</span>
-      <span class="ls-price-note">от 300&nbsp;₽ · от 2&nbsp;дней</span>
-    </p>
   </div>
 
-  <!-- На категории считать нечего: человек ещё не выбрал из 17 услуг.
-       Кнопка ведёт описать задачу. В потоке не дублируем — есть кнопка в шапке. -->
-  <div class="ls-cta">
-    <a class="ls-btn ls-btn-main" href="#zayavka">Обсудить задачу</a>
-  </div>
-
-  <p class="ls-cat-hint"><a href="#vybor">Что выбрать под задачу</a></p>
+  <!-- Кнопки «Обсудить» на первом экране раздела нет: человек ещё не выбрал
+       из 17 услуг, обсуждать нечего, а кнопка в шапке и так рядом.
+       Единственная ссылка ведёт к подсказке, что выбрать. -->
+  <p class="ls-cat-hint"><a class="ls-btn ls-btn-line ls-btn-s" href="#vybor">Что выбрать под задачу<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></a></p>
 
   <!-- Метка для виджета связи: на телефоне он выезжает, когда первый экран
        ушёл под шапку. Кадра здесь нет, поэтому метка своя, а не общая
        с шапкой (assets/js/chat.js). -->
   <i class="ls-chat-sentinel" aria-hidden="true"></i>
 
-  <section class="ls-catalog">
+  <section class="ls-catalog is-tiles">
     <h2 class="ls-sr-only">Услуги раздела</h2>
     <!-- Две колонки: список длинный, в одну он растягивал страницу и оставлял
              пустой правую половину. Раскладку держит общий `.rows-cols`, тот же,
              что у смежных услуг на карточке.
              В CMS делить пополам на сервере: услуг в разделе может быть нечётно. -->
+        <!-- Группы по тому, зачем берут, а не по алфавиту: 17 строк подряд
+             на телефоне занимали два экрана без ориентиров. На широком экране
+             группы раскладываются в две колонки, по две в каждой. -->
         <div class="ls-rows-cols">
-        <ul class="ls-rows">
+        <div class="ls-cat-col">
+        <div class="ls-cat-group">
+          <h3>Офис и знакомство</h3>
+          <ul class="ls-rows">
           <li>
         <a class="ls-row-body" href="/dizajn-vizitki">
-          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/vizitki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/vizitki.jpg" width="416" height="416" alt="Визитки с тиснением на плотном картоне">
+            </picture>
+          </span>
           <span class="ls-text">
-            <span class="ls-row"><b>Визитки</b><span class="ls-price">от&nbsp;1 100&nbsp;₽</span></span>
+            <span class="ls-row"><b>Визитки</b></span>
             <span class="ls-note">Классика знакомства: плотный картон, тиснение, скругление углов</span>
           </span>
         </a>
       </li>
           <li>
-        <a class="ls-row-body" href="/dizajn-otkrytki">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Открытки</b><span class="ls-price">от&nbsp;900&nbsp;₽</span></span>
-            <span class="ls-note">К празднику и к заказу — с конвертом или отдельно</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-sertifikata">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Подарочные сертификаты</b><span class="ls-price">от&nbsp;1 500&nbsp;₽</span></span>
-            <span class="ls-note">Номинал, нумерация, срок действия — деньги вперёд услуги</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-konverta">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Конверты</b><span class="ls-price">от&nbsp;900&nbsp;₽</span></span>
-            <span class="ls-note">Под сертификат, приглашение или документы</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-priglasheniya">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Приглашения</b><span class="ls-price">от&nbsp;1 200&nbsp;₽</span></span>
-            <span class="ls-note">Свадьба, открытие, корпоратив — от простых до конвертов с вкладышами</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-bejdzha">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Бейджи</b><span class="ls-price">от&nbsp;300&nbsp;₽</span></span>
-            <span class="ls-note">Для мероприятий и персонала, с держателем или лентой</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-listovki">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Листовки</b><span class="ls-price">от&nbsp;1 500&nbsp;₽</span></span>
-            <span class="ls-note">Раздаточный тираж: акция, открытие, распродажа</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-gramoty">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Грамоты</b><span class="ls-price">от&nbsp;1 500&nbsp;₽</span></span>
-            <span class="ls-note">Наградные бланки на плотной бумаге, с фольгой или тиснением</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-bukleta-lifleta">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Буклеты и лифлеты</b><span class="ls-price">от&nbsp;1 800&nbsp;₽</span></span>
-            <span class="ls-note">Сложение в два-три фальца, под каталог услуг или инструкцию</span>
-          </span>
-        </a>
-      </li>
-        </ul>
-        <ul class="ls-rows">
-          <li>
-        <a class="ls-row-body" href="/dizajn-diploma">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Дипломы</b><span class="ls-price">от&nbsp;1 500&nbsp;₽</span></span>
-            <span class="ls-note">Для курсов, конкурсов и внутренних наград</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-birki">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Бирки</b><span class="ls-price">от&nbsp;300&nbsp;₽</span></span>
-            <span class="ls-note">На товар и упаковку, с отверстием под шнур</span>
-          </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-abonementov">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Абонементы</b><span class="ls-price ls-price-ask">по запросу</span></span>
-            <span class="ls-note">На занятия и услуги, с отрывными купонами</span>
-          </span>
-        </a>
-      </li>
-          <li>
         <a class="ls-row-body" href="/dizajn-blanka">
-          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/blanki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/blanki.jpg" width="416" height="416" alt="Фирменный бланк с логотипом">
+            </picture>
+          </span>
           <span class="ls-text">
-            <span class="ls-row"><b>Фирменные бланки</b><span class="ls-price">от&nbsp;1 200&nbsp;₽</span></span>
+            <span class="ls-row"><b>Фирменные бланки</b></span>
             <span class="ls-note">Для писем и договоров, с реквизитами и логотипом</span>
           </span>
         </a>
       </li>
           <li>
-        <a class="ls-row-body" href="/dizajn-bileta">
-          <span class="ls-thumb" aria-hidden="true"></span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Билеты</b><span class="ls-price">от&nbsp;900&nbsp;₽</span></span>
-            <span class="ls-note">С нумерацией, отрывным корешком и защитой от подделки</span>
+        <a class="ls-row-body" href="/dizajn-konverta">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/konverty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/konverty.jpg" width="416" height="416" alt="Конверты с фирменным дизайном">
+            </picture>
           </span>
-        </a>
-      </li>
-          <li>
-        <a class="ls-row-body" href="/dizajn-flaera">
-          <span class="ls-thumb" aria-hidden="true"></span>
           <span class="ls-text">
-            <span class="ls-row"><b>Флаеры</b><span class="ls-price">от&nbsp;1 500&nbsp;₽</span></span>
-            <span class="ls-note">Небольшой формат под раздачу и вложение</span>
+            <span class="ls-row"><b>Конверты</b></span>
+            <span class="ls-note">Под сертификат, приглашение или документы</span>
           </span>
         </a>
       </li>
@@ -398,21 +302,208 @@
         <a class="ls-row-body" href="/dizajn-kubarika">
           <span class="ls-thumb" aria-hidden="true"></span>
           <span class="ls-text">
-            <span class="ls-row"><b>Кубарики</b><span class="ls-price">от&nbsp;300&nbsp;₽</span></span>
+            <span class="ls-row"><b>Кубарики</b></span>
             <span class="ls-note">Блок для записей с логотипом, склеенный или в подставке</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        <div class="ls-cat-group">
+          <h3>События</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="/dizajn-priglasheniya">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/priglasheniya.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/priglasheniya.jpg" width="416" height="416" alt="Приглашения на плотной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Приглашения</b></span>
+            <span class="ls-note">Свадьба, открытие, корпоратив — от простых до конвертов с вкладышами</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-bileta">
+          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Билеты</b></span>
+            <span class="ls-note">С нумерацией, отрывным корешком и защитой от подделки</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-bejdzha">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/bejdzhi.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/bejdzhi.jpg" width="416" height="416" alt="Бейдж на ленте">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Бейджи</b></span>
+            <span class="ls-note">Для мероприятий и персонала, с держателем или лентой</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-diploma">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/diplomy.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/diplomy.jpg" width="416" height="416" alt="Благодарность на чёрной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Дипломы</b></span>
+            <span class="ls-note">Для курсов, конкурсов и внутренних наград</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-gramoty">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/gramoty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/gramoty.jpg" width="416" height="416" alt="Грамота на плотной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Грамоты</b></span>
+            <span class="ls-note">Наградные бланки на плотной бумаге, с фольгой или тиснением</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        </div>
+        <div class="ls-cat-col">
+        <div class="ls-cat-group">
+          <h3>Раздача и торговля</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="/dizajn-listovki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/listovki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/listovki.jpg" width="416" height="416" alt="Листовка ювелирного бренда">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Листовки</b></span>
+            <span class="ls-note">Раздаточный тираж: акция, открытие, распродажа</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-flaera">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/flaery.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/flaery.jpg" width="416" height="416" alt="Флаер с акцией">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Флаеры</b></span>
+            <span class="ls-note">Небольшой формат под раздачу и вложение</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-bukleta-lifleta">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/buklety.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/buklety.jpg" width="416" height="416" alt="Буклеты с фигурной вырубкой">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Буклеты и лифлеты</b></span>
+            <span class="ls-note">Сложение в два-три фальца, под каталог услуг или инструкцию</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-birki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/birki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/birki.jpg" width="416" height="416" alt="Бирка на рубашке">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Бирки</b></span>
+            <span class="ls-note">На товар и упаковку, с отверстием под шнур</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        <div class="ls-cat-group">
+          <h3>Подарки</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="/dizajn-sertifikata">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/sertifikaty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/sertifikaty.jpg" width="416" height="416" alt="Подарочный сертификат BOURBAKI в конверте">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Подарочные сертификаты</b></span>
+            <span class="ls-note">Номинал, нумерация, срок действия — деньги вперёд услуги</span>
           </span>
         </a>
       </li>
           <li>
         <a class="ls-row-body" href="/dizajn-sertifikata-dlya-salona-krasoty">
-          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/salon.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/salon.jpg" width="416" height="416" alt="Сертификат салона красоты на дизайнерской бумаге">
+            </picture>
+          </span>
           <span class="ls-text">
-            <span class="ls-row"><b>Сертификаты для салонов</b><span class="ls-price ls-price-ask">по запросу</span></span>
+            <span class="ls-row"><b>Сертификаты для салонов</b></span>
             <span class="ls-note">Отраслевой вариант: под процедуры и абонементы</span>
           </span>
         </a>
       </li>
-        </ul>
+          <li>
+        <a class="ls-row-body" href="/dizajn-abonementov">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/abonementy.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/abonementy.jpg" width="416" height="416" alt="Стопка абонементов">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Абонементы</b></span>
+            <span class="ls-note">На занятия и услуги, с отрывными купонами</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="/dizajn-otkrytki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/otkrytki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/otkrytki.jpg" width="416" height="416" alt="Открытка с яркой печатью">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Открытки</b></span>
+            <span class="ls-note">К празднику и к заказу — с конвертом или отдельно</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        </div>
         </div>
   </section>
 
@@ -465,8 +556,8 @@
           или напишите на <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a></p>
         <div class="ls-figures">
           <div><b>13</b><span>лет студии</span></div>
-          <div><b>1500+</b><span>проектов</span></div>
-          <div><b>800+</b><span>клиентов</span></div>
+          <div><b>820+</b><span>работ</span></div>
+          <div><b>640+</b><span>клиентов</span></div>
         </div>
       </aside>
   </section>
@@ -533,27 +624,27 @@
     <ol>
       <li>
         <div>
-          <b>Разбираемся в задаче</b><p><span class="ls-term">В день обращения.</span> Спросим про тираж, сроки и повод. От этого зависят бумага, способ печати и цена.</p>
+          <b>Разбираемся в задаче</b><p>В день обращения. Спросим, что нужно, сколько штук и к какому сроку. От этого зависят материал, способ печати и цена.</p>
         </div>
       </li>
       <li>
         <div>
-          <b>Считаем и показываем макет</b><p><span class="ls-term">1–2 дня.</span> Присылаем смету и первый вариант. Правки по макету входят в стоимость.</p>
+          <b>Считаем и показываем первый вариант</b><p>Присылаем смету и макет. Правки по согласованному направлению входят в стоимость.</p>
         </div>
       </li>
       <li>
         <div>
-          <b>Согласуем цвет и материал</b><p><span class="ls-term">1 день.</span> Покажем образцы бумаги и распечатку — так вы увидите тираж заранее, а не после печати.</p>
+          <b>Согласуем материал и цвет</b><p>Покажем образцы и распечатку или соберём пробный экземпляр — тираж вы увидите до печати, а не после.</p>
         </div>
       </li>
       <li>
         <div>
-          <b>Печатаем и отдаём</b><p><span class="ls-term">2–5 дней.</span> Печать на своём производстве. Забираете сами или привозим по адресу.</p>
+          <b>Печатаем и отдаём</b><p>Своё производство в Москве. Забираете сами или привозим по адресу, в другие города отправляем транспортной компанией.</p>
         </div>
       </li>
     </ol>
 
-        <p class="ls-how-total">Весь путь от заявки до готового тиража — <b>4–8 дней</b></p>
+        <p class="ls-how-total">Срок зависит от тиража и отделки: простой тираж — дни, с тиснением и вырубкой — дольше. Назовём его вместе со сметой.</p>
   </section>
 
     <section class="ls-lead-form" id="zayavka">

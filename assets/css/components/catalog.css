@@ -18,3 +18,28 @@
 
 .ls-catalog a:hover b{text-decoration:underline;text-underline-offset:3px;
   text-decoration-thickness:1px;text-decoration-color:var(--line)}
+
+/* Группы услуг: заголовок как у групп материалов на карточке. Первая группа
+   без верхнего отступа — секция уже отбита сверху. */
+.ls-cat-group h3{margin:36px 0 0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:18px;letter-spacing:-.005em;color:var(--ink)}
+.ls-cat-col:first-child .ls-cat-group:first-child h3{margin-top:0}
+.ls-cat-group .ls-rows{margin-top:14px}
+@media (min-width: 1024px){
+  .ls-cat-col .ls-cat-group:first-child h3{margin-top:0}
+}
+
+/* Плитки вместо строк (`is-tiles` на секции): те же строки, разложены
+   сеткой два в ряд, снимок во всю ширину плитки, под ним название
+   и описание. Снять класс — вернутся строки. */
+.ls-catalog.is-tiles .ls-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px}
+.ls-catalog.is-tiles .ls-rows > li + li{padding-top:0}
+.ls-catalog.is-tiles .ls-rows > li::after{display:none}
+.ls-catalog.is-tiles .ls-row-body{display:block}
+.ls-catalog.is-tiles .ls-rows .ls-thumb{width:100%}
+.ls-catalog.is-tiles .ls-text{display:block;margin-top:10px}
+.ls-catalog.is-tiles .ls-row b{font-size:var(--t-base);line-height:1.25}
+.ls-catalog.is-tiles .ls-note{margin-top:4px;font-size:var(--t-cap);line-height:1.35}
+@media (min-width: 1024px){
+  .ls-catalog.is-tiles .ls-rows{grid-template-columns:1fr 1fr 1fr;gap:28px 20px}
+}

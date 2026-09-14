@@ -2,12 +2,10 @@
    до объяснения только после 17 позиций. Названа так же, как блок, — чтобы ожидание
    совпадало с тем, что он там найдёт. Тихая строка, а не кнопка: большинству
    она не нужна, они пришли за конкретной услугой. */
-/* по центру под кнопкой — как строка с мессенджерами на карточке услуги */
-.ls-cat-hint{margin:10px 0 0;padding:0 20px;text-align:center}
-.ls-cat-hint a{display:inline-block;padding:14px 0;font-size:var(--t-ui);color:var(--ink-2);
-  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
-  text-decoration-color:var(--line)}
-.ls-cat-hint a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+/* Контурная кнопка слева под абзацем: тихой ссылки не замечали. */
+.ls-cat-hint{margin:22px 0 0;padding:0 20px}
+.ls-cat-hint a{display:inline-flex}
+.ls-cat-hint svg{flex-shrink:0}
 .ls-cat-hint a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
 /* Два текстовых блока категории: помощь с выбором и текст для поиска.
