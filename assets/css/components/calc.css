@@ -1,0 +1,120 @@
+/* Расчёт: блок про цену.
+
+   Стоит сразу после направлений, потому что это второй вопрос человека
+   после «что вы делаете». По Вебмастеру 41,4% поисковых показов Литеры
+   содержат ценовые слова, а сайт на них не отвечает ничем: цен нет, и дать
+   их нельзя — тираж в сто и в пять тысяч печатаются на разном оборудовании.
+   Так же устроены сильные конкуренты: у TPRINT и PMG форма расчёта стоит
+   вторым-третьим экраном, до продукции и преимуществ.
+
+   Поэтому блок отвечает не ценой, а поведением: три поля, из которых
+   считают, и обещание вернуться со сметой. Контакт здесь не спрашивается —
+   поля переезжают в форму внизу (calc.js), и телефон человек оставляет уже
+   там, вложив немного усилий. */
+
+.ls-calc{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-calc .ls-sub{margin:10px 0 0;font-size:var(--t-ui);line-height:1.45;
+  color:var(--ink-2);max-width:46ch}
+
+.ls-calc-form{margin-top:20px;display:flex;flex-direction:column}
+/* Поля те же, что в форме заявки: высота, рамка и нулевой радиус — общие,
+   иначе на одной странице окажется два разных поля ввода. */
+.ls-calc input{height:52px;padding:0 16px;border:1.5px solid var(--line-strong);
+  border-radius:0;background:var(--paper);
+  font:inherit;font-size:var(--t-base);color:var(--ink);
+  transition:border-color .15s var(--ease)}
+.ls-calc input::placeholder{color:var(--muted)}
+.ls-calc input:focus{outline:none;border-color:var(--ink)}
+.ls-calc input:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
+
+/* ── Выбор услуг ───────────────────────────────────────────────────
+   Контрол нативный и одиночный: на телефоне это привычное системное колесо,
+   а не наша выдумка и не простыня на треть экрана, какой показывается
+   `select multiple`. Несколько услуг — несколько полей, их добавляет кнопка.
+   Красим рамку и кегль, внутренности отдаём браузеру. */
+.ls-calc-label{display:block;margin-bottom:8px;font-size:var(--t-ui);color:var(--ink-2)}
+.ls-calc-picks{display:flex;flex-direction:column;gap:10px}
+.ls-calc select{width:100%;height:52px;padding:0 14px;
+  border:1.5px solid var(--line-strong);border-radius:0;background:var(--paper);
+  font:inherit;font-size:var(--t-base);color:var(--ink);
+  transition:border-color .15s var(--ease)}
+.ls-calc select:hover{border-color:var(--ink)}
+.ls-calc select:focus{outline:none;border-color:var(--ink)}
+.ls-calc select:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
+/* Добавленное поле идёт с крестиком: первое убрать нельзя, оно и есть вопрос.
+   Крестик того же роста, что поле, — иначе строка выглядит кривой. */
+.ls-calc-pick{display:flex;gap:8px}
+.ls-calc-pick select{flex:1;min-width:0}
+.ls-calc-drop{flex:0 0 auto;display:grid;place-items:center;width:52px;height:52px;
+  padding:0;border:1.5px solid var(--line-strong);border-radius:0;
+  background:var(--paper);color:var(--glyph);cursor:pointer;
+  transition:border-color .15s var(--ease),color .15s var(--ease)}
+.ls-calc-drop:hover{border-color:var(--ink);color:var(--ink)}
+.ls-calc-drop:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
+
+/* Кнопка-ссылка, а не вторая чёрная кнопка: главная в блоке одна. */
+.ls-calc-more{align-self:start;margin-top:12px;padding:0;border:0;background:none;cursor:pointer;
+  font:inherit;font-size:var(--t-ui);color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-strong);
+  transition:text-decoration-color .18s var(--ease)}
+.ls-calc-more:hover{text-decoration-color:var(--ink)}
+.ls-calc-more[hidden]{display:none}
+
+/* Поле «своими словами» идёт следом за списком: половина задач в каталог
+   не укладывается, и без него человеку нечего ответить. */
+.ls-calc input[name=own]{margin-top:12px}
+
+/* Чипы срока и печати: вид общий с формой заявки (form.css), раскладка
+   своя — здесь их по три, и они переносятся по строкам, а не прокручиваются
+   лентой вбок, как каналы связи. */
+.ls-calc .ls-way{margin-top:18px}
+.ls-calc .ls-way-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.ls-calc-form .ls-btn{margin-top:22px;height:56px;font-size:18px}
+/* Что будет дальше: без этой строки кнопка обещает расчёт, а приводит
+   к форме, и это читается как подмена. */
+.ls-calc-hint{margin:10px 0 0;font-size:var(--t-cap);line-height:1.45;color:var(--muted)}
+
+.ls-calc-note{margin:26px 0 0;font-size:var(--t-ui);line-height:1.5;
+  color:var(--ink-2);max-width:44ch}
+.ls-calc-note b{font-weight:inherit;color:var(--ink)}
+
+@media (min-width: 1024px){
+  /* Слева расчёт, справа объяснение цены — та же раскладка, что у формы
+     заявки внизу: поля не растягиваются на весь контейнер, а справа от них
+     не пустота, а текст. */
+  .ls-calc{display:grid;grid-template-columns:minmax(0,640px) minmax(0,1fr);
+    column-gap:80px;align-items:start}
+  .ls-calc h2,.ls-calc .ls-sub,.ls-calc-form{grid-column:1}
+  .ls-calc-note{grid-column:2;grid-row:2 / span 2;margin-top:12px;max-width:38ch}
+  .ls-calc-form .ls-btn{width:fit-content;min-width:280px;padding:0 28px}
+}
+
+/* ── Малый тираж ───────────────────────────────────────────────────
+   Отдельная секция под расчётом, потому что отвечает на следующий вопрос
+   человека: «а за мои тридцать штук вообще возьмутся». По дампу заявок это
+   спрашивают прямо, а медианный названный тираж — сто штук.
+
+   Стили живут здесь, а не в своём файле: блок продолжает разговор о цене
+   и объёме и без него не появляется. */
+.ls-small{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-small-lead{margin:12px 0 0;font-size:var(--t-base);line-height:1.5;
+  color:var(--ink-2);max-width:52ch}
+.ls-small-list{margin:24px 0 0;padding:0;list-style:none;
+  display:grid;gap:14px}
+.ls-small-list li{display:flex;align-items:baseline;gap:12px;
+  padding-top:14px;border-top:1px solid var(--line)}
+.ls-small-list b{flex-shrink:0;min-width:56px;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-lead);line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.ls-small-list span{font-size:var(--t-ui);line-height:1.4;color:var(--ink-2)}
+
+@media (min-width: 1024px){
+  /* Три примера в ряд: на широком экране столбиком они читаются как список
+     услуг, а это одна мысль, разложенная на три случая. */
+  .ls-small-list{grid-template-columns:repeat(3,1fr);gap:32px;max-width:960px}
+  .ls-small-list li{display:block;padding-top:18px}
+  .ls-small-list b{display:block;font-size:var(--t-display)}
+  .ls-small-list span{display:block;margin-top:8px}
+}

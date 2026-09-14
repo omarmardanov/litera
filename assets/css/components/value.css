@@ -24,7 +24,7 @@
   .ls-value ul:has(li:hover) li:not(:hover){opacity:.38}
   /* Знак берёт цвет направления и слегка подрастает. Масштаб не двигает
      соседей: `scale` не участвует в раскладке. */
-  .ls-value li:hover .ls-mark{color:var(--dir);scale:1.15}
+  .ls-value li:hover .ls-mark{color:var(--dir-ink);scale:1.15}
 }
 .ls-value b{display:block;font-size:var(--t-base);font-weight:500;line-height:1.35}
 .ls-value p{grid-column:2;margin:-2px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}

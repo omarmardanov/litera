@@ -78,7 +78,12 @@
   Object.keys(marks).forEach(function (key) {
     if (!marks[key]) return;
     new IntersectionObserver(function (entries) {
-      seen[key] = entries[0].isIntersecting;
+      // Не `isIntersecting`, а положение метки: метка ниже окна — это тоже
+      // «белый слой ещё не дошёл», а пересечения там нет. На главной первый
+      // экран выше окна, метка начинается за его нижним краем, и по признаку
+      // пересечения шапка белела сразу на чёрном. Условие то же, что
+      // в страховке ниже по файлу.
+      seen[key] = entries[0].boundingClientRect.top > (bar.offsetHeight || 54);
       applyMark();
       // граница считается по нижнему краю шапки, а не по верху окна:
       // иначе цвет меняется, когда слой уже наполовину заехал под неё

@@ -29,7 +29,7 @@
      раньше. `li:has(~ li:hover)` — это и есть «за мной есть наведённый».
      Подрастает при этом только сам наведённый: если растут все, ряд дёргается. */
   .ls-how li:hover::before,
-  .ls-how li:has(~ li:hover)::before{color:var(--dir)}
+  .ls-how li:has(~ li:hover)::before{color:var(--dir-ink)}
   .ls-how li:hover::before{scale:1.12}
   /* Номер загорается тогда, когда до него дотянулась линия, — те же задержки.
      Увеличение при этом мгновенное: на движение курсора надо ответить сразу,
@@ -46,7 +46,7 @@
      размер фона, а не размеры элемента, — раскладка не трогается.
      Здесь линия вертикальная, поэтому растёт высота. */
   .ls-how li:not(:last-child)::after{
-    background-image:linear-gradient(var(--dir),var(--dir));
+    background-image:linear-gradient(var(--dir-ink),var(--dir-ink));
     background-repeat:no-repeat;background-size:100% 0;
     transition:background-size .32s var(--ease)}
   /* Отрезок ведёт от своего шага к следующему, поэтому красится у тех,
@@ -89,13 +89,13 @@
     /* Линия остаётся серой, цветная протягивается поверх размером фона —
        раскладка не трогается. */
     .ls-how li:not(:last-child)::after{
-      background-image:linear-gradient(var(--dir),var(--dir));
+      background-image:linear-gradient(var(--dir-ink),var(--dir-ink));
       background-repeat:no-repeat;background-size:100% 0;
       animation:ls-how-line linear both;
       animation-timeline:--step;animation-range:cover 50% cover 60%}
   }
 }
-@keyframes ls-how-num{to{color:var(--dir)}}
+@keyframes ls-how-num{to{color:var(--dir-ink)}}
 @keyframes ls-how-line{to{background-size:100% 100%}}
 
 .ls-how b{font-size:var(--t-base);font-weight:500;line-height:1.35}

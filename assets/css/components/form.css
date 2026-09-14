@@ -27,11 +27,13 @@
 .ls-lead-form textarea:focus{outline:none;border-color:var(--ink)}
 .ls-lead-form textarea:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
 
-/* Как удобнее ответить: чипы вместо пяти радиокнопок в столбик */
+/* Как удобнее ответить: чипы вместо пяти радиокнопок в столбик.
+   Тот же вид берёт срок в блоке расчёта — вид общий, раскладка у каждого
+   своя: здесь лента вбок, там перенос по строкам. */
 /* fieldset по умолчанию не сжимается — из-за этого лента чипов растягивала
    страницу вместо того, чтобы прокручиваться внутри себя */
-.ls-lead-form .ls-way{margin:20px 0 0;padding:0;border:0;min-width:0;display:block}
-.ls-lead-form .ls-way legend{padding:0;font-size:var(--t-ui);color:var(--ink-2)}
+.ls-lead-form .ls-way,.ls-calc .ls-way{margin:20px 0 0;padding:0;border:0;min-width:0;display:block}
+.ls-lead-form .ls-way legend,.ls-calc .ls-way legend{padding:0;font-size:var(--t-ui);color:var(--ink-2)}
 /* Чипы в одну строку: если каналов станет больше, они не переносятся,
    а прокручиваются вбок, как лента работ. */
 /* Лента выходит за поля формы к краям экрана — так видно, что вбок есть продолжение.
@@ -42,15 +44,15 @@
 /* поле справа в конце прокрутки: padding-right у flex-ленты Safari не учитывает */
 .ls-lead-form .ls-way-row::after{content:"";flex:0 0 12px}
 .ls-lead-form .ls-way-row::-webkit-scrollbar{display:none}
-.ls-lead-form .ls-way label{flex:0 0 auto;cursor:pointer}
-.ls-lead-form .ls-way input{position:absolute;width:1px;height:1px;opacity:0}
-.ls-lead-form .ls-way span{display:block;padding:9px 14px;border:1.5px solid var(--line-strong);
+.ls-lead-form .ls-way label,.ls-calc .ls-way label{flex:0 0 auto;cursor:pointer}
+.ls-lead-form .ls-way input,.ls-calc .ls-way input{position:absolute;width:1px;height:1px;opacity:0}
+.ls-lead-form .ls-way span,.ls-calc .ls-way span{display:block;padding:9px 14px;border:1.5px solid var(--line-strong);
   background:var(--paper);font-size:var(--t-ui);line-height:1.2;color:var(--ink-2);
   transition:border-color .15s var(--ease),color .15s var(--ease),
              background-color .15s var(--ease)}
-.ls-lead-form .ls-way label:hover span{border-color:var(--ink);color:var(--ink)}
-.ls-lead-form .ls-way input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.ls-lead-form .ls-way input:focus-visible + span{box-shadow:var(--ring)}
+.ls-lead-form .ls-way label:hover span,.ls-calc .ls-way label:hover span{border-color:var(--ink);color:var(--ink)}
+.ls-lead-form .ls-way input:checked + span,.ls-calc .ls-way input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ls-lead-form .ls-way input:focus-visible + span,.ls-calc .ls-way input:focus-visible + span{box-shadow:var(--ring)}
 /* автозаполнение: браузеры красят поле своим фоном, гасим — форма монохромная */
 .ls-lead-form input:-webkit-autofill,
 .ls-lead-form input:-webkit-autofill:hover{
@@ -192,10 +194,10 @@
 /* Фирменный элемент за формой. На телефоне он маленький и в углу:
    страница и так узкая, крупная клякса забрала бы всё внимание.
 
-   Знак вставлен разметкой, а не картинкой, и красится цветом направления —
-   тем же --dir, что берут знаки в ценностях и номера в этапах. У полиграфии
-   это синий. Где направление не задано, --dir равен цвету текста, и знак
-   остаётся серым, как был. */
+   Знак вставлен разметкой, а не картинкой, и красится цветом направления.
+   Здесь берётся именно фирменный `--dir`, а не затемнённый `--dir-ink`:
+   знак лежит заливкой на 14% прозрачности, читаемость ему не нужна, нужен
+   оттенок. Где направление не задано, цвет равен цвету текста. */
 .ls-lead-mark{position:absolute;right:-24px;top:-18px;width:120px;height:auto;
   color:var(--dir);opacity:.14;pointer-events:none;z-index:0}
 .ls-lead-form > *:not(.ls-lead-mark){position:relative;z-index:1}

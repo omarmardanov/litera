@@ -1,0 +1,68 @@
+/* Первый экран главной: кадр, растворяющийся в чёрное поле, и текст на нём.
+
+   Шапка прозрачная, под ней кадр — как на карточке услуги и на кейсе.
+   Дальше кадр не обрывается, а уходит в чёрный фон, и уже на чёрном стоят
+   заголовок, описание и кнопка. От карточки услуги отличие в том, что там
+   текст лежит поверх снимка сбоку, а здесь снимок и текст не спорят: сначала
+   кадр, потом слово.
+
+   Белый слой страницы начинается сразу с плиток направлений. */
+
+.ls-home-lead{position:relative;background:var(--ink)}
+/* Обычная прокрутка, без липкости: на услуге кадр стоит, а страница наезжает
+   на него слоем (правило `.ls-hero{position:sticky}` в hero.css), здесь первый
+   экран уезжает вверх целиком вместе с текстом. */
+.ls-home-lead .ls-home-hero{position:relative}
+
+/* Кадр начинается под шапкой, а не уходит под неё: композиция тут лежит
+   у самого верха снимка, и под прозрачной шапкой продукция читалась как
+   подложка меню. Поле сверху ровно в высоту шапки, и она стоит на чёрном. */
+.ls-home-hero{background:var(--ink);padding-top:var(--topbar)}
+.ls-home-hero img{height:calc(100vw / 1.9);max-height:52vh;
+  object-position:50% 40%}
+/* Низ кадра уходит в фон: без этого между снимком и чёрным полем видна
+   линия обреза. Растворение высокое — треть кадра, — иначе переход читается
+   полосой, а не продолжением. */
+.ls-home-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:20%;pointer-events:none;
+  background:linear-gradient(var(--ink-0), var(--ink))}
+
+.ls-home-head{position:relative;z-index:1;padding:0 var(--side) 40px;
+  margin-top:-8px;text-align:center}
+.ls-home-head .ls-title{color:var(--paper)}
+.ls-home-head .ls-desc{margin:10px auto 0;max-width:34ch;color:var(--on-dark-4)}
+/* Кнопка и мессенджеры лежат внутри текстового блока, поля даёт он: свои
+   `padding:0 20px` из `.ls-cta` сдвигали бы кнопку со строки заголовка. */
+.ls-home-head .ls-cta,.ls-home-head .ls-cta-alt{background:none}
+.ls-home-head .ls-cta{margin-top:22px;padding:0;justify-content:center}
+.ls-home-head .ls-cta .ls-btn-main{background:var(--paper);color:var(--ink)}
+.ls-home-head .ls-cta .ls-btn-main:hover{background:var(--line)}
+/* Правый отступ и левое выравнивание строке мессенджеров даёт value.css:
+   там она стоит в колонке тёмной плашки услуги. Здесь колонки нет. */
+.ls-home-head .ls-cta-alt{margin-top:14px;padding:0;text-align:center;
+  color:var(--on-dark-2)}
+.ls-home-head .ls-cta-alt a{color:var(--paper)}
+.ls-home-head .ls-cta-alt a span{text-decoration-color:var(--line-dark-2)}
+
+@media (min-width: 1024px){
+  /* Кадр и текст стоят в первой строке сетки — той же, что шапка: иначе кадр
+     начинается под ней, а не уходит под неё. */
+  .ls-home-lead{grid-column:1 / -1;grid-row:1}
+  /* Кадр остаётся обычным блоком: десктопное правило `.ls-hero` в hero.css
+     растягивает его на всю тёмную плашку услуги (`height:100%`, min-height 470),
+     а здесь плашки нет — от этого кадр вырастал на 862 пикселя и заливал
+     чёрным всё до заголовка. */
+  .ls-home-hero{height:auto;min-height:0;padding-top:calc(var(--topbar) + 16px)}
+  .ls-home-hero img{height:min(56vh, 520px);aspect-ratio:auto;object-position:50% 28%}
+  .ls-home-hero::before{background:linear-gradient(rgba(17,17,18,.55) 0,
+    rgba(17,17,18,.55) var(--topbar), var(--ink-0) calc(var(--topbar) + 120px))}
+  .ls-home-hero::after{height:26%}
+  .ls-home-head{padding-bottom:64px;margin-top:-24px}
+  .ls-home-head .ls-title{max-width:22ch;margin-inline:auto}
+  /* Мера уже, чем на услуге: по центру короткие строки читаются ровнее,
+     а последнее слово не висит отдельной строкой. */
+  .ls-home-head .ls-desc{max-width:46ch;font-size:20px}
+  /* Кнопка по содержимому, а не во всю колонку: по центру растянутая
+     на 1240 кнопка читается как полоса, а не как кнопка. */
+  .ls-home-head .ls-cta .ls-btn{flex:0 0 auto;min-width:280px}
+}
