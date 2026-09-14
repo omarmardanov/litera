@@ -44,27 +44,28 @@
    своя: здесь лента вбок, там перенос по строкам. */
 /* fieldset по умолчанию не сжимается — из-за этого лента чипов растягивала
    страницу вместо того, чтобы прокручиваться внутри себя */
-.ls-lead-form .ls-way,.ls-calc .ls-way{margin:20px 0 0;padding:0;border:0;min-width:0;display:block}
-.ls-lead-form .ls-way legend,.ls-calc .ls-way legend{padding:0;font-size:var(--t-ui);color:var(--ink-2)}
+.ls-lead-form .ls-way,.ls-filter .ls-way{margin:20px 0 0;padding:0;border:0;min-width:0;display:block}
+.ls-lead-form .ls-way legend,.ls-filter .ls-way legend{padding:0;font-size:var(--t-ui);color:var(--ink-2)}
 /* Чипы в одну строку: если каналов станет больше, они не переносятся,
-   а прокручиваются вбок, как лента работ. */
+   а прокручиваются вбок, как лента работ. Те же чипы — фильтр на странице
+   работ (`.ls-filter`). */
 /* Лента выходит за поля формы к краям экрана — так видно, что вбок есть продолжение.
    Безопасно, потому что переполнение обрезает .ls-card (overflow-x:clip). */
-.ls-lead-form .ls-way-row{display:flex;gap:8px;margin:10px -20px 0;padding-left:20px;
+.ls-lead-form .ls-way-row,.ls-filter .ls-way-row{display:flex;gap:8px;margin:10px -20px 0;padding-left:20px;
   min-width:0;overflow-x:auto;
   scrollbar-width:none;-webkit-overflow-scrolling:touch}
 /* поле справа в конце прокрутки: padding-right у flex-ленты Safari не учитывает */
-.ls-lead-form .ls-way-row::after{content:"";flex:0 0 12px}
-.ls-lead-form .ls-way-row::-webkit-scrollbar{display:none}
-.ls-lead-form .ls-way label,.ls-calc .ls-way label{flex:0 0 auto;cursor:pointer}
-.ls-lead-form .ls-way input,.ls-calc .ls-way input{position:absolute;width:1px;height:1px;opacity:0}
-.ls-lead-form .ls-way span,.ls-calc .ls-way span{display:block;padding:9px 14px;border:1.5px solid var(--line-strong);
+.ls-lead-form .ls-way-row::after,.ls-filter .ls-way-row::after{content:"";flex:0 0 12px}
+.ls-lead-form .ls-way-row::-webkit-scrollbar,.ls-filter .ls-way-row::-webkit-scrollbar{display:none}
+.ls-lead-form .ls-way label,.ls-filter .ls-way label{flex:0 0 auto;cursor:pointer}
+.ls-lead-form .ls-way input,.ls-filter .ls-way input{position:absolute;width:1px;height:1px;opacity:0}
+.ls-lead-form .ls-way span,.ls-filter .ls-way span{display:block;padding:9px 14px;border:1.5px solid var(--line-strong);
   background:var(--paper);font-size:var(--t-ui);line-height:1.2;color:var(--ink-2);
   transition:border-color .15s var(--ease),color .15s var(--ease),
              background-color .15s var(--ease)}
-.ls-lead-form .ls-way label:hover span,.ls-calc .ls-way label:hover span{border-color:var(--ink);color:var(--ink)}
-.ls-lead-form .ls-way input:checked + span,.ls-calc .ls-way input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.ls-lead-form .ls-way input:focus-visible + span,.ls-calc .ls-way input:focus-visible + span{box-shadow:var(--ring)}
+.ls-lead-form .ls-way label:hover span,.ls-filter .ls-way label:hover span{border-color:var(--ink);color:var(--ink)}
+.ls-lead-form .ls-way input:checked + span,.ls-filter .ls-way input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ls-lead-form .ls-way input:focus-visible + span,.ls-filter .ls-way input:focus-visible + span{box-shadow:var(--ring)}
 /* автозаполнение: браузеры красят поле своим фоном, гасим — форма монохромная */
 .ls-lead-form input:-webkit-autofill,
 .ls-lead-form input:-webkit-autofill:hover{
