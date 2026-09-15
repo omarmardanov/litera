@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- СОБРАНО build.py. Не править этот файл: правки затрутся при следующей сборке.
-     Исходник страницы — _pages/case.html, общие части — _parts/. -->
+     Исходник страницы — _pages/article.html, общие части — _parts/. -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
@@ -76,56 +76,37 @@
      иначе обёртка-телефон для десктопа не срабатывает. -->
 <link rel="stylesheet" href="assets/css/layout.css?v=511">
 <link rel="stylesheet" href="assets/css/motion.css?v=511">
-<title>Сертификаты с тиснением для BOURBAKI — Подарочный сертификат — Литера.Студия</title>
-<meta name="description" content="Дизайн подарочных сертификатов: нарисуем с нуля или подготовим готовый макет. Печатаем на своём производстве.">
+<title>Готовим макет к печати: какой формат файла подходит для типографии — Литера.Студия</title>
+<meta name="description" content="Растровый — TIFF или PSD, векторный и комбинированный — PDF. Почему типография вернёт Word и GIF, и как не потерять тираж из-за формата.">
 
-<!-- Канонический адрес: страница доступна и по адресу с параметрами utm,
-     без этого поиск считает их разными страницами. -->
-<link rel="canonical" href="https://litera.studio/dizajn-sertifikata">
+<link rel="canonical" href="https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii">
+<meta property="og:title" content="Готовим макет к печати: какой формат файла подходит для типографии">
+<meta property="og:description" content="Растровый — TIFF или PSD, векторный и комбинированный — PDF. Почему типография вернёт Word и GIF, и как не потерять тираж из-за формата.">
+<meta property="og:url" content="https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii">
+<meta property="og:image" content="https://litera.studio/wp-content/uploads/2024/02/vector1.jpg">
 
-<meta property="og:title" content="Подарочный сертификат — дизайн и печать">
-<meta property="og:description" content="Дизайн подарочных сертификатов: нарисуем с нуля или подготовим готовый макет. Печатаем на своём производстве.">
-<meta property="og:url" content="https://litera.studio/dizajn-sertifikata">
-<meta property="og:image" content="https://litera.studio/assets/img/p1.jpg">
-
-<!-- Путь для поиска: в выдаче он показывается вместо адреса страницы.
-     Здесь он полный, а на экране крошка сокращена до одного шага вверх —
-     на телефоне цепочка из четырёх звеньев занимает две строки и режется.
-     Разметку нельзя вынести в отдельный файл: по внешней ссылке поисковики
-     структурированные данные не читают. -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
-{"@type":"ListItem","position":2,"name":"Полиграфия","item":"https://litera.studio/poligrafiya"},
-{"@type":"ListItem","position":3,"name":"Листовая полиграфия","item":"https://litera.studio/listovaya-poligrafiya"},
-{"@type":"ListItem","position":4,"name":"Подарочный сертификат","item":"https://litera.studio/dizajn-sertifikata"}]}
+{"@type":"ListItem","position":2,"name":"Блог","item":"https://litera.studio/blog"},
+{"@type":"ListItem","position":3,"name":"Какой формат файла подходит для типографии","item":"https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii"}]}
 </script>
-<!-- Услуга: цена «от», валюта и город. Даёт в выдаче строку с ценой.
-     Числа держать в согласии с первым экраном — при правке менять оба места. -->
+<!-- Дата публикации в разметке остаётся — поиску она нужна, на экране
+     её нет (см. article.css). -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Дизайн и печать подарочных сертификатов",
-"serviceType":"Полиграфия","url":"https://litera.studio/dizajn-sertifikata",
-"areaServed":{"@type":"City","name":"Москва"},
-"provider":{"@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/",
-"telephone":"+7 495 021-35-77","email":"zakaz@litera.studio",
-"address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU",
-"streetAddress":"Холодильный пер., 3к1с3"}},
-"offers":{"@type":"Offer","price":"1500","priceCurrency":"RUB",
-"availability":"https://schema.org/InStock","url":"https://litera.studio/dizajn-sertifikata"}}
-</script>
-
-<!-- Вопросы: собраны из блока «Частые вопросы» на этой же странице.
-     Правило поиска — разметка обязана дословно совпадать с видимым текстом,
-     поэтому при правке вопросов правится и здесь. -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что входит в цену?","acceptedAnswer":{"@type":"Answer","text":"В 1 500 ₽ входит печать тиража от 50 штук на нашей бумаге. Дизайн считаем отдельно: готовый макет печатаем как есть, а если рисуем с нуля — назовём стоимость после первого разговора, она зависит от сложности."}},{"@type":"Question","name":"А если у меня нет макета?","acceptedAnswer":{"@type":"Answer","text":"Сделаем сами: соберём из вашего текста и логотипа или придумаем концепцию. Стоимость дизайна зависит от сложности, назовём её до начала работы."}},{"@type":"Question","name":"Сколько правок входит в стоимость?","acceptedAnswer":{"@type":"Answer","text":"Две по согласованному направлению. Обычно хватает: до отрисовки мы обсуждаем повод, текст и стиль, поэтому первый вариант редко расходится с ожиданием. Дальнейшие правки считаем отдельно и предупреждаем заранее."}},{"@type":"Question","name":"А если макет не понравился?","acceptedAnswer":{"@type":"Answer","text":"Скажите, что не так — покажем второй вариант, он входит в стоимость. Если не совпало само направление, вернёмся к разговору о задаче и начнём заново, а не будем чинить неподходящий макет правками."}},{"@type":"Question","name":"В каком виде присылать файл?","acceptedAnswer":{"@type":"Answer","text":"Лучше всего PDF в CMYK с вылетами от 3 мм. Принимаем и рабочие файлы: AI, CDR, PSD, EPS. Подробнее — в требованиях к макетам. Не уверены, что с файлом всё в порядке — пришлите как есть, проверим и скажем, что поправить."}},{"@type":"Question","name":"Есть ли минимальный тираж?","acceptedAnswer":{"@type":"Answer","text":"Печатаем от 50 штук. Меньше — тоже возьмёмся, но за штуку выйдет заметно дороже: подготовка стоит одинаково и на 20 экземплярах, и на 500."}},{"@type":"Question","name":"Почему цвет на экране и на бумаге разный?","acceptedAnswer":{"@type":"Answer","text":"Экран светится, бумага отражает свет — часть экранных цветов на ней просто недостижима. Поэтому перед тиражом показываем распечатку: по ней видно, каким цвет будет на самом деле."}},{"@type":"Question","name":"Можно допечатать тираж позже?","acceptedAnswer":{"@type":"Answer","text":"Можно, файлы храним. Но цвет второй партии может немного отличаться от первой, а небольшой доптираж выходит дороже за штуку. Если знаете, что понадобится ещё, лучше заложить запас сразу."}}]}
+{"@context":"https://schema.org","@type":"Article",
+"headline":"Готовим макет к печати: какой формат файла подходит для типографии",
+"datePublished":"2021-12-17","dateModified":"2024-02-01",
+"image":"https://litera.studio/wp-content/uploads/2024/02/vector1.jpg",
+"author":{"@type":"Organization","name":"Литера.Студия"},
+"publisher":{"@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/"}}
 </script>
 </head>
 <body>
 <!-- Первая цель табуляции: с клавиатуры и со скринридера можно перескочить
      шапку с меню и попасть сразу в содержимое. -->
 <a class="ls-skip" href="#main">К содержанию</a>
-<main class="ls-card" id="main" data-dir="poligrafiya">
+<main class="ls-card" id="main">
   <header class="ls-topbar">
     <!-- Логотип файлом (`assets/img/logo.svg`), а не набран шрифтом: знак берём
          из бренд-ассетов. Показывает его CSS-маска, поэтому он перекрашивается
@@ -250,170 +231,199 @@
     </div>
   </div>
 
-  <!-- Первый экран кейса: кадр во всю ширину под прозрачной шапкой.
+  <!-- Статья настоящая: текст с litera.studio/blog/kakoj-format-fajla-…,
+       вторая по трафику в блоге (2 669 визитов, 1 заявка). Правки текста:
+       подзаголовки h3 → h2, нумерованные абзацы → списки, подписи к
+       иллюстрациям → figcaption. Слова не менял. Обложка не показана:
+       у них это плашка с тем же заголовком. -->
+  <div class="ls-body ls-cat-intro">
+    <nav aria-label="Хлебные крошки">
+      <a class="ls-back" href="blog.html">
+        <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
+        Блог
+      </a>
+    </nav>
+    <h1 class="ls-title">Готовим макет к печати: какой формат файла подходит для типографии</h1>
+    <p class="ls-article-meta">3 минуты · <a href="blog.html">Подготовка макета</a></p>
+  </div>
 
-       Приём тот же, что на карточке услуги: фотография уходит под шапку,
-       затемнение сверху держит логотип и кнопку читаемыми, а белый слой
-       наезжает на кадр при прокрутке. Отличие — на услуге поверх кадра лежит
-       тёмная плашка с заголовком и кнопкой, она продаёт услугу; здесь продаёт
-       сама работа, поэтому поверх снимка нет ничего, а крошка и заголовок
-       стоят под ним, уже на белом.
+  <i class="ls-chat-sentinel" aria-hidden="true"></i>
 
-       Работа настоящая: снимки и теги взяты с litera.studio/dizajn-sertifikata,
-       тайл «Подарочный сертификат для BOURBAKI». Теги оттуда же: направление
-       «Полиграфия», продукт «Абонементы и сертификаты», отрасль «Мода».
+  <article class="ls-article">
+    <p>Готовите файлы к печати? Не ошибитесь с форматом. Иначе типография может вернуть вам файлы, чтобы вы изменили формат. Со всеми вытекающими последствиями в виде срыва сроков и сожженных в котле аврала нервов. И это в лучшем случае. В худшем случае макет могут отправить на печать «как есть», а это — непредсказуемый результат на выходе и потенциально полностью ушедший в брак тираж.</p>
+    <p>Чтобы этого не произошло, в статье расскажем, какой формат нужен для <a href="https://litera.studio/prepress">печати в типографии</a>. А также затронем другие тонкости, которые необходимо учесть при подготовке макета, чтобы на бумаге все было таким же, как на экране компьютера.</p>
 
-       Чего у студии нет и что придумывать нельзя: тираж, бумага, срок и текст
-       про задачу. Эти места помечены как заглушки — их заполняет менеджер. -->
-  <figure class="ls-hero ls-case-hero">
-    <picture>
-      <img fetchpriority="high" src="assets/img/case-bourbaki/1.jpg" width="1200" height="800"
-        alt="Сертификат BOURBAKI с золотым тиснением и номером 19066, рядом конверт и раскрытая папка">
-    </picture>
-  </figure>
-
-  <div class="ls-rest ls-case" data-gallery>
-    <i class="ls-rest-sentinel" aria-hidden="true"></i>
-    <i class="ls-body-sentinel ls-chat-sentinel" aria-hidden="true"></i>
-
-    <section class="ls-case-head">
-      <nav aria-label="Хлебные крошки">
-        <a class="ls-back" href="projects.html">
-          <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
-          Работы
-        </a>
-      </nav>
-      <h1 class="ls-title">Подарочный сертификат для «BOURBAKI»</h1>
-      <p class="ls-desc">Сертификат с золотым тиснением и сквозным номером,
-        в конверте и папке из той же бумаги.</p>
-    </section>
-
-    <!-- Паспорт работы. Первые три строки — теги из их портфолио. Услуга
-         ведёт в карточку, направление — в работы с выставленным фильтром
-         и отрасль — в работы с выставленным фильтром (projects.js читает
-         ?dir=, ?prod= и ?ind=). Отрасль в их портфолио проставлена у 63 работ
-         из 813, у «Моды» — 6.
-
-         Особенности видны на снимках. Тираж и срок пустые: этих данных
-         у студии на сайте нет. -->
-    <section class="ls-case-facts">
-      <dl>
-        <div><dt>Услуга</dt><dd><a href="sertifikat.html">Подарочные сертификаты</a></dd></div>
-        <div><dt>Направление</dt><dd><a href="projects.html?dir=poligrafiya">Полиграфия</a></dd></div>
-        <div><dt>Отрасль</dt><dd><a href="projects.html?ind=Мода">Мода</a></dd></div>
-        <div><dt>Особенности</dt><dd>Тиснение фольгой, сквозная нумерация,
-          конверт и папка под формат</dd></div>
-        <div><dt>Тираж</dt><dd class="is-stub">уточняем</dd></div>
-        <div><dt>Срок</dt><dd class="is-stub">уточняем</dd></div>
-        <!-- Имя дизайнера в паспорте, а не отдельным блоком «кто работал»:
-             для студии, которая продаёт дизайн, это довод, а ещё одна секция
-             ради одной строки странице не нужна. Поле необязательное. -->
-        <div><dt>Дизайнер</dt><dd class="is-stub">имя от менеджера</dd></div>
-        <!-- Стоимость — необязательное поле: показываем только там, где она
-             названа. Пусто — строки нет вовсе, прочерк в кейсе читается как
-             «не сказали цену», а это хуже, чем не спрашивать.
-             ЗНАЧЕНИЕ ВЫДУМАНО для демонстрации. -->
-        <div><dt>Стоимость</dt><dd>от 320 ₽ за штуку</dd></div>
-      </dl>
-    </section>
-
-    <section class="ls-case-text">
-      <h2>Задача</h2>
-      <!-- ТЕКСТ ВЫДУМАН для демонстрации: у студии описания этой работы нет,
-           в портфолио она стоит одним снимком. Перед показом заказчику
-           заменить на то, что расскажет менеджер. -->
-      <p>Ателье шьёт на заказ, и сертификат здесь не бумажка с кассы, а часть
-        подарка: его вручают в руки вместе с примеркой. Прежний печатали на
-        офисной бумаге — он мялся в конверте и выглядел как рекламная листовка.
-        Нужно было, чтобы сертификат читался вещью из ателье и не требовал
-        отдельной упаковки.</p>
-    </section>
-
-    <!-- Кадр между двумя текстовыми блоками: «Задача» и «Что сделали» стоят
-         подряд, и два абзаца один за другим читаются стеной. Снимок держит
-         паузу и заодно показывает то, о чём речь. Он же часть общей группы
-         для диалога — листается вместе с галереей. -->
-    <figure class="ls-case-inline">
-      <button type="button" class="ls-case-zoom" data-pic="assets/img/case-bourbaki/3.jpg" data-alt="Сертификат BOURBAKI поверх стопки конвертов" data-cursor="Открыть крупно">
-        <img loading="lazy" decoding="async" src="assets/img/case-bourbaki/3.jpg" width="1200" height="800" alt="Сертификат BOURBAKI поверх стопки конвертов">
-      </button>
-      <figcaption>Сертификат и конверт под его формат</figcaption>
+    <h2>Кратко об основах: в чем разница между растровым и векторным изображением</h2>
+    <p>Цифровые изображения делятся на две большие группы: растровые и векторные.</p>
+    <p>Все фотореалистичные изображения — растровые. Это фотографии, картины digital-художников и даже скриншоты экрана. Из-за огромного количества цветовых переходов, полутонов, оттенков сохранить фотореалистичные изображения в памяти компьютера можно только одним способом: разбить их на миллионы отдельных точек (пикселей) и записать в таблицу, в которой каждой точке будет соответствовать конкретный цвет и координаты. Отсюда — гигантские размеры растровых файлов высокого разрешения, для которых несколько сотен мегабайт — не предел.</p>
+    <p>Если вы когда-нибудь видели схему для вышивания крестиком, то вы знаете, как выглядит растровое изображение. Просто пиксели в сотни раз меньше стежков, поэтому несмотря их квадратную форму, картинка на экране получается гладкой. Но стоит ее увеличить, и вы увидите такие же «ступеньки» на границах цветов.</p>
+    <p>Принцип хранения векторных изображений в памяти компьютера в корне отличается. Нет никаких отдельных пикселей — только простые фигуры и их формулы. Например, для сохранения нарисованной окружности в память записываются координаты ее центра, радиус, толщина, цвет и тип линии. И, конечно, что это окружность. Все остальное компьютер рассчитает и отрисует сам. Поэтому векторный формат в типографии часто называют изображениями «в кривых».</p>
+    <p>Учитывая, что векторные изображения сплошь состоят из формул, их можно увеличивать до бесконечности без потери качества. К тому же файлы получаются небольшого размера. Но такой формат допустим только для тех изображений, которые можно описать с помощью простых фигур. Как правило, это логотипы, персонажи, графика в мультяшном стиле, текст.</p>
+    <p>Чтобы подбить итоги, наглядно разница между векторным и растровым форматом показана на иллюстрации:</p>
+    <figure>
+      <img loading="lazy" decoding="async" src="assets/img/blog/vector1.jpg" width="1110" height="625" alt="Одна и та же картинка в векторе и в растре при увеличении: у растра видны ступеньки пикселей">
+      <figcaption>Поскольку отличие принципиальное, его нужно учитывать при выборе формата для печати в типографии.</figcaption>
     </figure>
 
-    <!-- Шаги: у студии этот блок есть в каждом кейсе («Этапы работы»),
-         и он единственный объясняет, за что заплачены деньги.
-         ТЕКСТ ВЫДУМАН для демонстрации, заменить на то, что расскажет
-         менеджер. -->
-    <section class="ls-case-text">
-      <h2>Что сделали</h2>
-      <ol class="ls-case-steps">
-        <li>Собрали макет сертификата: шрифт, поля, рамка, место под номер.</li>
-        <li>Подобрали бумагу и показали пробный оттиск с тиснением до тиража.</li>
-        <li>Напечатали тираж со сквозной нумерацией.</li>
-        <li>Сделали конверт и папку из той же бумаги, под формат.</li>
-      </ol>
-    </section>
+    <h2>В каком формате сохранять для типографии растровые файлы</h2>
+    <p>Чтобы обеспечить высокое качество печати растровых изображений, в типографию нужно отдать файл:</p>
+    <ol>
+      <li>В несжатом виде. Идеальный формат изображения для типографии — TIFF, но допустим родной для Adobe Photoshop формат PSD. Второй вариант особенно актуален, если печать широкоформатная — файл PSD с неслитыми слоями облегчает предпечатную подготовку.</li>
+      <li>С разрешением 300 dpi для небольших форматов, вроде буклетов, листовок, меню, и 72 dpi для крупных форматов — от А2. Это афиши, плакаты, постеры, баннеры и другая широкоформатная полиграфия.</li>
+      <li>Размером до 300–500 Мб. Ограничение на максимальный размер файла может быть и больше, но оно есть у каждой типографии.</li>
+    </ol>
+    <p>Сжатые форматы картинок для печати в типографии — не лучший выбор. Хотя артефакты, которые могут появиться при таком сжатии, не всегда совсем уж сильно ухудшают качество отпечатанного изображения, они все равно могут бросаться в глаза и портить впечатление.</p>
+    <figure>
+      <img loading="lazy" decoding="async" src="assets/img/blog/rastr-min.jpg" width="1110" height="625" alt="Фрагмент растрового изображения без сжатия и после сжатия с артефактами">
+      <figcaption>Растровое изображение в несжатом формате (слева) и в сжатом (справа). На правом изображении после сжатия появились явные артефакты.</figcaption>
+    </figure>
+    <p>Тем не менее все типографии принимают JPG в качестве печатного формата, большинство работает с PNG. Но при этом сжатие должно быть минимальным. А вот файлы в формах Word и Excel, а также, скорее всего, в GIF, типография отправит обратно.</p>
 
-    <!-- Галерея: главное содержимое кейса. Подписи описывают то, что видно
-         на кадре, — материалы и тираж без подтверждения не называем. -->
-    <section class="ls-case-gallery">
-      <figure class="is-wide">
-        <button type="button" class="ls-case-zoom" data-pic="assets/img/case-bourbaki/2.jpg" data-alt="Крупный план: логотип BOURBAKI и номер сертификата, вытисненные золотой фольгой" data-cursor="Открыть крупно">
-          <img loading="lazy" decoding="async" src="assets/img/case-bourbaki/2.jpg" width="1200" height="800" alt="Крупный план: логотип BOURBAKI и номер сертификата, вытисненные золотой фольгой">
-        </button>
-        <figcaption>Логотип и номер вытиснены фольгой</figcaption>
-      </figure>
-      <figure>
-        <button type="button" class="ls-case-zoom" data-pic="assets/img/case-bourbaki/4.jpg" data-alt="Раскрытая папка с текстом на правой стороне" data-cursor="Открыть крупно">
-          <img loading="lazy" decoding="async" src="assets/img/case-bourbaki/4.jpg" width="1200" height="800" alt="Раскрытая папка с текстом на правой стороне">
-        </button>
-        <figcaption>Разворот: условия напечатаны внутри</figcaption>
-      </figure>
-      <figure>
-        <button type="button" class="ls-case-zoom" data-pic="assets/img/case-bourbaki/5.jpg" data-alt="Корешок папки крупным планом" data-cursor="Открыть крупно">
-          <img loading="lazy" decoding="async" src="assets/img/case-bourbaki/5.jpg" width="1200" height="800" alt="Корешок папки крупным планом">
-        </button>
-        <figcaption>Корешок держит форму, папка не расходится</figcaption>
-      </figure>
-    </section>
+    <h2>А векторные?</h2>
+    <p>Хотя векторный формат проще масштабировать под любые носители, у типографий с такими файлами тоже возникает немало вопросов. Самый простой, почти гарантированный способ избежать проблем — отправить на печать макет, сохраненный в формате PDF. Даже если речь идет о книге, журнале и другой <a href="https://litera.studio/podgotovka-mnogopolosnaya-poligrafiya">многополосной полиграфии</a> с большим количеством страниц.</p>
+    <figure>
+      <img loading="lazy" decoding="async" src="assets/img/blog/broshury-min.jpg" width="1110" height="625" alt="Раскрытый печатный каталог MIRONI">
+      <figcaption>Каталог для бренда MIRONI. Источник: портфолио Litera Studio.</figcaption>
+    </figure>
+    <p>Также можно отдавать файлы в форматах AI, EPS, PS, CDR. Последний формат — родной для программы CorelDraw, которую массово используют при печати полиграфии. Поэтому иногда типография даже просит отправлять файлы именно в формате CDR, особенно если печать будет на нестандартном носителе.</p>
+    <p>Но при использовании любых векторных форматов, кроме PDF, могут возникнуть проблемы с несовместимостью версий. Вплоть до развалившегося макета, если он создан в новейшей версии программы, а его открыли в старой.</p>
 
-    <!-- Выход со страницы. Кейс не точка входа из поиска: по Метрике
-         `/case/…` собирает единицы визитов и ноль заявок. Сюда попадают
-         с ленты работ, поэтому задача страницы — вернуть в услугу и в форму. -->
-    <section class="ls-case-next">
-      <h2>Напечатаем такой же</h2>
-      <p>Или другой: тираж, бумагу и отделку подберём под повод и бюджет.</p>
-      <div class="ls-case-next-cta">
-        <a class="ls-btn ls-btn-main" href="sertifikat.html#zayavka">Обсудить задачу</a>
-        <a class="ls-case-next-link" href="sertifikat.html">Подарочные сертификаты</a>
+    <h2>Какой формат нужен для типографии, если файл комбинированный?</h2>
+    <p>Очень часто изображение, которое нужно распечатать, не чисто векторное или растровое, а комбинированное. Например, текст на листовке в кривых, а красочный фон — в растре. В этом случае сохраняйте все в PDF. В любом другом формате на печати изображение может «поехать».</p>
+
+    <h2>Выводы</h2>
+    <p>В каком формате готовить файл для полиграфии:</p>
+    <ol>
+      <li>Растровый — в TIFF, PSD, если нет выбора — в JPG.</li>
+      <li>Векторный — идеально PDF, допустимо AI, EPS, PS, CDR.</li>
+      <li>Комбинированные — PDF.</li>
+    </ol>
+
+    <!-- Единственный призыв в тексте. Текст тот же, что в ответе на вопрос
+         «В каком виде присылать файл?» на карточке услуги. Кнопка ведёт
+         в форму ниже, ссылка — в требования на живом сайте. -->
+    <aside class="ls-article-cta">
+      <p><b>Не уверены, что с файлом всё в порядке?</b> Пришлите как есть — проверим и скажем, что поправить. Бесплатно и до того, как считать тираж.</p>
+      <div class="ls-article-cta-row">
+        <a class="ls-btn ls-btn-main" href="#zayavka">Прислать макет</a>
+        <a href="https://litera.studio/trebovaniya-k-maketam">Требования к макетам</a>
       </div>
+    </aside>
+  </article>
+
+  <!-- Соседние статьи той же темы. В CMS — три записи той же рубрики,
+       кроме текущей. -->
+  <section class="ls-article-more ls-blog">
+    <div class="ls-works-head">
+      <h2>Ещё про подготовку макета</h2>
+      <a href="blog.html">Все статьи</a>
+    </div>
+    <ul class="ls-rows">
+      <li><a class="ls-row-body" href="https://litera.studio/blog/kak-sdelat-vizitku-v-photoshop-za-20-minut"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/kak-sdelat-vizitku-v-phoroshop-za-20-minut-544x300.jpg" width="76" height="76" alt=""></span><span class="ls-text"><b>Как сделать визитку в Photoshop за 20 минут</b><span class="ls-time">4 минуты</span></span></a></li>
+      <li><a class="ls-row-body" href="https://litera.studio/blog/pochemu-cvet-pri-pechati-ne-takoj-kak-na-ehkrane"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/pochemu-cvet-pri-pechati-ne-takoj-kak-na-ehkrane-544x300.png" width="76" height="76" alt=""></span><span class="ls-text"><b>Почему цвет при печати не такой, как на экране?</b><span class="ls-time">4 минуты</span></span></a></li>
+      <li><a class="ls-row-body" href="https://litera.studio/blog/cvetoproba-pechati-naznachenie-osobennosti-pravilo-3-dnej"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/cvetoproba-pechati-1-544x300.png" width="76" height="76" alt=""></span><span class="ls-text"><b>Цветопроба печати: назначение, особенности, правило 3 дней</b><span class="ls-time">3 минуты</span></span></a></li>
+    </ul>
+  </section>
+
+  <div class="ls-rest">
+    <i class="ls-rest-sentinel" aria-hidden="true"></i>
+
+    <!-- Последний довод перед формой, одинаково на всех страницах: цифры
+         и знаки клиентов. Логотипы — те, что лежат на сайте студии; показ
+         отдельных знаков согласовывается. -->
+    <section class="ls-figures" aria-label="Студия в цифрах">
+      <div><b>13</b><span>лет студии</span></div>
+      <div><b>820+</b><span>работ</span></div>
+      <div><b>640+</b><span>клиентов</span></div>
     </section>
 
-    <!-- Соседние работы: тот же компонент, что лента работ на карточке услуги. -->
-    <section class="ls-works">
-      <div class="ls-works-head">
-        <h2>Ещё работы</h2>
-        <a href="projects.html?dir=poligrafiya&amp;prod=Абонементы и сертификаты">Все сертификаты</a>
-      </div>
-      <ul class="ls-works-list">
-        <li class="ls-work"><a href="./case.html" data-cursor="Посмотреть работу">
-          <img loading="lazy" decoding="async" src="assets/img/p1.jpg" width="900" height="457" alt="Сертификаты в конвертах">
-          <b>Сертификаты в конвертах</b>
-          <span class="ls-work-tags">Ресторан · конверт под формат</span>
-        </a></li>
-        <li class="ls-work"><a href="./case.html" data-cursor="Посмотреть работу">
-          <img loading="lazy" decoding="async" src="assets/img/p5.jpg" width="900" height="457" alt="Сертификаты с QR-кодом">
-          <b>Сертификаты с QR-кодом</b>
-          <span class="ls-work-tags">Фитнес-студия · QR и сквозной номер</span>
-        </a></li>
+    <section class="ls-clients" aria-label="Клиенты">
+      <ul>
+        <li class="ls-c-ozon"><img src="assets/img/clients/ozon.svg" width="156" height="43" alt="Ozon" loading="lazy" decoding="async"></li>
+        <li class="ls-c-sber"><img src="assets/img/clients/sber.svg" width="135" height="41" alt="Сбер" loading="lazy" decoding="async"></li>
+        <li class="ls-c-france"><img src="assets/img/clients/france.png" width="480" height="437" alt="Посольство Франции" loading="lazy" decoding="async"></li>
+        <li class="ls-c-ormatek"><img src="assets/img/clients/ormatek.jpg" width="300" height="300" alt="Ormatek" loading="lazy" decoding="async"></li>
+        <li class="ls-c-coralclub"><img src="assets/img/clients/coralclub.svg" width="640" height="112" alt="Coral Club" loading="lazy" decoding="async"></li>
+        <li class="ls-c-modum"><img src="assets/img/clients/modum.svg" width="191" height="58" alt="Modum" loading="lazy" decoding="async"></li>
+        <li class="ls-c-inkerman"><img src="assets/img/clients/inkerman.svg" width="805" height="421" alt="Inkerman" loading="lazy" decoding="async"></li>
+        <li class="ls-c-helikon"><img src="assets/img/clients/helikon.png" width="112" height="112" alt="Геликон-опера" loading="lazy" decoding="async"></li>
       </ul>
     </section>
+
+    <section class="ls-lead-form" id="zayavka">
+        <svg class="ls-lead-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+    <h2>Посчитаем и подскажем</h2>
+    <p class="ls-sub">Оставьте контакт — вернёмся со сметой и вариантами. Если задача решается проще, так и скажем.</p>
+    <form>
+      <!-- Телефон и почта парные: на широком экране встают в строку,
+           на телефоне остаются друг под другом. -->
+      <div class="ls-pair">
+        <label class="ls-sr-only" for="contact">Телефон</label>
+        <input id="contact" type="tel" name="phone" placeholder="Телефон"
+          autocomplete="tel" inputmode="tel" required
+          pattern="\s*[\d\s\(\)\+\-]{7,}\s*">
+        <label class="ls-sr-only" for="mail">Почта</label>
+        <input id="mail" type="email" name="email" placeholder="Почта, если удобнее" autocomplete="email"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}">
+      </div>
+      <label class="ls-sr-only" for="fname">Имя</label>
+      <input id="fname" type="text" name="first-name" placeholder="Имя, если хотите" autocomplete="given-name">
+
+      <label class="ls-sr-only" for="task">Что нужно напечатать</label>
+      <textarea id="task" name="comment" rows="1" maxlength="2000"
+        placeholder="Что печатаем, тираж, срок, комментарии"></textarea>
+
+      <fieldset class="ls-way">
+        <legend>Как удобнее ответить</legend>
+        <div class="ls-way-row">
+        <label><input type="radio" name="methodofcommunication" value="telegram" checked><span>Telegram</span></label>
+        <label><input type="radio" name="methodofcommunication" value="whatsapp"><span>WhatsApp</span></label>
+        <label><input type="radio" name="methodofcommunication" value="max"><span>Max</span></label>
+        <label><input type="radio" name="methodofcommunication" value="звонок"><span>Звонок</span></label>
+        <label><input type="radio" name="methodofcommunication" value="почта"><span>Почта</span></label>
+        </div>
+      </fieldset>
+
+      <ul class="ls-file-list" hidden></ul>
+      <label class="ls-file">
+        <input type="file" name="fileattached[]" multiple accept=".pdf,.ai,.cdr,.eps,.psd,.tif,.tiff,.jpg,.jpeg,.png,.heic,.heif,.webp,.zip,.rar">
+        <span>Прикрепить файлы</span>
+      </label>
+      <p class="ls-file-note">PDF, AI, CDR, PSD, фото или архив — до 25&nbsp;МБ</p>
+      <label class="ls-agree">
+        <input type="checkbox" name="agreement" required>
+        <span>Даю <a href="https://litera.studio/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank" rel="noopener">согласие</a> ООО&nbsp;«МДМпринт» на обработку моих персональных данных для ответа на заявку и подтверждаю, что ознакомлен с <a href="https://litera.studio/politika-obrabotki-personalnyh-dannyh" target="_blank" rel="noopener">политикой обработки персональных данных</a></span>
+      </label>
+      <!-- Как отозвать согласие — прямо в форме, а не только в документе:
+           так сделано на mdmprint.ru. Номер телефона нужен, чтобы найти заявку. -->
+      <p class="ls-agree-note">Отозвать согласие можно письмом на
+        <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a> — укажите
+        в нём телефон, оставленный в форме.</p>
+      <button class="ls-btn ls-btn-main" type="submit">Обсудить задачу</button>
+    </form>
+    <!-- Справа не дубль каналов (полный перечень уже в колонке вопросов выше),
+         а что произойдёт после отправки. Снимает тревогу в момент решения. -->
+    <div class="ls-lead-side">
+      <h3>Что дальше</h3>
+      <ol class="ls-lead-next">
+        <li>Посмотрим задачу и уточним, если чего-то не хватает</li>
+        <li>Посчитаем стоимость под ваш тираж и сроки</li>
+        <li>Пришлём смету и первый вариант макета</li>
+      </ol>
+        <p class="ls-or">Не любите формы — напишите в
+          <a href="https://t.me/litera_studio">Telegram</a>,
+          <a href="https://api.whatsapp.com/send?phone=79777936481">WhatsApp</a>
+          или <a href="https://max.ru/u/f9LHodD0cOIV9InOx6ulNiryFx5jU7n5eIY9DliBnMiKjsrZAmOxnfX0e38">Max</a>,
+          позвоните <a href="tel:+74950213577">+7&nbsp;495&nbsp;021-35-77</a>
+          или напишите на <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a>.</p>
+
+    
+</div>
+  </section>
 
   </div>
 
 </main>
-  <!-- Футер вне общего слоя: страница съезжает с него,
-       поэтому он не может лежать внутри того, что съезжает. -->
   <footer class="ls-foot">
     <a class="ls-wordmark" href="./"><span class="ls-sr-only">Литера.Студия</span></a>
 
