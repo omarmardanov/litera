@@ -5,6 +5,8 @@
 // берутся оттуда же по ссылке. В CMS это тот же список записей портфолио
 // и та же медиатека, скрипт заменяется серверной выборкой.
 // Плитки ведут на страницу работы; в прототипе такая одна — case.html.
+// Фильтр можно задать адресом: ?dir=poligrafiya&prod=Абонементы и сертификаты —
+// так сюда ведут паспорт и «Все сертификаты» на странице работы.
 
 (function () {
   var box = document.querySelector('.ls-projects');
@@ -78,7 +80,11 @@
     .then(function (r) { return r.json(); })
     .then(function (data) {
       all = data.w; names = data.g;
+      var q = new URLSearchParams(location.search);
+      dirs.forEach(function (r) { r.checked = r.value === (q.get('dir') || ''); });
       fillProducts();
+      prod.value = q.get('prod') || '';
+      if (prod.selectedIndex < 0) prod.value = '';
       apply();
     });
 

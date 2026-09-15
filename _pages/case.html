@@ -93,18 +93,18 @@
         в конверте и папке из той же бумаги.</p>
     </section>
 
-    <!-- Паспорт работы. Первые три строки — теги из их портфолио, они же
-         станут фильтрами в разделе работ, поэтому направление и отрасль стоят
-         ссылками. Адреса пока заглушки: раздела работ ещё нет, и когда он
-         появится, здесь поменяется только строка запроса.
+    <!-- Паспорт работы. Первые три строки — теги из их портфолио. Услуга
+         ведёт в карточку, направление — в работы с выставленным фильтром
+         (projects.js читает ?dir= и ?prod=). Отрасль без ссылки: тег есть
+         у 70 работ из 813, фильтр по нему был бы почти пустым.
 
          Особенности видны на снимках. Тираж и срок пустые: этих данных
          у студии на сайте нет. -->
     <section class="ls-case-facts">
       <dl>
-        <div><dt>Услуга</dt><dd><a href="./">Подарочные сертификаты</a></dd></div>
-        <div><dt>Направление</dt><dd><a href="projects.html?napravlenie=poligrafiya">Полиграфия</a></dd></div>
-        <div><dt>Отрасль</dt><dd><a href="projects.html?otrasl=moda">Мода, одежда</a></dd></div>
+        <div><dt>Услуга</dt><dd><a href="sertifikat.html">Подарочные сертификаты</a></dd></div>
+        <div><dt>Направление</dt><dd><a href="projects.html?dir=poligrafiya">Полиграфия</a></dd></div>
+        <div><dt>Отрасль</dt><dd>Мода, одежда</dd></div>
         <div><dt>Особенности</dt><dd>Тиснение фольгой, сквозная нумерация,
           конверт и папка под формат</dd></div>
         <div><dt>Тираж</dt><dd class="is-stub">уточняем</dd></div>
@@ -188,8 +188,8 @@
       <h2>Напечатаем такой же</h2>
       <p>Или другой: тираж, бумагу и отделку подберём под повод и бюджет.</p>
       <div class="ls-case-next-cta">
-        <a class="ls-btn ls-btn-main" href="./#zayavka">Обсудить задачу</a>
-        <a class="ls-case-next-link" href="./">Подарочные сертификаты</a>
+        <a class="ls-btn ls-btn-main" href="sertifikat.html#zayavka">Обсудить задачу</a>
+        <a class="ls-case-next-link" href="sertifikat.html">Подарочные сертификаты</a>
       </div>
     </section>
 
@@ -197,7 +197,7 @@
     <section class="ls-works">
       <div class="ls-works-head">
         <h2>Ещё работы</h2>
-        <a href="projects.html">Все работы</a>
+        <a href="projects.html?dir=poligrafiya&amp;prod=Абонементы и сертификаты">Все сертификаты</a>
       </div>
       <ul class="ls-works-list">
         <li class="ls-work"><a href="./case.html" data-cursor="Посмотреть работу">
