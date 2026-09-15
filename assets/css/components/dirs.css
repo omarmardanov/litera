@@ -20,13 +20,11 @@
    экраном и продолжает его. */
 .ls-dirs{margin-top:0;padding:0 var(--side)}
 .ls-dirs-in{margin-top:0}
-/* На странице направления тот же блок стоит в конце, сразу за формой,
-   без текущего направления и с видимым заголовком. Фон тот же серый, что
-   у формы, и без отступа сверху: белые полосы между серой формой, серыми
-   плитками и тёмным футером читались швами. */
-.ls-dirs.ls-dirs-more{margin-top:0;padding-top:40px;background:var(--surface)}
-.ls-card > .ls-dirs.ls-dirs-more:last-child{padding-bottom:48px}
-.ls-dirs-more h2{margin-bottom:18px}
+/* На странице направления тот же блок стоит в конце: встык за формой
+   и встык перед футером, без заголовка и отступов. Белые полосы между
+   серой формой, серыми плитками и тёмным футером читались швами. */
+.ls-dirs.ls-dirs-more{margin-top:0}
+.ls-card > .ls-dirs.ls-dirs-more:last-child{padding-bottom:0}
 .ls-dirs ul{margin:0;padding:0;list-style:none}
 .ls-dirs li{border-top:1px solid var(--line)}
 .ls-dirs li:last-child{border-bottom:1px solid var(--line)}
