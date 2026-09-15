@@ -5,8 +5,8 @@
 // берутся оттуда же по ссылке. В CMS это тот же список записей портфолио
 // и та же медиатека, скрипт заменяется серверной выборкой.
 // Плитки ведут на страницу работы; в прототипе такая одна — case.html.
-// Фильтр можно задать адресом: ?dir=poligrafiya&prod=Абонементы и сертификаты —
-// так сюда ведут паспорт и «Все сертификаты» на странице работы.
+// Фильтр можно задать адресом: ?dir=poligrafiya&prod=Абонементы и сертификаты
+// или ?ind=Мода — так сюда ведут паспорт и «Все сертификаты» на странице работы.
 
 (function () {
   var box = document.querySelector('.ls-projects');
@@ -16,7 +16,8 @@
   var empty = box.querySelector('.ls-projects-empty');
   var count = document.querySelector('.ls-filter-count');
   var dirs = document.querySelectorAll('.ls-filter input[name=dir]');
-  var prod = document.querySelector('.ls-filter select');
+  var prod = document.querySelector('#prod');
+  var ind = document.querySelector('#ind');
   var PAGE = 24;
   var PRE = 'https://litera.studio/wp-content/uploads/';
   var all = [], names = {}, shown = 0, current = [];
@@ -24,9 +25,9 @@
   function apply() {
     var dir = '';
     dirs.forEach(function (r) { if (r.checked) dir = r.value; });
-    var p = prod.value;
+    var p = prod.value, i = ind.value;
     current = all.filter(function (w) {
-      return (!dir || w[1] === dir) && (!p || w[2] === p);
+      return (!dir || w[1] === dir) && (!p || w[2] === p) && (!i || (w[4] || []).indexOf(i) >= 0);
     });
     list.innerHTML = '';
     shown = 0;
@@ -57,23 +58,27 @@
       : '';
   }
 
-  // Список продуктов — только те, что есть в выбранном направлении,
+  // Списки продуктов и отраслей — только те, что есть в выбранном направлении,
   // по убыванию числа работ: длинный хвост из одной работы уходит вниз.
-  function fillProducts() {
+  function fill(select, first, pick) {
     var dir = '';
     dirs.forEach(function (r) { if (r.checked) dir = r.value; });
     var by = {};
     all.forEach(function (w) {
-      if ((!dir || w[1] === dir) && w[2]) by[w[2]] = (by[w[2]] || 0) + 1;
+      if (!dir || w[1] === dir) pick(w).forEach(function (k) { by[k] = (by[k] || 0) + 1; });
     });
-    var keep = prod.value;
-    prod.innerHTML = '<option value="">Все продукты</option>';
-    Object.keys(by).sort(function (a, b) { return by[b] - by[a]; }).forEach(function (p) {
+    var keep = select.value;
+    select.innerHTML = '<option value="">' + first + '</option>';
+    Object.keys(by).sort(function (a, b) { return by[b] - by[a]; }).forEach(function (k) {
       var o = document.createElement('option');
-      o.value = p; o.textContent = p + ' (' + by[p] + ')';
-      prod.appendChild(o);
+      o.value = k; o.textContent = k + ' (' + by[k] + ')';
+      select.appendChild(o);
     });
-    prod.value = by[keep] ? keep : '';
+    select.value = by[keep] ? keep : '';
+  }
+  function fillLists() {
+    fill(prod, 'Все продукты', function (w) { return w[2] ? [w[2]] : []; });
+    fill(ind, 'Любая отрасль', function (w) { return w[4] || []; });
   }
 
   fetch('assets/data/works.json')
@@ -82,15 +87,18 @@
       all = data.w; names = data.g;
       var q = new URLSearchParams(location.search);
       dirs.forEach(function (r) { r.checked = r.value === (q.get('dir') || ''); });
-      fillProducts();
+      fillLists();
       prod.value = q.get('prod') || '';
       if (prod.selectedIndex < 0) prod.value = '';
+      ind.value = q.get('ind') || '';
+      if (ind.selectedIndex < 0) ind.value = '';
       apply();
     });
 
   dirs.forEach(function (r) {
-    r.addEventListener('change', function () { fillProducts(); apply(); });
+    r.addEventListener('change', function () { fillLists(); apply(); });
   });
   prod.addEventListener('change', apply);
+  ind.addEventListener('change', apply);
   more.addEventListener('click', draw);
 })();
