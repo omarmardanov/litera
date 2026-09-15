@@ -99,12 +99,17 @@
       (norm(raw) ? 'Нашли' : 'Чаще всего ищут') + '</p><ul>' +
       idx.map(function (i) {
         var s = data.s[i];
-        return '<li><a href="' + s[1] + '"><b>' + s[0] + '</b><span>' + data.g[s[2]] + '</span></a></li>';
+        return '<li><a href="' + url(s[1]) + '"><b>' + s[0] + '</b><span>' + data.g[s[2]] + '</span></a></li>';
       }).join('') + '</ul>';
     box.hidden = false;
   }
 
   var clear = form.querySelector('.ls-menu-search-clear');
+
+  // Адреса в списке — с живого сайта. В прототипе свои страницы только у двух
+  // услуг, остальные ведут на litera.studio. В CMS адреса станут настоящими.
+  var LOCAL = { '/dizajn-sertifikata': 'sertifikat.html', '/dizajn-advent-kalendarya': 'advent.html' };
+  function url(path) { return LOCAL[path] || 'https://litera.studio' + path; }
 
   // «Ничего не нашли» → форма. Набранное слово кладём в поле задачи:
   // человек уже сказал, что ему нужно, повторять не должен.
@@ -120,7 +125,7 @@
     // ждём дольше, чем закрытие меню: оно возвращает страницу на прежнее место
     // и перебивает переход, если начать сразу
     if (form) setTimeout(function () { form.scrollIntoView({ block: 'start' }); }, 340);
-    else location.href = '/#zayavka';
+    else location.href = './#zayavka';
   }
 
   function update() {
