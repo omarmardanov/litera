@@ -20,6 +20,10 @@
    экраном и продолжает его. */
 .ls-dirs{margin-top:0;padding:0 var(--side)}
 .ls-dirs-in{margin-top:0}
+/* На странице направления тот же блок стоит в конце, без текущего
+   направления и с видимым заголовком — отступ как у обычной секции. */
+.ls-dirs.ls-dirs-more{margin-top:var(--gap-block)}
+.ls-dirs-more h2{margin-bottom:18px}
 .ls-dirs ul{margin:0;padding:0;list-style:none}
 .ls-dirs li{border-top:1px solid var(--line)}
 .ls-dirs li:last-child{border-bottom:1px solid var(--line)}
