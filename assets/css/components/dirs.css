@@ -26,15 +26,16 @@
 .ls-dirs.ls-dirs-more{margin-top:0}
 .ls-card > .ls-dirs.ls-dirs-more:last-child{padding-bottom:0}
 /* Последняя полоса упиралась кадром в тёмный футер. Полоса ниже на 44,
-   низ кадра растворяется в серый поля — к футеру подходит чистый серый. */
+   кадр во всю её высоту, но нижняя треть растворяется в серый поля —
+   к футеру подходит чистый серый. Текст остаётся на той же высоте,
+   что у соседних полос. */
 @media (max-width: 1023px){
   .ls-dirs-more li:last-child .ls-dir-shot,
   .ls-dirs-more li:last-child .ls-dir-shot.is-set{height:212px}
-  .ls-dirs-more li:last-child .ls-dir-shot img,
-  .ls-dirs-more li:last-child .ls-dir-shot.is-set img{height:168px}
   .ls-dirs-more li:last-child .ls-dir-shot::before{content:"";position:absolute;
-    left:0;right:0;bottom:0;height:92px;z-index:0;pointer-events:none;
-    background:linear-gradient(to bottom, transparent, var(--shot-bg) 52%)}
+    left:0;right:0;bottom:0;height:120px;z-index:0;pointer-events:none;
+    background:linear-gradient(to bottom, transparent, var(--shot-bg))}
+  .ls-dirs-more li:last-child .ls-dir-text{bottom:58px}
 }
 .ls-dirs ul{margin:0;padding:0;list-style:none}
 .ls-dirs li{border-top:1px solid var(--line)}
