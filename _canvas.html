@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Макеты — Литера.Студия</title>
+<!-- Холст с типовыми страницами прототипа под телефон, как артборды в Фигме.
+     Страницы живые: каждый артборд — iframe с настоящей страницей во всю
+     высоту. Смотреть на десктопе, масштаб кнопками справа вверху. -->
+<style>
+html,body{margin:0;background:#dcdcdf;font:13px/1.4 -apple-system,system-ui,sans-serif;color:#333}
+.bar{position:fixed;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:14px;
+  padding:10px 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #ccc}
+.bar b{font-weight:600}
+.bar span{color:#777}
+.bar .zoom{margin-left:auto;display:flex;gap:4px}
+.bar button{font:inherit;padding:5px 10px;border:1px solid #bbb;background:#fff;border-radius:4px;cursor:pointer}
+.bar button[aria-pressed=true]{background:#111;color:#fff;border-color:#111}
+.board{display:flex;gap:56px;align-items:flex-start;width:max-content;padding:80px 60px 60px}
+.frame h2{margin:0 0 10px;font-size:13px;font-weight:600;color:#444}
+.frame h2 small{display:block;font-weight:400;color:#888;font-size:12px;margin-top:2px}
+.frame h2 a{color:inherit;text-decoration:none}
+.frame h2 a:hover{text-decoration:underline}
+.frame iframe{display:block;width:390px;height:800px;border:0;background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 28px rgba(0,0,0,.14)}
+</style>
+</head>
+<body>
+<div class="bar"><b>Прототип litera.studio</b><span>типовые страницы под телефон, 390 px · страницы живые, ссылки работают</span>
+  <div class="zoom" role="group" aria-label="Масштаб">
+    <button type="button" data-zoom=".33">33%</button>
+    <button type="button" data-zoom=".5" aria-pressed="true">50%</button>
+    <button type="button" data-zoom=".75">75%</button>
+    <button type="button" data-zoom="1">100%</button>
+  </div>
+</div>
+<div class="board" id="board"></div>
+<script>
+var PAGES = [
+  ['index.html', 'Главная'],
+  ['poligrafiya.html', 'Направление', 'Полиграфия'],
+  ['category.html', 'Раздел', 'Листовая полиграфия'],
+  ['sertifikat.html', 'Карточка услуги', 'Подарочный сертификат'],
+  ['advent.html', 'Карточка услуги', 'Адвент-календарь'],
+  ['case.html', 'Работа', 'Сертификат BOURBAKI'],
+  ['projects.html', 'Работы', 'фильтр и сетка'],
+  ['blog.html', 'Блог'],
+  ['article.html', 'Статья', 'Какой формат файла подходит для типографии'],
+  ['contacts.html', 'Контакты']
+];
+var board = document.getElementById('board');
+PAGES.forEach(function (p) {
+  var f = document.createElement('div'); f.className = 'frame';
+  f.innerHTML = '<h2><a href="' + p[0] + '" target="_blank">' + p[1] + '</a>' +
+    (p[2] ? '<small>' + p[2] + '</small>' : '<small>&nbsp;</small>') + '</h2>';
+  var i = document.createElement('iframe'); i.src = p[0]; i.title = p[1];
+  i.addEventListener('load', function () {
+    var d = i.contentDocument;
+    // на холсте страница не прокручивается: анимации по прокрутке, липкие
+    // кадры, куки-баннер и виджет связи только мешают
+    var s = d.createElement('style');
+    s.textContent = '*,*::before,*::after{animation:none!important;transition:none!important}' +
+      '.ls-cookie,.ls-chat{display:none!important}' +
+      '.ls-hero,.ls-lead{position:static!important}' +
+      '.ls-card{min-height:0!important}';
+    d.head.appendChild(s);
+    // .ls-card тянется на 100dvh — в iframe это его же высота, и замер
+    // рос бы с каждым разом; поэтому min-height снят выше
+    function fit() {
+      i.style.height = d.documentElement.scrollHeight + 'px';
+    }
+    fit(); setTimeout(fit, 1500); setTimeout(fit, 4000);
+  });
+  f.appendChild(i); board.appendChild(f);
+});
+var buttons = document.querySelectorAll('.bar button');
+function setZoom(z) {
+  board.style.zoom = z;
+  buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.zoom === z); });
+  try { localStorage.setItem('canvas-zoom', z); } catch (e) {}
+}
+buttons.forEach(function (b) { b.addEventListener('click', function () { setZoom(b.dataset.zoom); }); });
+var saved = null; try { saved = localStorage.getItem('canvas-zoom'); } catch (e) {}
+setZoom(saved || '.5');
+</script>
+</body>
+</html>
