@@ -27,10 +27,9 @@
 
   <!-- Страница направления: уровень между главной и разделом. Из поиска сюда
        не приходят (3 визита за год), это навигация: 11 разделов плитками,
-       как услуги на странице раздела, и «чаще всего заказывают» — шесть
-       услуг по трафику карточек (page_traffic.tsv), они и есть то, за чем
-       сюда сворачивают из меню. Состав разделов — как в меню. Счётчики
-       услуг — из services.json. -->
+       как услуги на странице раздела. Состав разделов — как в меню, счётчики
+       услуг — из services.json. «Чаще всего заказывают» снято 15.09 по
+       решению Омара: плитки разделов и так главный список. -->
   <div class="ls-body ls-cat-intro">
     <nav aria-label="Хлебные крошки">
       <a class="ls-back" href="./">
@@ -180,92 +179,6 @@
     </ul>
   </section>
 
-  <!-- Шесть самых посещаемых услуг направления. В CMS — по просмотрам
-       карточек за год, не руками. -->
-  <section class="ls-catalog ls-dir-popular">
-    <h2>Чаще всего заказывают</h2>
-    <ul class="ls-rows">
-      <li>
-        <a class="ls-row-body" href="https://litera.studio/dizajn-prajs-lista-dlya-salona-krasoty">
-          <span class="ls-thumb">
-            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/10/dizajn-i-pechat-prajsa-dlya-salona-krasoty-1-544x360.jpg" width="544" height="360" alt="Прайс салона красоты">
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Прайс-лист для салона красоты</b></span>
-            <span class="ls-note">Меню и прайсы</span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="ls-row-body" href="advent.html">
-          <span class="ls-thumb">
-            <picture>
-              <source srcset="assets/img/advent/w-ny-1.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-1.jpg" width="900" height="600" alt="Адвент-календарь с дверцами">
-            </picture>
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Адвент-календарь</b></span>
-            <span class="ls-note">Календари</span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="ls-row-body" href="https://litera.studio/dizajn-vizitki">
-          <span class="ls-thumb">
-            <picture>
-              <source srcset="assets/img/services/vizitki.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/services/vizitki.jpg" width="416" height="416" alt="Визитки с тиснением">
-            </picture>
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Визитки</b></span>
-            <span class="ls-note">Листовая полиграфия</span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="ls-row-body" href="https://litera.studio/dizajn-i-pechat-dlya-restoranov">
-          <span class="ls-thumb">
-            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2026/03/dizajn-i-pechat-menyu-dlya-restorana-1-544x360.jpg" width="544" height="360" alt="Меню ресторана">
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Меню для ресторана</b></span>
-            <span class="ls-note">Меню и прайсы</span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="ls-row-body" href="https://litera.studio/dizajn-kvartalnogo-kalendarya">
-          <span class="ls-thumb">
-            <picture>
-              <source srcset="assets/img/services/kvartalnye.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/services/kvartalnye.jpg" width="416" height="416" alt="Квартальный календарь">
-            </picture>
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Квартальный календарь</b></span>
-            <span class="ls-note">Календари</span>
-          </span>
-        </a>
-      </li>
-      <li>
-        <a class="ls-row-body" href="https://litera.studio/dizajn-kataloga">
-          <span class="ls-thumb">
-            <picture>
-              <source srcset="assets/img/works/luxe-2.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/luxe-2.jpg" width="900" height="600" alt="Разворот каталога">
-            </picture>
-          </span>
-          <span class="ls-text">
-            <span class="ls-row"><b>Каталог</b></span>
-            <span class="ls-note">Многостраничные издания</span>
-          </span>
-        </a>
-      </li>
-    </ul>
-  </section>
-
     <section class="ls-works">
       <div class="ls-works-head">
         <div>
@@ -400,9 +313,32 @@
 
 <!-- @include how.html -->
 
+  <!-- Текст для поиска, как «О листовой полиграфии» на разделе: направление
+       даёт 3 визита из органики, страница без текста пустая для робота.
+       Написан для чтения. Стоит до формы, а не после, как на разделе:
+       за формой встык идут плитки направлений. Факты: своё производство, цифровая печать
+       и отделка — из портфолио (теги работ), цифры тиражей — из заявок. -->
+  <section class="ls-about">
+    <h2>О полиграфии</h2>
+    <p>Полиграфия у нас — это дизайн и печать в одном месте. Макет рисует дизайнер студии,
+      печатает своё производство в Москве, поэтому за результат отвечает одна команда:
+      не бывает «дизайнер сделал, а типография испортила». Если макет уже есть, проверим
+      его и напечатаем как есть.</p>
+    <p>Печатаем цифровым способом: это выгодно на тиражах от десятков до нескольких тысяч,
+      а именно такие и заказывают чаще всего — половина заявок у нас до ста штук.
+      Отделка своя: тиснение фольгой, объёмный лак, шёлковая и матовая ламинация,
+      вырубка, скругление углов, нумерация. Она делает из обычной листовки или визитки
+      вещь, которую хочется взять в руки, и добавляет день-два к сроку.</p>
+    <p>Что выбрать, подскажем по задаче: под знакомство — визитки и папки, под событие —
+      приглашения и сертификаты, под продажи — меню, прайсы и каталоги, под подарок —
+      календари и открытки. Перед тиражом покажем распечатку, чтобы цвет на бумаге
+      не оказался сюрпризом, а тираж доставим или отдадим в офисе на Тульской.</p>
+  </section>
+
 <!-- @include proof.html -->
 
 <!-- @include lead.html -->
+
 
   <!-- Другие направления — тот же блок, что развилка на главной (dirs.css),
        без текущего направления. Заголовка на экране нет: плитки идут встык
