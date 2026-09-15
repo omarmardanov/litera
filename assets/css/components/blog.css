@@ -1,0 +1,37 @@
+/* Страница блога: две главные статьи крупно, остальные строками по темам.
+
+   Блог — самый большой сегмент сайта (треть органики), но приходят в него
+   не «почитать», а по конкретной задаче: «какой формат файла», «как сделать
+   визитку». Две эти статьи держат 78% трафика блога — они наверху крупно,
+   остальные 27 разложены по темам строками. Дат нет: последняя статья
+   августа 2024, и дата в списке читалась бы как «блог заброшен». */
+
+.ls-blog{margin-top:40px;padding:0 var(--side)}
+.ls-blog h3{margin:36px 0 0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:18px;letter-spacing:-.005em;color:var(--ink)}
+.ls-blog .ls-time{font-size:var(--t-cap);color:var(--muted);white-space:nowrap}
+
+/* Главные: обложка во всю ширину, заголовок, время чтения */
+.ls-blog-top{margin:0;padding:0;list-style:none}
+.ls-blog-top li + li{margin-top:24px}
+.ls-blog-top a{display:block;color:var(--ink);text-decoration:none}
+.ls-blog-top a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ls-blog-top img{display:block;width:100%;aspect-ratio:544/300;object-fit:cover;background:var(--placeholder)}
+.ls-blog-top b{display:block;margin-top:12px;font-size:20px;font-weight:500;line-height:1.25;text-wrap:balance}
+.ls-blog-top .ls-time{display:block;margin-top:6px}
+.ls-blog-top a:hover b{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* Строки по темам — общий компонент .ls-rows. Обложки статей — плашки
+   с заголовком, разглядывать их незачем: увеличение и лупа сняты. */
+.ls-blog .ls-rows{margin-top:14px}
+.ls-blog .ls-row-body .ls-time{display:block;margin-top:4px}
+.ls-blog .ls-row-body:hover b{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.ls-blog .ls-rows .ls-thumb:has(img)::before{content:none}
+.ls-blog .ls-rows .ls-thumb:has(img):hover img{transform:none;box-shadow:none}
+
+@media (min-width: 1024px){
+  .ls-blog-top{display:grid;grid-template-columns:1fr 1fr;gap:32px 20px}
+  .ls-blog-top li + li{margin-top:0}
+  .ls-blog-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:110px}
+  .ls-blog-cols > div:first-child h3:first-child{margin-top:0}
+}
