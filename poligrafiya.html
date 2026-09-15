@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- СОБРАНО build.py. Не править этот файл: правки затрутся при следующей сборке.
-     Исходник страницы — _pages/article.html, общие части — _parts/. -->
+     Исходник страницы — _pages/poligrafiya.html, общие части — _parts/. -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
@@ -77,37 +77,26 @@
      иначе обёртка-телефон для десктопа не срабатывает. -->
 <link rel="stylesheet" href="assets/css/layout.css?v=516">
 <link rel="stylesheet" href="assets/css/motion.css?v=516">
-<title>Готовим макет к печати: какой формат файла подходит для типографии — Литера.Студия</title>
-<meta name="description" content="Растровый — TIFF или PSD, векторный и комбинированный — PDF. Почему типография вернёт Word и GIF, и как не потерять тираж из-за формата.">
+<title>Полиграфия — дизайн и печать в Москве — Литера.Студия</title>
+<meta name="description" content="Полиграфия от визитки до каталога: 11 разделов, 84 услуги. Нарисуем макет или напечатаем ваш на своём производстве.">
 
-<link rel="canonical" href="https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii">
-<meta property="og:title" content="Готовим макет к печати: какой формат файла подходит для типографии">
-<meta property="og:description" content="Растровый — TIFF или PSD, векторный и комбинированный — PDF. Почему типография вернёт Word и GIF, и как не потерять тираж из-за формата.">
-<meta property="og:url" content="https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii">
-<meta property="og:image" content="https://litera.studio/wp-content/uploads/2024/02/vector1.jpg">
+<link rel="canonical" href="https://litera.studio/poligrafiya">
+<meta property="og:title" content="Полиграфия — дизайн и печать">
+<meta property="og:description" content="Полиграфия от визитки до каталога: 11 разделов, 84 услуги. Нарисуем макет или напечатаем ваш на своём производстве.">
+<meta property="og:url" content="https://litera.studio/poligrafiya">
+<meta property="og:image" content="https://litera.studio/assets/img/works/luxe-1.jpg">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
-{"@type":"ListItem","position":2,"name":"Блог","item":"https://litera.studio/blog"},
-{"@type":"ListItem","position":3,"name":"Какой формат файла подходит для типографии","item":"https://litera.studio/blog/kakoj-format-fajla-podhodit-dlya-tipografii"}]}
-</script>
-<!-- Дата публикации в разметке остаётся — поиску она нужна, на экране
-     её нет (см. article.css). -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article",
-"headline":"Готовим макет к печати: какой формат файла подходит для типографии",
-"datePublished":"2021-12-17","dateModified":"2024-02-01",
-"image":"https://litera.studio/wp-content/uploads/2024/02/vector1.jpg",
-"author":{"@type":"Organization","name":"Литера.Студия"},
-"publisher":{"@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/"}}
+{"@type":"ListItem","position":2,"name":"Полиграфия","item":"https://litera.studio/poligrafiya"}]}
 </script>
 </head>
 <body>
 <!-- Первая цель табуляции: с клавиатуры и со скринридера можно перескочить
      шапку с меню и попасть сразу в содержимое. -->
 <a class="ls-skip" href="#main">К содержанию</a>
-<main class="ls-card" id="main">
+<main class="ls-card" id="main" data-dir="poligrafiya">
   <header class="ls-topbar">
     <!-- Логотип файлом (`assets/img/logo.svg`), а не набран шрифтом: знак берём
          из бренд-ассетов. Показывает его CSS-маска, поэтому он перекрашивается
@@ -232,102 +221,406 @@
     </div>
   </div>
 
-  <!-- Статья настоящая: текст с litera.studio/blog/kakoj-format-fajla-…,
-       вторая по трафику в блоге (2 669 визитов, 1 заявка). Правки текста:
-       подзаголовки h3 → h2, нумерованные абзацы → списки, подписи к
-       иллюстрациям → figcaption. Слова не менял. Обложка не показана:
-       у них это плашка с тем же заголовком. -->
+  <!-- Страница направления: уровень между главной и разделом. Из поиска сюда
+       не приходят (3 визита за год), это навигация: 11 разделов плитками,
+       как услуги на странице раздела, и «чаще всего заказывают» — шесть
+       услуг по трафику карточек (page_traffic.tsv), они и есть то, за чем
+       сюда сворачивают из меню. Состав разделов — как в меню. Счётчики
+       услуг — из services.json. -->
   <div class="ls-body ls-cat-intro">
     <nav aria-label="Хлебные крошки">
-      <a class="ls-back" href="blog.html">
+      <a class="ls-back" href="./">
         <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
-        Блог
+        Главная
       </a>
     </nav>
-    <h1 class="ls-title">Готовим макет к печати: какой формат файла подходит для типографии</h1>
-    <p class="ls-article-meta">3 минуты · <a href="blog.html">Подготовка макета</a></p>
+    <h1 class="ls-title">Полиграфия</h1>
+    <p class="ls-desc">От визитки до каталога в твёрдом переплёте. Нарисуем макет
+      или напечатаем ваш — на своём производстве, с отделкой.</p>
   </div>
 
   <i class="ls-chat-sentinel" aria-hidden="true"></i>
 
-  <article class="ls-article">
-    <p>Готовите файлы к печати? Не ошибитесь с форматом. Иначе типография может вернуть вам файлы, чтобы вы изменили формат. Со всеми вытекающими последствиями в виде срыва сроков и сожженных в котле аврала нервов. И это в лучшем случае. В худшем случае макет могут отправить на печать «как есть», а это — непредсказуемый результат на выходе и потенциально полностью ушедший в брак тираж.</p>
-    <p>Чтобы этого не произошло, в статье расскажем, какой формат нужен для <a href="https://litera.studio/prepress">печати в типографии</a>. А также затронем другие тонкости, которые необходимо учесть при подготовке макета, чтобы на бумаге все было таким же, как на экране компьютера.</p>
-
-    <h2>Кратко об основах: в чем разница между растровым и векторным изображением</h2>
-    <p>Цифровые изображения делятся на две большие группы: растровые и векторные.</p>
-    <p>Все фотореалистичные изображения — растровые. Это фотографии, картины digital-художников и даже скриншоты экрана. Из-за огромного количества цветовых переходов, полутонов, оттенков сохранить фотореалистичные изображения в памяти компьютера можно только одним способом: разбить их на миллионы отдельных точек (пикселей) и записать в таблицу, в которой каждой точке будет соответствовать конкретный цвет и координаты. Отсюда — гигантские размеры растровых файлов высокого разрешения, для которых несколько сотен мегабайт — не предел.</p>
-    <p>Если вы когда-нибудь видели схему для вышивания крестиком, то вы знаете, как выглядит растровое изображение. Просто пиксели в сотни раз меньше стежков, поэтому несмотря их квадратную форму, картинка на экране получается гладкой. Но стоит ее увеличить, и вы увидите такие же «ступеньки» на границах цветов.</p>
-    <p>Принцип хранения векторных изображений в памяти компьютера в корне отличается. Нет никаких отдельных пикселей — только простые фигуры и их формулы. Например, для сохранения нарисованной окружности в память записываются координаты ее центра, радиус, толщина, цвет и тип линии. И, конечно, что это окружность. Все остальное компьютер рассчитает и отрисует сам. Поэтому векторный формат в типографии часто называют изображениями «в кривых».</p>
-    <p>Учитывая, что векторные изображения сплошь состоят из формул, их можно увеличивать до бесконечности без потери качества. К тому же файлы получаются небольшого размера. Но такой формат допустим только для тех изображений, которые можно описать с помощью простых фигур. Как правило, это логотипы, персонажи, графика в мультяшном стиле, текст.</p>
-    <p>Чтобы подбить итоги, наглядно разница между векторным и растровым форматом показана на иллюстрации:</p>
-    <figure>
-      <img loading="lazy" decoding="async" src="assets/img/blog/vector1.jpg" width="1110" height="625" alt="Одна и та же картинка в векторе и в растре при увеличении: у растра видны ступеньки пикселей">
-      <figcaption>Поскольку отличие принципиальное, его нужно учитывать при выборе формата для печати в типографии.</figcaption>
-    </figure>
-
-    <h2>В каком формате сохранять для типографии растровые файлы</h2>
-    <p>Чтобы обеспечить высокое качество печати растровых изображений, в типографию нужно отдать файл:</p>
-    <ol>
-      <li>В несжатом виде. Идеальный формат изображения для типографии — TIFF, но допустим родной для Adobe Photoshop формат PSD. Второй вариант особенно актуален, если печать широкоформатная — файл PSD с неслитыми слоями облегчает предпечатную подготовку.</li>
-      <li>С разрешением 300 dpi для небольших форматов, вроде буклетов, листовок, меню, и 72 dpi для крупных форматов — от А2. Это афиши, плакаты, постеры, баннеры и другая широкоформатная полиграфия.</li>
-      <li>Размером до 300–500 Мб. Ограничение на максимальный размер файла может быть и больше, но оно есть у каждой типографии.</li>
-    </ol>
-    <p>Сжатые форматы картинок для печати в типографии — не лучший выбор. Хотя артефакты, которые могут появиться при таком сжатии, не всегда совсем уж сильно ухудшают качество отпечатанного изображения, они все равно могут бросаться в глаза и портить впечатление.</p>
-    <figure>
-      <img loading="lazy" decoding="async" src="assets/img/blog/rastr-min.jpg" width="1110" height="625" alt="Фрагмент растрового изображения без сжатия и после сжатия с артефактами">
-      <figcaption>Растровое изображение в несжатом формате (слева) и в сжатом (справа). На правом изображении после сжатия появились явные артефакты.</figcaption>
-    </figure>
-    <p>Тем не менее все типографии принимают JPG в качестве печатного формата, большинство работает с PNG. Но при этом сжатие должно быть минимальным. А вот файлы в формах Word и Excel, а также, скорее всего, в GIF, типография отправит обратно.</p>
-
-    <h2>А векторные?</h2>
-    <p>Хотя векторный формат проще масштабировать под любые носители, у типографий с такими файлами тоже возникает немало вопросов. Самый простой, почти гарантированный способ избежать проблем — отправить на печать макет, сохраненный в формате PDF. Даже если речь идет о книге, журнале и другой <a href="https://litera.studio/podgotovka-mnogopolosnaya-poligrafiya">многополосной полиграфии</a> с большим количеством страниц.</p>
-    <figure>
-      <img loading="lazy" decoding="async" src="assets/img/blog/broshury-min.jpg" width="1110" height="625" alt="Раскрытый печатный каталог MIRONI">
-      <figcaption>Каталог для бренда MIRONI. Источник: портфолио Litera Studio.</figcaption>
-    </figure>
-    <p>Также можно отдавать файлы в форматах AI, EPS, PS, CDR. Последний формат — родной для программы CorelDraw, которую массово используют при печати полиграфии. Поэтому иногда типография даже просит отправлять файлы именно в формате CDR, особенно если печать будет на нестандартном носителе.</p>
-    <p>Но при использовании любых векторных форматов, кроме PDF, могут возникнуть проблемы с несовместимостью версий. Вплоть до развалившегося макета, если он создан в новейшей версии программы, а его открыли в старой.</p>
-
-    <h2>Какой формат нужен для типографии, если файл комбинированный?</h2>
-    <p>Очень часто изображение, которое нужно распечатать, не чисто векторное или растровое, а комбинированное. Например, текст на листовке в кривых, а красочный фон — в растре. В этом случае сохраняйте все в PDF. В любом другом формате на печати изображение может «поехать».</p>
-
-    <h2>Выводы</h2>
-    <p>В каком формате готовить файл для полиграфии:</p>
-    <ol>
-      <li>Растровый — в TIFF, PSD, если нет выбора — в JPG.</li>
-      <li>Векторный — идеально PDF, допустимо AI, EPS, PS, CDR.</li>
-      <li>Комбинированные — PDF.</li>
-    </ol>
-
-    <!-- Единственный призыв в тексте. Текст тот же, что в ответе на вопрос
-         «В каком виде присылать файл?» на карточке услуги. Кнопка ведёт
-         в форму ниже, ссылка — в требования на живом сайте. -->
-    <aside class="ls-article-cta">
-      <p><b>Не уверены, что с файлом всё в порядке?</b> Пришлите как есть — проверим и скажем, что поправить. Бесплатно и до того, как считать тираж.</p>
-      <div class="ls-article-cta-row">
-        <a class="ls-btn ls-btn-main" href="#zayavka">Прислать макет</a>
-        <a href="https://litera.studio/trebovaniya-k-maketam">Требования к макетам</a>
-      </div>
-    </aside>
-  </article>
-
-  <!-- Соседние статьи той же темы. В CMS — три записи той же рубрики,
-       кроме текущей. -->
-  <section class="ls-article-more ls-blog">
-    <div class="ls-works-head">
-      <h2>Ещё про подготовку макета</h2>
-      <a href="blog.html">Все статьи</a>
-    </div>
+  <section class="ls-catalog is-tiles">
+    <h2 class="ls-sr-only">Разделы</h2>
     <ul class="ls-rows">
-      <li><a class="ls-row-body" href="https://litera.studio/blog/kak-sdelat-vizitku-v-photoshop-za-20-minut"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/kak-sdelat-vizitku-v-phoroshop-za-20-minut-544x300.jpg" width="76" height="76" alt=""></span><span class="ls-text"><b>Как сделать визитку в Photoshop за 20 минут</b><span class="ls-time">4 минуты</span></span></a></li>
-      <li><a class="ls-row-body" href="https://litera.studio/blog/pochemu-cvet-pri-pechati-ne-takoj-kak-na-ehkrane"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/pochemu-cvet-pri-pechati-ne-takoj-kak-na-ehkrane-544x300.png" width="76" height="76" alt=""></span><span class="ls-text"><b>Почему цвет при печати не такой, как на экране?</b><span class="ls-time">4 минуты</span></span></a></li>
-      <li><a class="ls-row-body" href="https://litera.studio/blog/cvetoproba-pechati-naznachenie-osobennosti-pravilo-3-dnej"><span class="ls-thumb"><img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/cvetoproba-pechati-1-544x300.png" width="76" height="76" alt=""></span><span class="ls-text"><b>Цветопроба печати: назначение, особенности, правило 3 дней</b><span class="ls-time">3 минуты</span></span></a></li>
+      <li>
+        <a class="ls-row-body" href="category.html">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/sertifikaty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/sertifikaty.jpg" width="416" height="416" alt="Подарочный сертификат BOURBAKI в конверте">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Листовая полиграфия</b></span>
+            <span class="ls-note">17 услуг · визитки, листовки, открытки, сертификаты, дипломы</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-mnogostranichnoj-produkcii">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/works/luxe-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/luxe-1.jpg" width="900" height="600" alt="Раскрытый каталог LUXE CITY">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Многостраничные издания</b></span>
+            <span class="ls-note">11 услуг · каталоги, брошюры, книги, альбомы, тетради</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/verstka-poligrafii">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/05/razrabotka-maketa-i-pechat-knigi-na-zakaz-1-544x360.jpg" width="544" height="360" alt="Свёрстанная и напечатанная книга">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Вёрстка полиграфии</b></span>
+            <span class="ls-note">16 услуг · ваш текст и картинки собираем в макет под печать</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-kalendarya">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/kvartalnye.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/kvartalnye.jpg" width="416" height="416" alt="Квартальный календарь на стене">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Календари</b></span>
+            <span class="ls-note">6 услуг · квартальные, настольные, перекидные, адвент</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-shirokoformatnoj-poligrafii">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/02/dizajn-plakatov-1-544x360.jpg" width="544" height="360" alt="Плакаты на стене">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Широкоформатная</b></span>
+            <span class="ls-note">6 услуг · плакаты, афиши, баннеры, стенды</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-dlya-bara">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2026/08/premialnoe-menyu-s-fakturoj-kozhi-i-tisneniem-folgoj-1-544x360.jpg" width="544" height="360" alt="Меню ресторана с тиснением фольгой">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Меню и прайсы</b></span>
+            <span class="ls-note">6 услуг · меню, винные карты, прайсы для салонов</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/pechati-papki-plastikovye-karty">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/05/razrabotka-dizajna-i-pechat-bumazhnyh-papok-na-zakaz-1-544x360.jpg" width="544" height="360" alt="Фирменная папка">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Папки, печати, пластиковые карты</b></span>
+            <span class="ls-note">6 услуг · папки, чек-холдеры, дисконтные карты, печати</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/svadebnaya-poligrafiya">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/priglasheniya.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/priglasheniya.jpg" width="416" height="416" alt="Свадебные приглашения">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Свадебная полиграфия</b></span>
+            <span class="ls-note">5 услуг · приглашения, рассадка, конверты в одном оформлении</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/karty-i-nastolnye-igry">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2025/05/razrabotka-i-pechat-kolod-kart-taro-s-upakovkoj-1-544x360.jpg" width="544" height="360" alt="Колода карт Таро с упаковкой">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Карты и настольные игры</b></span>
+            <span class="ls-note">4 услуги · колоды, Таро, настольные игры с полем и фишками</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/illyustracii">
+          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Иллюстрации</b></span>
+            <span class="ls-note">4 услуги · рисованные и векторные, под печать и упаковку</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/prepress">
+          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Подготовка к печати</b></span>
+            <span class="ls-note">3 услуги · проверка макета, цветопроба, препресс</span>
+          </span>
+        </a>
+      </li>
     </ul>
   </section>
 
-  <div class="ls-rest">
-    <i class="ls-rest-sentinel" aria-hidden="true"></i>
+  <!-- Шесть самых посещаемых услуг направления. В CMS — по просмотрам
+       карточек за год, не руками. -->
+  <section class="ls-catalog ls-dir-popular">
+    <h2>Чаще всего заказывают</h2>
+    <ul class="ls-rows">
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-prajs-lista-dlya-salona-krasoty">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2024/10/dizajn-i-pechat-prajsa-dlya-salona-krasoty-1-544x360.jpg" width="544" height="360" alt="Прайс салона красоты">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Прайс-лист для салона красоты</b></span>
+            <span class="ls-note">Меню и прайсы</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="advent.html">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/advent/w-ny-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-1.jpg" width="900" height="600" alt="Адвент-календарь с дверцами">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Адвент-календарь</b></span>
+            <span class="ls-note">Календари</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-vizitki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/vizitki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/vizitki.jpg" width="416" height="416" alt="Визитки с тиснением">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Визитки</b></span>
+            <span class="ls-note">Листовая полиграфия</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-i-pechat-dlya-restoranov">
+          <span class="ls-thumb">
+            <img loading="lazy" decoding="async" src="https://litera.studio/wp-content/uploads/2026/03/dizajn-i-pechat-menyu-dlya-restorana-1-544x360.jpg" width="544" height="360" alt="Меню ресторана">
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Меню для ресторана</b></span>
+            <span class="ls-note">Меню и прайсы</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-kvartalnogo-kalendarya">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/kvartalnye.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/kvartalnye.jpg" width="416" height="416" alt="Квартальный календарь">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Квартальный календарь</b></span>
+            <span class="ls-note">Календари</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-kataloga">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/works/luxe-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/luxe-2.jpg" width="900" height="600" alt="Разворот каталога">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Каталог</b></span>
+            <span class="ls-note">Многостраничные издания</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+    <section class="ls-works">
+      <div class="ls-works-head">
+        <div>
+          <!-- Заголовок остаётся в разметке, но не на экране: режимы читаются
+               как название блока, а скринридеру и поиску нужно слово. -->
+          <h2 class="ls-sr-only">Работы</h2>
+          <div class="ls-works-tabs" role="tablist" aria-label="Что показывать">
+            <button type="button" role="tab" aria-selected="true" aria-controls="works-photo" id="tab-photo">Фото<em>4</em></button>
+            <i aria-hidden="true">·</i>
+            <button type="button" role="tab" aria-selected="false" aria-controls="works-video" id="tab-video">Видео<em>3</em></button>
+          </div>
+        </div>
+        <a href="projects.html">В портфолио</a>
+      </div>
+      <!-- Плитки ведут в общее портфолио: отдельных страниц работ пока нет.
+         Когда появятся, CMS подставит их адреса вместо /projects. -->
+    <!-- Подпись работы: `.ls-work-tags` — это «отрасль · особенность». Туда же
+         должно встать имя клиента вместо отрасли: «Ozon Реклама · коробка
+         с грамотой». Тогда клиенты доказывают собой работы, а отдельная роспись
+         имён внизу не нужна — так устроено у &Walsh, Studio Dumbar и Логомашины.
+         Нужен ответ менеджера, чья работа за каким клиентом и кого можно
+         называть; пока стоят отрасли. -->
+    <!-- По одной работе на направление, в том же порядке, что и плитки
+         направлений выше: полиграфия, упаковка, логотип, брендинг. -->
+    <!-- По одной работе на группу услуг выше: офис, события, раздача, подарки.
+         Блок сквозной, состав работ — свой у каждого раздела. -->
+    <ul class="ls-works-list" id="works-photo" role="tabpanel" aria-labelledby="tab-photo">
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/luxe-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/luxe-1.jpg" width="900" height="600" alt="Каталог LUXE CITY: чёрная обложка с выборочным лаком и разворот с интерьерами">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/luxe-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/luxe-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/luxe-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/luxe-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Каталог LUXE CITY</b>
+          <span class="ls-work-tags">Полиграфия · твёрдый переплёт, выборочный лак</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="case.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/bourbaki-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-1.jpg" width="900" height="600" alt="Подарочный сертификат BOURBAKI в конверте с золотой рамкой">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/bourbaki-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/bourbaki-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Сертификат BOURBAKI</b>
+          <span class="ls-work-tags">Мода · тиснение фольгой, конверт</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/advent/w-ny-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-1.jpg" width="900" height="600" alt="Закрытый зелёный адвент-календарь с гирляндой и шарами на створках">
+            </picture>
+            <picture>
+              <source srcset="assets/img/advent/w-ny-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/advent/w-ny-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Календарь с дверцами на 31 день</b>
+          <span class="ls-work-tags">Корпоративный подарок · кашировка, вырубка дверец</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/premia-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-1.jpg" width="900" height="600" alt="Чёрное приглашение с золотой фольгой и раскладным силуэтом Москвы">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/premia-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/premia-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Приглашение на премию в туризме</b>
+          <span class="ls-work-tags">Событие · фольга, конверт, объёмная вклейка</span>
+        </a></li>
+      </ul>
+          <ul class="ls-shorts-list" id="works-video" role="tabpanel" aria-labelledby="tab-video" hidden>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239176" data-video="191195025_456239176" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v1.jpg" width="405" height="720" alt="Печать подарочных сертификатов">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239214" data-video="191195025_456239214" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v2.jpg" width="405" height="720" alt="Сертификаты с тиснением, крупный план">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239129" data-video="191195025_456239129" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v3.jpg" width="405" height="720" alt="Готовый тираж сертификатов">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+      </ul>
+    </section>
+
+      <section class="ls-how">
+    <h2>Как мы работаем</h2>
+    <ol>
+      <li>
+        <div>
+          <b>Разбираемся в задаче</b><p>В день обращения. Спросим, что нужно, сколько штук и к какому сроку. От этого зависят материал, способ печати и цена.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Считаем и показываем первый вариант</b><p>Присылаем смету и макет. Правки по согласованному направлению входят в стоимость.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Согласуем материал и цвет</b><p>Покажем образцы и распечатку или соберём пробный экземпляр — тираж вы увидите до печати, а не после.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Печатаем и отдаём</b><p>Своё производство в Москве. Забираете сами или привозим по адресу, в другие города отправляем транспортной компанией.</p>
+        </div>
+      </li>
+    </ol>
+
+        <p class="ls-how-total">Срок зависит от продукта: визитки — дни, кашированная коробка — недели. Назовём его вместе со сметой.</p>
+  </section>
 
     <!-- Последний довод перед формой, одинаково на всех страницах: цифры
          и знаки клиентов. Логотипы — те, что лежат на сайте студии; показ
@@ -422,7 +715,55 @@
 </div>
   </section>
 
-  </div>
+  <section class="ls-related">
+    <div class="ls-related-head">
+      <h2>Другие направления</h2>
+    </div>
+    <ul class="ls-rows">
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/upakovka-i-etiketki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/works/gift-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/gift-1.jpg" width="900" height="600" alt="Кашированная коробка для подарка">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Упаковка и этикетки</b></span>
+            <span class="ls-note">Коробки, пакеты, этикетки, подарочные наборы</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/razrabotka-dizajna-logotipa-kompanii">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/works/kruzhka-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/kruzhka-1.jpg" width="900" height="600" alt="Фирменный стиль «Любимая кружка»">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Логотип и фирменный стиль</b></span>
+            <span class="ls-note">Знак, гайдлайн, носители, макеты под печать</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="ls-row-body" href="https://litera.studio/korporativnyj-brending-suveniry">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/works/ambar-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/ambar-1.jpg" width="900" height="600" alt="Бизнес-набор «Амбар»">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Корпоративный брендинг</b></span>
+            <span class="ls-note">Мерч, обвесы, оформление событий и офисов</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
 
 </main>
   <footer class="ls-foot">

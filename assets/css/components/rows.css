@@ -25,7 +25,7 @@
    миниатюры — название вылезало над квадратом, а линия отрывалась
    от его нижнего края. */
 .ls-row-body b{display:block;font-size:var(--t-base);font-weight:500;line-height:1.35}
-.ls-row-body p{margin:4px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+.ls-row-body p,.ls-row-body .ls-note{display:block;margin:4px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
 
 /* заглушка вместо снимка: серый квадрат с загнутым уголком */
 .ls-rows .ls-thumb{position:relative;width:76px;aspect-ratio:1;display:block;background:var(--placeholder)}

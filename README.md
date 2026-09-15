@@ -4,6 +4,7 @@
 Собран под мобильный экран, статические файлы без сборки.
 
 - `index.html` — главная
+- `poligrafiya.html` — направление
 - `category.html` — страница раздела
 - `sertifikat.html`, `advent.html` — карточки услуги
 - `case.html` — карточка работы

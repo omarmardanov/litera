@@ -43,3 +43,8 @@
 @media (min-width: 1024px){
   .ls-catalog.is-tiles .ls-rows{grid-template-columns:1fr 1fr 1fr;gap:28px 20px}
 }
+
+/* «Чаще всего заказывают» на странице направления: обычные строки под
+   заголовком секции, без групп. */
+.ls-dir-popular{margin-top:var(--gap-block)}
+.ls-dir-popular .ls-rows{margin-top:22px}
