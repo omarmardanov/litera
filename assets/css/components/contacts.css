@@ -1,0 +1,57 @@
+/* Контакты. Из поиска сюда почти не приходят (4 визита за год) — это
+   страница для тех, кто уже в разговоре: как позвонить, как дойти, где
+   забрать тираж, как оплатить, реквизиты для бухгалтерии. Поэтому сверху
+   каналы связи крупно, дальше практические разделы, реквизиты свёрнуты. */
+
+/* Каналы связи: телефон и почта крупно, мессенджеры строкой ссылок.
+   Телефон и почта — те же ссылки, что в футере: на десктопе копируются
+   (copy-contact.js), на телефоне звонят и пишут. */
+.ls-contacts{margin-top:32px;padding:0 var(--side)}
+.ls-contacts ul{margin:0;padding:0;list-style:none}
+.ls-contacts li + li{margin-top:18px}
+.ls-contacts li a{display:block;color:var(--ink);text-decoration:none;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-lead);
+  line-height:1.1;letter-spacing:-.01em;font-variant-numeric:tabular-nums;word-break:break-word}
+.ls-contacts li a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.ls-contacts li a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ls-contacts li span{display:block;margin-top:4px;font-size:var(--t-cap);color:var(--muted)}
+.ls-contacts-im{display:flex;flex-wrap:wrap;gap:8px 20px;margin:22px 0 0;font-size:var(--t-base)}
+.ls-contacts-im a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line-strong)}
+.ls-contacts-im a:hover{text-decoration-color:var(--ink)}
+.ls-contacts-hours{margin:22px 0 0;font-size:var(--t-ui);color:var(--ink-2)}
+
+/* Практические разделы: офис, получение заказа, оплата. Заголовок секции
+   общий (h2 из page.css), внутри пары «подзаголовок — текст» как в паспорте
+   кейса, но строками: здесь тексты длинные, колонками не читаются. */
+.ls-contacts-block{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-contacts-block h2{margin-bottom:14px}
+.ls-contacts-block p{margin:0;font-size:var(--t-base);line-height:1.5;text-wrap:pretty}
+.ls-contacts-block p + p{margin-top:12px}
+.ls-contacts-block dl{margin:20px 0 0}
+.ls-contacts-block dt{margin-top:18px;font-size:var(--t-ui);font-weight:600;color:var(--ink)}
+.ls-contacts-block dt:first-child{margin-top:0}
+.ls-contacts-block dd{margin:4px 0 0;font-size:var(--t-ui);line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+.ls-contacts-block a:not(.ls-btn){color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line-strong)}
+.ls-contacts-block a:not(.ls-btn):hover{text-decoration-color:var(--ink)}
+/* кнопка «Открыть на карте»: контурная, под адресом */
+.ls-contacts-block .ls-btn{margin-top:16px;width:100%}
+
+/* Реквизиты: свёрнуты в строку общего компонента `.ls-qa`. Внутри пары
+   «поле — значение» с табличными цифрами, чтобы счёт можно было сверить. */
+.ls-contacts-req .ls-qa dl{margin:0;padding-bottom:16px}
+.ls-contacts-req .ls-qa dt{margin-top:12px;font-size:var(--t-cap);color:var(--muted)}
+.ls-contacts-req .ls-qa dd{margin:2px 0 0;padding:0;font-size:var(--t-ui);line-height:1.45;color:var(--ink);
+  font-variant-numeric:tabular-nums;user-select:all}
+
+@media (min-width: 600px){
+  .ls-contacts-block p,.ls-contacts-block dd{max-width:62ch}
+}
+@media (min-width: 1024px){
+  .ls-contacts ul{display:flex;flex-wrap:wrap;gap:20px 56px}
+  .ls-contacts li + li{margin-top:0}
+  .ls-contacts-block .ls-btn{width:fit-content;min-width:220px}
+  .ls-contacts-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:80px}
+  .ls-contacts-cols .ls-contacts-block{margin-top:var(--gap-block)}
+}

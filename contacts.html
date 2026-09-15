@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- СОБРАНО build.py. Не править этот файл: правки затрутся при следующей сборке.
-     Исходник страницы — _pages/index.html, общие части — _parts/. -->
+     Исходник страницы — _pages/contacts.html, общие части — _parts/. -->
 <html lang="ru">
 <head>
 <meta charset="utf-8">
@@ -77,21 +77,27 @@
      иначе обёртка-телефон для десктопа не срабатывает. -->
 <link rel="stylesheet" href="assets/css/layout.css?v=514">
 <link rel="stylesheet" href="assets/css/motion.css?v=514">
-<title>Литера.Студия — дизайн и печать в Москве</title>
-<meta name="description" content="Дизайн-студия со своей типографией в Москве: полиграфия, упаковка, логотипы и фирменный стиль, корпоративный брендинг. Нарисуем макет и напечатаем тираж.">
-<link rel="canonical" href="https://litera.studio/">
-<meta property="og:title" content="Литера.Студия — дизайн и печать в Москве">
-<meta property="og:description" content="Дизайн-студия со своей типографией: полиграфия, упаковка, логотипы, корпоративный брендинг.">
-<meta property="og:url" content="https://litera.studio/">
-<meta property="og:image" content="https://litera.studio/assets/img/home-hero.jpg">
-<!-- Организация: адрес, телефон, почта — то, что поиск показывает в карточке
-     компании. Разметку нельзя вынести в отдельный файл: по внешней ссылке
-     поисковики структурированные данные не читают. -->
+<title>Контакты — Литера.Студия</title>
+<meta name="description" content="Литера.Студия: Москва, м. Тульская, Холодильный пер., 3к1с3. +7 495 021-35-77, zakaz@litera.studio. Как пройти, где забрать заказ, как оплатить, реквизиты.">
+
+<link rel="canonical" href="https://litera.studio/contacts">
+<meta property="og:title" content="Контакты — Литера.Студия">
+<meta property="og:description" content="Москва, м. Тульская, Холодильный пер., 3к1с3. +7 495 021-35-77, zakaz@litera.studio.">
+<meta property="og:url" content="https://litera.studio/contacts">
+<meta property="og:image" content="https://litera.studio/assets/img/works/gift-1.jpg">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/",
-"telephone":"+7 495 021-35-77","email":"zakaz@litera.studio",
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
+{"@type":"ListItem","position":2,"name":"Контакты","item":"https://litera.studio/contacts"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Литера.Студия",
+"url":"https://litera.studio/","telephone":"+7 495 021-35-77","email":"zakaz@litera.studio",
 "address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU",
-"streetAddress":"Холодильный пер., 3к1с3"}}
+"streetAddress":"Холодильный пер., 3к1с3, подъезд 6, этаж 2, офис 404","postalCode":"115191"},
+"openingHours":"Mo-Fr 10:00-19:00",
+"hasMap":"https://yandex.ru/maps/org/litera_studio/204191129397/"}
 </script>
 </head>
 <body>
@@ -223,261 +229,113 @@
     </div>
   </div>
 
-  <!-- Первый экран главной: кадр под прозрачной шапкой, под кадром — текст.
+  <!-- Содержимое с litera.studio/contacts: адрес, как пройти, парковка,
+       склад, оплата, реквизиты — их текст, подчищен. Карты нет: встраивать
+       чужой скрипт в прототип незачем, ссылка ведёт в Яндекс Карты,
+       в CMS на этом месте виджет. Сняты лозунги («Индивидуальный подход»,
+       «Стремление к совершенству») и повтор цифр — цифры стоят перед формой
+       на всех страницах. -->
+  <div class="ls-body ls-cat-intro">
+    <nav aria-label="Хлебные крошки">
+      <a class="ls-back" href="./">
+        <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
+        Главная
+      </a>
+    </nav>
+    <h1 class="ls-title">Контакты</h1>
+    <p class="ls-desc">Напишите, куда удобнее, — ответим в рабочее время.
+      Офис и склад в Москве, тираж доставим в любой город.</p>
+  </div>
 
-       Тот же приём, что на карточке работы: снимок во всю ширину уходит под
-       шапку, сверху затемнение держит логотип и кнопку читаемыми, а заголовок
-       с описанием и кнопкой стоят под кадром, на белом. От карточки услуги
-       отличается тем, что поверх снимка ничего не лежит — и потому главная
-       не выглядит той же страницей.
+  <i class="ls-chat-sentinel" aria-hidden="true"></i>
 
-       Кадр тёмный и контрастный: он должен цеплять, а не описывать одну
-       услугу. Витрину дальше держат плитки направлений. -->
-  <div class="ls-home-lead">
-    <figure class="ls-hero ls-home-hero">
-      <picture>
-        <source srcset="assets/img/home-hero.webp" type="image/webp">
-        <img fetchpriority="high" src="assets/img/home-hero.jpg" width="1672" height="941" alt="Белая полиграфия и упаковка на чёрном: тиснение знака, перфорация, крашеный обрез, коробка с лентой">
-      </picture>
-    </figure>
+  <section class="ls-contacts">
+    <h2 class="ls-sr-only">Связаться</h2>
+    <ul>
+      <li><a href="tel:+74950213577">+7 495 021-35-77</a><span>Звонок бесплатный, по будням с 10:00 до 19:00</span></li>
+      <li><a href="tel:+79777936481">+7 977 793-64-81</a><span>WhatsApp и звонки</span></li>
+      <li><a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a><span>Макеты и заявки — сюда</span></li>
+    </ul>
+    <p class="ls-contacts-im">
+      <a href="https://t.me/litera_studio">Telegram</a>
+      <a href="https://api.whatsapp.com/send?phone=79777936481">WhatsApp</a>
+      <a href="https://max.ru/u/f9LHodD0cOIV9InOx6ulNiryFx5jU7n5eIY9DliBnMiKjsrZAmOxnfX0e38">Max</a>
+      <a href="https://vk.com/litera_studio">ВКонтакте</a>
+    </p>
+  </section>
 
-    <section class="ls-home-head">
-      <h1 class="ls-title">Дизайн-студия со своей типографией</h1>
-      <p class="ls-desc">Рисуем макет и печатаем тираж в Москве, без посредников.
-        Посчитаем под ваш тираж и срок.</p>
-      <div class="ls-cta">
-        <a class="ls-btn ls-btn-main" href="#zayavka">Обсудить задачу</a>
-      </div>
-      <p class="ls-cta-alt"><a href="https://api.whatsapp.com/send?phone=79777936481"><span>Написать в WhatsApp</span><svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.06 1.6 5.8L2 22l4.42-1.68a9.9 9.9 0 0 0 5.62 1.72h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.43 1.32-1.99 1.4-.53.08-1.18.11-1.9-.12-.44-.14-1-.32-1.72-.63-3.02-1.3-4.99-4.34-5.14-4.54-.15-.2-1.23-1.63-1.23-3.11 0-1.48.78-2.21 1.05-2.51.28-.3.6-.38.8-.38h.58c.19 0 .43-.07.68.52.25.6.85 2.08.93 2.23.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.61.17.3.77 1.27 1.65 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.13.65-.08.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.07.12.07.72-.18 1.41Z"/></svg></a>, <a href="https://t.me/litera_studio"><span>Telegram</span><svg width="16" height="16" viewBox="0 0 128 128" aria-hidden="true"><defs><linearGradient id="tg" x1="50%" x2="50%" y1="0%" y2="99.258%"><stop offset="0%" stop-color="#2AABEE"/><stop offset="100%" stop-color="#229ED9"/></linearGradient></defs><circle cx="64" cy="64" r="64" fill="url(#tg)"/><path fill="#fff" d="M28.9700376,63.3244248 C47.6273373,55.1957357 60.0684594,49.8368063 66.2934036,47.2476366 C84.0668845,39.855031 87.7600616,38.5708563 90.1672227,38.528 C90.6966555,38.5191258 91.8804274,38.6503351 92.6472251,39.2725385 C93.294694,39.7979149 93.4728387,40.5076237 93.5580865,41.0057381 C93.6433345,41.5038525 93.7494885,42.63857 93.6651041,43.5252052 C92.7019529,53.6451182 88.5344133,78.2034783 86.4142057,89.5379542 C85.5170662,94.3339958 83.750571,95.9420841 82.0403991,96.0994568 C78.3237996,96.4414641 75.5015827,93.6432685 71.9018743,91.2836143 C66.2690414,87.5912212 63.0868492,85.2926952 57.6192095,81.6896017 C51.3004058,77.5256038 55.3966232,75.2369981 58.9976911,71.4967761 C59.9401076,70.5179421 76.3155302,55.6232293 76.6324771,54.2720454 C76.6721165,54.1030573 76.7089039,53.4731496 76.3346867,53.1405352 C75.9604695,52.8079208 75.4081573,52.921662 75.0095933,53.0121213 C74.444641,53.1403447 65.4461175,59.0880351 48.0140228,70.8551922 C45.4598218,72.6091037 43.1463059,73.4636682 41.0734751,73.4188859 C38.7883453,73.3695169 34.3926725,72.1268388 31.1249416,71.0646282 C27.1169366,69.7617838 23.931454,69.0729605 24.208838,66.8603276 C24.3533167,65.7078514 25.9403832,64.5292172 28.9700376,63.3244248 Z"/></svg></a> или <a href="https://max.ru/u/f9LHodD0cOIV9InOx6ulNiryFx5jU7n5eIY9DliBnMiKjsrZAmOxnfX0e38"><span>Max</span><img loading="lazy" decoding="async" class="ls-max" src="assets/img/max-logo.png" width="16" height="16" alt=""></a></p>
-    </section>
+  <div class="ls-contacts-cols">
+  <section class="ls-contacts-block">
+    <h2>Офис</h2>
+    <p>Москва, м.&nbsp;Тульская, Холодильный пер., 3к1с3, подъезд&nbsp;6, этаж&nbsp;2, офис&nbsp;404.
+      Здание Рябовской мануфактуры. По будням с&nbsp;10:00 до&nbsp;19:00.</p>
+    <a class="ls-btn ls-btn-line ls-btn-s" href="https://yandex.ru/maps/org/litera_studio/204191129397/" target="_blank" rel="noopener">Открыть на карте</a>
+    <dl>
+      <dt>Как пройти</dt>
+      <dd>В центральном дворе слева от трансформаторной будки, подъезд&nbsp;6 — рядом белая цифра&nbsp;3. Второй этаж, налево.</dd>
+      <dt>На машине</dt>
+      <dd>Въезд под шлагбаумом. Парковка первые 15&nbsp;минут бесплатно, дальше 500&nbsp;₽ в час, оплата на выезде.</dd>
+    </dl>
+  </section>
+
+  <section class="ls-contacts-block">
+    <h2>Как получить заказ</h2>
+    <dl>
+      <dt>Самовывоз из офиса</dt>
+      <dd>м.&nbsp;Тульская, Холодильный переулок — адрес выше.</dd>
+      <dt>Самовывоз со склада</dt>
+      <dd>м.&nbsp;Автозаводская, Автозаводская ул., 25&nbsp;стр.&nbsp;2, через проходную НПО&nbsp;Гелиймаш, пункт выдачи и склад Литера.Студии, стр.&nbsp;15.
+        Пешком — с удостоверением личности; на машине — пропуск дадут на выезд. Каршеринг и такси на территорию не пускают.
+        По будням с&nbsp;10:00 до&nbsp;19:00, склад: <a href="tel:+79168190493">+7 916 819-04-93</a>.</dd>
+      <dt>Доставка</dt>
+      <dd>По Москве и в другие города. Условия и стоимость назовёт менеджер при оформлении заказа.</dd>
+    </dl>
+  </section>
+
+  <section class="ls-contacts-block">
+    <h2>Оплата</h2>
+    <dl>
+      <dt>Юридическим лицам</dt>
+      <dd>Безналичный расчёт, счёт выставляет менеджер при оформлении заказа.</dd>
+      <dt>Частным лицам</dt>
+      <dd>Онлайн-оплата по ссылке — её тоже пришлёт менеджер.</dd>
+    </dl>
+  </section>
+
+  <section class="ls-contacts-block ls-contacts-req">
+    <h2>Реквизиты</h2>
+    <div class="ls-qa-list">
+      <details class="ls-qa">
+        <summary><span class="ls-q">ООО «МДМпринт»</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <dl>
+          <dt>Юридический и почтовый адрес</dt>
+          <dd>115419, г. Москва, вн.тер.г. муниципальный округ Донской, ул. Орджоникидзе, 11, строение 1а</dd>
+          <dt>ИНН / КПП</dt>
+          <dd>7704815108 / 772501001</dd>
+          <dt>ОГРН</dt>
+          <dd>1127746679587</dd>
+          <dt>ОКАТО / ОКПО</dt>
+          <dd>45296559000 / 11456329</dd>
+          <dt>ОКВЭД</dt>
+          <dd>22.2 — полиграфическая деятельность и предоставление услуг в этой области</dd>
+          <dt>Расчётный счёт</dt>
+          <dd>40702810738000087457</dd>
+          <dt>Корреспондентский счёт</dt>
+          <dd>30101810400000000225</dd>
+          <dt>БИК</dt>
+          <dd>044525225</dd>
+          <dt>Банк</dt>
+          <dd>ПАО Сбербанк, г. Москва</dd>
+          <dt>Телефон и факс</dt>
+          <dd>+7 (495) 256-10-00</dd>
+        </dl>
+      </details>
+    </div>
+  </section>
   </div>
 
   <div class="ls-rest">
     <i class="ls-rest-sentinel" aria-hidden="true"></i>
-    <i class="ls-body-sentinel ls-chat-sentinel" aria-hidden="true"></i>
-
-    <section class="ls-dirs">
-      <h2 class="ls-sr-only">Что делаем</h2>
-      <div class="ls-dirs-in">
-        <ul>
-          <li data-dir="poligrafiya"><a href="https://litera.studio/poligrafiya">
-            <span class="ls-dir-num">01</span>
-            <span class="ls-dir-count">80 услуг</span>
-            <span class="ls-dir-text"><b>Полиграфия</b><span class="ls-dir-note">Визитки, открытки, сертификаты, каталоги, бланки</span></span>
-            <span class="ls-dir-shot is-set"><picture><source srcset="assets/img/dirs/poligrafiya-set.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/img/dirs/poligrafiya-set.png" width="1100" height="1100" alt="Фирменный набор на хлопковой бумаге: бланк с номером, конверт, визитки и папка с синим корешком, знак вытиснен вслепую"></picture></span>
-          </a></li>
-          <li data-dir="upakovka"><a href="https://litera.studio/upakovka-i-etiketki">
-            <span class="ls-dir-num">02</span>
-            <span class="ls-dir-count">56 услуг</span>
-            <span class="ls-dir-text"><b>Упаковка и этикетки</b><span class="ls-dir-note">Коробки, пакеты, этикетки, подарочные наборы</span></span>
-            <span class="ls-dir-shot is-set"><picture><source srcset="assets/img/dirs/upakovka-set.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/img/dirs/upakovka-set.png" width="1100" height="1100" alt="Упаковка: пакет, коробка с наклейкой и бейдж, знак вытиснен вслепую, розовый акцент"></picture></span>
-          </a></li>
-          <li data-dir="logotip"><a href="https://litera.studio/logotip-i-firmennyj-stil">
-            <span class="ls-dir-num">03</span>
-            <span class="ls-dir-count">9 услуг</span>
-            <span class="ls-dir-text"><b>Логотип и фирменный стиль</b><span class="ls-dir-note">Знак, гайдлайн, носители, макеты под печать</span></span>
-            <span class="ls-dir-shot is-set"><picture><source srcset="assets/img/dirs/logotip-set.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/img/dirs/logotip-set.png" width="1100" height="1100" alt="Разворот гайдлайна с построением знака, эскизы, визитки, бирка и значок, лаймовый акцент"></picture></span>
-          </a></li>
-          <li data-dir="brending"><a href="https://litera.studio/korporativnyj-brending">
-            <span class="ls-dir-num">04</span>
-            <span class="ls-dir-count">25 услуг</span>
-            <span class="ls-dir-text"><b>Корпоративный брендинг</b><span class="ls-dir-note">Мерч, обвесы, оформление событий и офисов</span></span>
-            <span class="ls-dir-shot is-set"><picture><source srcset="assets/img/dirs/brending-set.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/img/dirs/brending-set.png" width="1100" height="1100" alt="Корпоративный набор: коробка, блокнот, кружка, значок, бирки и обвесы на шнурке, жёлтый акцент"></picture></span>
-          </a></li>
-        </ul>
-      </div>
-      <!-- По заявкам люди приходят с вещью, которой в каталоге нет как позиции:
-           колода Таро, суперобложка, настольная игра. Строка снимает страх
-           «не мой случай» до того, как человек уйдёт искать дальше. -->
-      <p class="ls-dirs-else">Не нашли своё — всё равно напишите. К нам приходят
-        с колодой Таро, суперобложкой для книги и настольной игрой.
-        <a href="#zayavka">Опишите задачу</a> — разберёмся.</p>
-    </section>
-
-    <!-- Снимает главный страх: «возьмутся ли за мои тридцать штук».
-         По дампу заявок тираж назван в 135 письмах, медиана — сто штук,
-         61% не больше сотни. Спрашивают об этом прямо: 3,7% заявок начинаются
-         с «сможете ли вы». Цифры здесь из заявок, не из CRM: реальный
-         минимальный тираж уточняем у менеджера. -->
-    <section class="ls-small">
-      <span class="ls-small-num" aria-hidden="true">½</span>
-      <h2>Половина заказов у нас — до ста штук</h2>
-      <p>Возьмёмся и за тридцать. Дизайн на таком тираже стоит дороже
-        печати, поэтому считаем прежде всего работу студии, а бумагу
-        и станки подбираем под неё.</p>
-      <!-- Три настоящие заявки из формы на сайте, дословно, без имён.
-           Цитата доказывает, что тираж настоящий, лучше любой подписи
-           к цифре: список «35 / 50 / 50» читался счётчиком. -->
-      <ul class="ls-small-ex">
-        <li><svg class="ls-small-ico" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="4" width="17" height="12" rx="1.5"/><path d="M2 5l8 6 8-6"/></svg><div><q>Сможете ли вы изготовить коробки малым тиражом? Коробка желательно с окном, размер 30×30×15 см, тираж 35 шт.</q><span>Заявка с сайта, сентябрь 2025</span></div></li>
-        <li><svg class="ls-small-ico" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="4" width="17" height="12" rx="1.5"/><path d="M2 5l8 6 8-6"/></svg><div><q>Хотели бы под корпоративный стиль в новогоднем дизайне разработать настольную игру для партнёров в качестве подарка. Тираж — 50 шт.</q><span>Заявка с сайта, август 2024</span></div></li>
-        <li><svg class="ls-small-ico" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="4" width="17" height="12" rx="1.5"/><path d="M2 5l8 6 8-6"/></svg><div><q>Сориентируйте, пожалуйста, сможете ли вы сделать суперобложку для книг? Тираж: 50 шт.</q><span>Заявка с сайта, ноябрь 2025</span></div></li>
-      </ul>
-    </section>
-
-    <section class="ls-works">
-      <!-- Надзаголовок объясняет, что это за блок, а режимы набраны как
-           заголовок: они и есть то, что человек выбирает. Счётчик рядом
-           с «Видео» нужен затем, что за невыбранной вкладкой контента
-           не видно — по цифре сразу понятно, есть там что-то или нет. -->
-      <div class="ls-works-head">
-        <div>
-          <!-- Заголовок остаётся в разметке, но не на экране: режимы читаются
-               как название блока, а скринридеру и поиску нужно слово. -->
-          <h2 class="ls-sr-only">Работы</h2>
-          <div class="ls-works-tabs" role="tablist" aria-label="Что показывать">
-            <button type="button" role="tab" aria-selected="true" aria-controls="works-photo" id="tab-photo">Фото<em>4</em></button>
-            <i aria-hidden="true">·</i>
-            <button type="button" role="tab" aria-selected="false" aria-controls="works-video" id="tab-video">Видео<em>3</em></button>
-          </div>
-        </div>
-        <a href="projects.html">В портфолио</a>
-      </div>
-      <!-- Плитки ведут в общее портфолио: отдельных страниц работ пока нет.
-         Когда появятся, CMS подставит их адреса вместо /projects. -->
-    <!-- Подпись работы: `.ls-work-tags` — это «отрасль · особенность». Туда же
-         должно встать имя клиента вместо отрасли: «Ozon Реклама · коробка
-         с грамотой». Тогда клиенты доказывают собой работы, а отдельная роспись
-         имён внизу не нужна — так устроено у &Walsh, Studio Dumbar и Логомашины.
-         Нужен ответ менеджера, чья работа за каким клиентом и кого можно
-         называть; пока стоят отрасли. -->
-    <!-- По одной работе на направление, в том же порядке, что и плитки
-         направлений выше: полиграфия, упаковка, логотип, брендинг. -->
-    <ul class="ls-works-list" id="works-photo" role="tabpanel" aria-labelledby="tab-photo">
-        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <span class="ls-shots">
-            <picture>
-              <source srcset="assets/img/works/luxe-1.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/luxe-1.jpg" width="900" height="600" alt="Каталог LUXE CITY: чёрная обложка с выборочным лаком и разворот с интерьерами">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/luxe-2.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/luxe-2.jpg" width="900" height="600" alt="">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/luxe-3.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/luxe-3.jpg" width="900" height="600" alt="">
-            </picture>
-          </span>
-          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <b>Каталог LUXE CITY</b>
-          <span class="ls-work-tags">Полиграфия · твёрдый переплёт, выборочный лак</span>
-        </a></li>
-        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <span class="ls-shots">
-            <picture>
-              <source srcset="assets/img/works/gift-1.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/gift-1.jpg" width="900" height="600" alt="Кашированная коробка с золотой фольгой на синем фоне">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/gift-2.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/gift-2.jpg" width="900" height="600" alt="">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/gift-3.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/gift-3.jpg" width="900" height="600" alt="">
-            </picture>
-          </span>
-          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <b>Коробка для премиального подарка</b>
-          <span class="ls-work-tags">Упаковка · кашировка, объёмная фольга</span>
-        </a></li>
-        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <span class="ls-shots">
-            <picture>
-              <source srcset="assets/img/works/kruzhka-1.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/kruzhka-1.jpg" width="900" height="600" alt="Разворот гайдлайна кофейни «Любимая кружка» с маскотом">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/kruzhka-2.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/kruzhka-2.jpg" width="900" height="600" alt="">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/kruzhka-3.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/kruzhka-3.jpg" width="900" height="600" alt="">
-            </picture>
-          </span>
-          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <b>Фирменный стиль «Любимая кружка»</b>
-          <span class="ls-work-tags">Логотип и фирменный стиль · маскот, гайдлайн</span>
-        </a></li>
-        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <i class="ls-zone" aria-hidden="true"></i>
-          <span class="ls-shots">
-            <picture>
-              <source srcset="assets/img/works/ambar-1.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/ambar-1.jpg" width="900" height="600" alt="Холщовый шоппер и блокнот с паттерном из логотипов «Амбар»">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/ambar-2.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/ambar-2.jpg" width="900" height="600" alt="">
-            </picture>
-            <picture>
-              <source srcset="assets/img/works/ambar-3.webp" type="image/webp">
-              <img loading="lazy" decoding="async" src="assets/img/works/ambar-3.jpg" width="900" height="600" alt="">
-            </picture>
-          </span>
-          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <b>Бизнес-набор «Амбар»</b>
-          <span class="ls-work-tags">Корпоративный брендинг · шоппер, блокнот, паттерн</span>
-        </a></li>
-      </ul>
-          <ul class="ls-shorts-list" id="works-video" role="tabpanel" aria-labelledby="tab-video" hidden>
-        <li class="ls-short"><a href="https://vk.com/video191195025_456239176" data-video="191195025_456239176" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
-          <img loading="lazy" decoding="async" src="assets/img/shorts/v1.jpg" width="405" height="720" alt="Печать подарочных сертификатов">
-          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
-        </a></li>
-        <li class="ls-short"><a href="https://vk.com/video191195025_456239214" data-video="191195025_456239214" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
-          <img loading="lazy" decoding="async" src="assets/img/shorts/v2.jpg" width="405" height="720" alt="Сертификаты с тиснением, крупный план">
-          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
-        </a></li>
-        <li class="ls-short"><a href="https://vk.com/video191195025_456239129" data-video="191195025_456239129" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
-          <img loading="lazy" decoding="async" src="assets/img/shorts/v3.jpg" width="405" height="720" alt="Готовый тираж сертификатов">
-          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
-        </a></li>
-      </ul>
-    </section>
-
-    <!-- Группы обёрнуты, чтобы не разрывались между колонками на десктопе:
-       заголовок, строки и раскрытие «Ещё…» должны остаться вместе. -->
-      <section class="ls-how">
-    <h2>Как мы работаем</h2>
-    <ol>
-      <li>
-        <div>
-          <b>Разбираемся в задаче</b><p>В день обращения. Спросим, что нужно, сколько штук и к какому сроку. От этого зависят материал, способ печати и цена.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Считаем и показываем первый вариант</b><p>Присылаем смету и макет. Правки по согласованному направлению входят в стоимость.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Согласуем материал и цвет</b><p>Покажем образцы и распечатку или соберём пробный экземпляр — тираж вы увидите до печати, а не после.</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Печатаем и отдаём</b><p>Своё производство в Москве. Забираете сами или привозим по адресу, в другие города отправляем транспортной компанией.</p>
-        </div>
-      </li>
-    </ol>
-
-        <p class="ls-how-total">Срок зависит от продукта: визитки — дни, кашированная коробка — недели. Назовём его вместе со сметой.</p>
-  </section>
 
     <!-- Последний довод перед формой, одинаково на всех страницах: цифры
          и знаки клиентов. Логотипы — те, что лежат на сайте студии; показ
@@ -520,17 +378,9 @@
       <label class="ls-sr-only" for="fname">Имя</label>
       <input id="fname" type="text" name="first-name" placeholder="Имя, если хотите" autocomplete="given-name">
 
-      <!-- Услуга списком — только на главной: на карточке она и так известна.
-           Список тот же, что у подсказок поиска в меню (assets/data/services.json),
-           подставляет его form-service.js. Без скрипта остаётся одна строка
-           «Что нужно» — тогда задачу описывают словами ниже. -->
-      <label class="ls-sr-only" for="what">Что нужно</label>
-      <select id="what" name="what">
-        <option value="">Что нужно — выберите из списка</option>
-      </select>
       <label class="ls-sr-only" for="task">Что нужно напечатать</label>
       <textarea id="task" name="comment" rows="1" maxlength="2000"
-        placeholder="Тираж, срок, комментарии"></textarea>
+        placeholder="Что печатаем, тираж, срок, комментарии"></textarea>
 
       <fieldset class="ls-way">
         <legend>Как удобнее ответить</legend>
@@ -583,8 +433,6 @@
   </div>
 
 </main>
-  <!-- Футер вне общего слоя: страница съезжает с него,
-       поэтому он не может лежать внутри того, что съезжает. -->
   <footer class="ls-foot">
     <a class="ls-wordmark" href="./"><span class="ls-sr-only">Литера.Студия</span></a>
 
