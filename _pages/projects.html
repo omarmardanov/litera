@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<!-- @include head.html -->
+<!-- @include styles.html -->
+<title>Работы — Литера.Студия</title>
+<meta name="description" content="Работы студии: полиграфия, упаковка, логотипы и фирменный стиль, корпоративный брендинг. Фото настоящих тиражей.">
+
+<link rel="canonical" href="https://litera.studio/projects">
+<meta property="og:title" content="Работы — Литера.Студия">
+<meta property="og:description" content="Работы студии: полиграфия, упаковка, логотипы и фирменный стиль, корпоративный брендинг.">
+<meta property="og:url" content="https://litera.studio/projects">
+<meta property="og:image" content="https://litera.studio/assets/img/works/gift-1.jpg">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
+{"@type":"ListItem","position":2,"name":"Работы","item":"https://litera.studio/projects"}]}
+</script>
+</head>
+<body>
+<!-- Первая цель табуляции: с клавиатуры и со скринридера можно перескочить
+     шапку с меню и попасть сразу в содержимое. -->
+<a class="ls-skip" href="#main">К содержанию</a>
+<main class="ls-card" id="main">
+<!-- @include top.html -->
+
+  <div class="ls-body ls-cat-intro">
+    <nav aria-label="Хлебные крошки">
+      <a class="ls-back" href="./">
+        <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
+        Главная
+      </a>
+    </nav>
+    <h1 class="ls-title">Работы</h1>
+    <p class="ls-desc">Что нарисовали и напечатали за тринадцать лет — от визитки
+      до кашированной коробки.</p>
+  </div>
+
+  <!-- Метка для виджета связи: на телефоне он выезжает, когда первый экран
+       ушёл под шапку. Кадра здесь нет, поэтому метка своя, а не общая
+       с шапкой (assets/js/chat.js). -->
+  <i class="ls-chat-sentinel" aria-hidden="true"></i>
+
+  <!-- Фильтр: направление чипами (те же, что у плиток на главной), услуга
+       и отрасль списками — их наполняет скрипт из данных, только позиции,
+       которые есть в выбранном направлении. Отрасль проставлена у 63 работ
+       из 813, поэтому в списке видно число работ. Без скрипта сетка пустая:
+       в CMS выборка делается на сервере, и это не проблема. -->
+  <div class="ls-rest">
+    <i class="ls-rest-sentinel" aria-hidden="true"></i>
+
+  <div class="ls-filter">
+    <fieldset class="ls-way">
+      <legend>Направление</legend>
+      <div class="ls-way-row">
+        <label><input type="radio" name="dir" value="" checked><span>Все</span></label>
+        <label><input type="radio" name="dir" value="poligrafiya"><span>Полиграфия</span></label>
+        <label><input type="radio" name="dir" value="upakovka"><span>Упаковка и этикетки</span></label>
+        <label><input type="radio" name="dir" value="logotip"><span>Логотип и фирменный стиль</span></label>
+        <label><input type="radio" name="dir" value="brending"><span>Корпоративный брендинг</span></label>
+      </div>
+    </fieldset>
+    <label class="ls-sr-only" for="prod">Услуга</label>
+    <select id="prod" name="prod">
+      <option value="">Любая услуга</option>
+    </select>
+    <!-- Технологии менеджеры проставляют чаще всего, куда чаще отрасли.
+         Для типографии это рабочий фильтр — «покажите с тиснением». -->
+    <label class="ls-sr-only" for="tech">Технология</label>
+    <select id="tech" name="tech">
+      <option value="">Любая технология</option>
+    </select>
+    <label class="ls-sr-only" for="ind">Отрасль</label>
+    <select id="ind" name="ind">
+      <option value="">Любая отрасль</option>
+    </select>
+    <p class="ls-filter-count" aria-live="polite"></p>
+  </div>
+
+  <section class="ls-projects">
+    <h2 class="ls-sr-only">Список работ</h2>
+    <ul></ul>
+    <p class="ls-projects-empty" hidden>По этому фильтру работ нет — попробуйте другую услугу.</p>
+    <button class="ls-btn ls-btn-line ls-btn-s ls-projects-more" type="button" hidden>Показать ещё</button>
+  </section>
+
+<!-- @include proof.html -->
+
+<!-- @include lead.html -->
+
+  </div>
+
+</main>
+<!-- @include footer.html -->
+<!-- @include cookie.html -->
+<!-- @include chat.html -->
+<!-- @include dialogs.html -->
+<!-- @include scripts.html -->
+</body>
+</html>

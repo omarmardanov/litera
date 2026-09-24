@@ -1,0 +1,156 @@
+/* Футер: группы ссылок, адрес, реквизиты. */
+
+/* Пробовали держать футер на месте, чтобы страница съезжала с него.
+   Отказались: он выше окна, поэтому прилипал верхним краем и ложился
+   поверх первого экрана. Приём работает только с невысоким футером. */
+/* Отступа сверху нет: воздух до футера даёт последний блок страницы,
+   иначе он красился бы тёмным фоном тела. Правило в layout.css. */
+/* Снизу — место под кнопку чата: её отступ 20, высота 56 и 16 воздуха.
+   С 30 последняя строка футера уходила под кнопку. На десктопе те же
+   96 = 24 + 56 + 16. */
+.ls-foot{margin-top:0;padding:34px 20px calc(92px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--paper);position:relative;z-index:1}
+/* Обёртки колонок прозрачны: на телефоне группы идут сплошным потоком,
+   раскладка включается только на широком экране. */
+.ls-foot-cols,.ls-foot-group{display:contents}
+.ls-foot .ls-wordmark{color:var(--paper);text-decoration:none;width:138px;height:22px}
+/* `--t-h3`: на десктопе 20 — крупнее ссылок (18). При равном кегле ссылки
+   перевешивали заголовок белым цветом и подчёркиванием. */
+.ls-foot h3{margin:34px 0 0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-h3);letter-spacing:-.005em;color:var(--on-dark-3)}
+/* колонки заполняются сверху вниз: телефон и почта слева, мессенджеры справа */
+.ls-foot ul{margin:10px 0 0;padding:0;list-style:none;display:grid;column-gap:12px;
+  grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-template-columns:1fr 1fr}
+.ls-foot li + li{margin-top:0}
+.ls-foot a{display:inline-block;padding:12px 0;color:var(--paper);font-size:var(--t-base);line-height:1.3;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-dark-2)}
+.ls-foot a:hover{text-decoration-color:var(--paper)}
+.ls-foot a:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.ls-foot .ls-legal{margin-top:22px;padding-top:14px;border-top:1px solid var(--line-dark);
+  grid-auto-flow:row;grid-template-rows:none;grid-template-columns:1fr}
+.ls-foot .ls-legal a{color:var(--on-dark-2)}
+.ls-foot .ls-legal a:hover{color:var(--paper)}
+.ls-foot .ls-addr{margin:14px 0 0;font-size:var(--t-base);line-height:1.4;color:var(--paper);max-width:32ch}
+.ls-foot .ls-addr a{display:inline;padding:0}
+.ls-foot .ls-addr span{display:block;margin-top:4px;color:var(--on-dark-3)}
+.ls-foot .ls-fine{margin-top:24px;padding-top:16px;border-top:1px solid var(--line-dark);
+  font-size:var(--t-cap);line-height:1.45;color:var(--on-dark-3)}
+.ls-foot .ls-fine p{margin:0;font-size:inherit;font-weight:400;color:inherit;text-wrap:pretty}
+.ls-foot .ls-fine p + p{margin-top:10px}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+/* ── Колонки: с планшета ───────────────────────────────────────── */
+/* В один столбик футер занимал 1274 пикселя — на планшете это целый экран
+   с лишним, при том что рядом пустует половина ширины. Раскладка одна
+   и та же для планшета и широкого экрана, различается только число колонок:
+   две до 1024, четыре после, пять с 1280.
+
+   Тап-цели ссылок при этом остаются телефонными: уменьшенные поля живут
+   в десктопном медиазапросе, там мышь. */
+@media (min-width: 600px){
+  .ls-foot{display:grid;grid-template-columns:repeat(2,1fr);column-gap:32px}
+  .ls-foot-cols{display:contents}
+  .ls-foot-group{display:block}
+  .ls-foot .ls-wordmark{grid-column:1 / -1;justify-self:start}
+  /* Внутри колонки список в один столбик: на двух ссылки не помещаются. */
+  .ls-foot-cols ul,.ls-foot .ls-services{grid-auto-flow:row;grid-template-columns:1fr;
+    grid-template-rows:none;align-content:start}
+  /* Правовые ссылки строкой, потоком: при 15 пикселях вчетвером они занимают
+     830 плюс зазоры, и строка должна разбиваться сама. */
+  .ls-foot .ls-legal{grid-column:1 / -1;
+    display:flex;flex-wrap:wrap;column-gap:32px;margin-top:34px}
+  /* Реквизиты по тем же колонкам, что и группы: `subgrid`, чтобы не повторять
+     раскладку числами. */
+  .ls-foot .ls-fine{grid-column:1 / -1;display:grid;grid-template-columns:subgrid;
+    column-gap:32px}
+  .ls-foot .ls-fine p + p{margin-top:0}
+}
+
+@media (min-width: 1024px){
+    /* Футер лежит за пределами `main` и в сетку страницы не входит: раньше он
+       был её третьей строкой, и это требовало оговорок про `grid-row` для
+       страниц без слоёв первого экрана. Теперь это просто блок под ней.
+       Отступ до футера белым, а не чёрным: его даёт последний блок `.ls-rest`,
+       иначе воздух получался уже на тёмном фоне и блок над ним казался
+       прилипшим. Снизу воздуха больше обычного — в правом углу висит кнопка
+       чата, и на самом низу она садилась поверх строки про справочные цены. */
+  .ls-foot{margin-top:0;padding-top:64px;padding-bottom:96px}
+
+  /* Сетку держит сам футер, а не обёртка групп: по одним и тем же колонкам
+     раскладываются и группы ссылок, и реквизиты внизу, а лежат они
+     в разных блоках. Обёртка для этого делается прозрачной.
+     В один столбик футер занимал 1293 пикселя — полтора экрана, — а справа
+     оставалось полторы тысячи пустоты. */
+  .ls-foot{grid-template-columns:repeat(4,1fr)}
+
+  /* Внутри колонки список в один столбик: на двух ссылки не помещаются —
+     при ширине окна 1024 колонка выходит 208 пикселей.
+     `align-content:start` обязателен: с 1280 список — ячейка сетки футера
+     и растягивается на высоту самой длинной колонки, а строки `auto`
+     разбирают лишнее между собой. Из-за этого шаг ссылок был разный:
+     36 в «Услугах» и 44 во всех остальных.
+     Строки у «Услуг» гасим отдельно — селектор с классом перебивает `ul`. */
+
+  /* Ссылки на ступень мельче: 18 — это кегль основного текста, в футере он
+     слишком громкий. Заодно мышью не нужна тап-цель в 44 пикселя,
+     поля с 12 до 8. Вместе шаг строки 36 вместо 47. */
+  .ls-foot a{padding:8px 0;font-size:var(--t-ui)}
+
+  /* Адрес — не пункт меню. В столбик это терялось, в колонке он вставал
+     пятой ссылкой в «Связаться»: тот же цвет, то же подчёркивание, тот же шаг.
+     Кегль общий со ссылками, но цвет тише и подчёркивание слабее. */
+  .ls-foot .ls-addr{margin-top:22px;font-size:var(--t-ui);color:var(--on-dark-2)}
+  /* Кегль и цвет ссылке приходится задавать отдельно: `.ls-foot a` объявляет
+     и то, и другое на самом элементе и перебивает наследование от `.ls-addr`.
+     С кеглем это поймали сразу, с цветом — нет: адрес оставался белым,
+     как обычная ссылка, хотя тише его сделали именно ради отличия. */
+  .ls-foot .ls-addr a{font-size:inherit;color:inherit;text-decoration-color:var(--line-dark)}
+  .ls-foot .ls-addr a:hover{text-decoration-color:var(--paper)}
+
+  /* Правовые ссылки строкой. Именно потоком, а не сеткой: при 15 пикселях
+     вчетвером они занимают 830 плюс зазоры, и на узком десктопе строка
+     должна разбиваться сама. */
+
+  /* Реквизиты по тем же колонкам, что и группы: в столбик они жались
+     к левому краю, а справа оставалось пусто. `subgrid` — чтобы не повторять
+     раскладку числами: колонки берутся у футера. */
+}
+
+
+/* ── От 1280: вордмарк и адрес уходят в первую колонку ──────────── */
+/* Третья ступень только у футера, в общей раскладке её нет. Причина в том,
+   что лишний воздух заводится не везде: при 1024 колонка выходит 208 пикселей
+   при самой длинной ссылке 159 — там уже тесновато. Простор появляется с 1240,
+   и вордмарк, висящий один в строке над колонками, его только подчёркивает.
+   Пятая колонка помещается ровно с 1280: содержимое 1184, четыре зазора по 24,
+   на ссылки остаётся по 201. При 1024 такая раскладка дала бы 154 — не влезает. */
+@media (min-width: 1280px){
+  /* Адрес лежит в разметке внутри «Связаться», а показать его надо в первой
+     колонке — обёртка группы для этого тоже делается прозрачной. */
+  .ls-foot{grid-template-columns:1.4fr repeat(4,1fr);column-gap:24px}
+  .ls-foot-group{display:contents}
+
+  .ls-foot .ls-wordmark{grid-column:1;grid-row:1}
+  /* 18 = отступ списка 10 плюс верхнее поле ссылки 8: так первая строка адреса
+     садится на одну линию с первой ссылкой соседней колонки. */
+  .ls-foot .ls-addr{grid-column:1;grid-row:2;margin-top:18px}
+
+  /* Заголовки в первую строку, списки во вторую — так они выравниваются
+     между колонками по сетке, а не по случайным отступам. */
+  .ls-foot-group:nth-child(1)>h3,.ls-foot-group:nth-child(1)>ul{grid-column:2}
+  .ls-foot-group:nth-child(2)>h3,.ls-foot-group:nth-child(2)>ul{grid-column:3}
+  .ls-foot-group:nth-child(3)>h3,.ls-foot-group:nth-child(3)>ul{grid-column:4}
+  .ls-foot-group:nth-child(4)>h3,.ls-foot-group:nth-child(4)>ul{grid-column:5}
+  .ls-foot h3{grid-row:1;margin-top:0}
+  .ls-foot-cols ul{grid-row:2}
+
+  .ls-foot .ls-legal{grid-row:3;column-gap:24px}
+
+  /* Колонок пять, абзацев четыре — самый длинный занимает две.
+     Остальные разбираются по колонкам сами. */
+  .ls-foot .ls-fine{grid-row:4;column-gap:24px}
+  .ls-foot .ls-fine p:nth-child(1){grid-column:1}
+  .ls-foot .ls-fine p:nth-child(2){grid-column:2 / span 2}
+}

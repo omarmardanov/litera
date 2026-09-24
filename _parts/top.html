@@ -1,0 +1,122 @@
+  <header class="ls-topbar">
+    <!-- Логотип файлом (`assets/img/logo.svg`), а не набран шрифтом: знак берём
+         из бренд-ассетов. Показывает его CSS-маска, поэтому он перекрашивается
+         вместе с шапкой. Название остаётся текстом для скринридера и поиска. -->
+    <a class="ls-wordmark" href="./">
+      <span class="ls-sr-only">Литера.Студия — дизайн и печать</span>
+      <i class="ls-wordmark-mark" aria-hidden="true"></i>
+      <span class="ls-wordmark-text" aria-hidden="true">
+        <i class="ls-wordmark-name"></i>
+        <span class="ls-wordmark-tag">дизайн и печать</span>
+      </span>
+    </a>
+
+    <!-- Навигация десктопа, на телефоне её заменяет бургер. Главное в ней —
+         список услуг, контакты и телефон: за ними приходят чаще всего.
+         Работы и блог стоят ссылками, кейсов в шапке нет. -->
+    <nav class="ls-topnav" aria-label="Разделы сайта">
+      <button class="ls-topnav-menu" type="button" aria-expanded="false" aria-controls="menu">Услуги<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></button>
+      <a href="projects.html">Работы</a>
+      <a href="blog.html">Блог</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <!-- Место для поля поиска: с 1280 скрипт переносит его сюда из панели меню.
+         Ниже 1280 в шапке для него нет места, и поиск остаётся в панели. -->
+    <div class="ls-topbar-search"></div>
+    <!-- Телефон: заметная часть поисковых показов — гео-запросы, и это
+         признак живой компании с производством. На десктопе он
+         не звонилка — клик копирует номер, см. copy-contact.js. -->
+    <div class="ls-topbar-tel">
+      <a class="ls-topbar-phone" href="tel:+74950213577">+7 495 021-35-77</a>
+            <span class="ls-topbar-tel-note">Звонок бесплатный</span>
+    </div>
+    <a class="ls-btn ls-btn-main ls-btn-xs ls-topbar-cta" href="#zayavka" tabindex="-1" aria-hidden="true">Обсудить</a>
+    <button class="ls-burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="menu">
+      <span class="ls-ico" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </header>
+  <!-- Метка для наблюдателя в header.js: пока она видна, шапка не сжата.
+       Стоит сразу за шапкой и до содержимого — порядок общий для всех
+       страниц, иначе шапка на разных страницах сжимается в разных местах. -->
+  <i class="ls-scroll-sentinel" aria-hidden="true"></i>
+
+  <div class="ls-menu" id="menu" aria-label="Меню" hidden>
+    <form class="ls-menu-search" role="search" method="get" action="/">
+      <label class="ls-sr-only" for="q">Поиск по услугам</label>
+      <svg class="ls-menu-search-ico" width="18" height="18" viewBox="0 0 20 20" fill="none"
+        stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6.5"/><path d="M13.5 13.5L19 19"/></svg>
+      <input id="q" name="s" type="search" placeholder="Поиск услуг" autocomplete="off"
+        enterkeyhint="search">
+      <button class="ls-menu-search-clear" type="button" aria-label="Очистить" hidden>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+      </button>
+    </form>
+
+        <nav class="ls-menu-main" aria-label="Разделы">
+      <a class="ls-menu-group" href="poligrafiya.html" aria-expanded="false" aria-controls="sub0"><span class="ls-menu-group-name"><span class="ls-nw">Полиграфия <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></span></span></a>
+      <div class="ls-menu-sub" id="sub0" hidden>
+        <div>
+          <a class="ls-menu-all" href="poligrafiya.html">Все услуги раздела</a>
+          <a href="category.html">Листовая полиграфия</a>
+          <a href="https://litera.studio/dizajn-mnogostranichnoj-produkcii">Многостраничные издания</a>
+          <a href="https://litera.studio/verstka-poligrafii">Вёрстка полиграфии</a>
+          <a href="https://litera.studio/dizajn-kalendarya">Календари</a>
+          <a href="https://litera.studio/dizajn-shirokoformatnoj-poligrafii">Широкоформатная</a>
+          <a href="menu-prays.html">Меню и прайсы</a>
+          <a href="https://litera.studio/pechati-papki-plastikovye-karty">Папки, печати, пластиковые карты</a>
+          <a href="https://litera.studio/svadebnaya-poligrafiya">Свадебная полиграфия</a>
+          <a href="igry.html">Карты и настольные игры</a>
+          <a href="https://litera.studio/illyustracii">Иллюстрации</a>
+          <a href="https://litera.studio/prepress">Подготовка к печати</a>
+        </div>
+      </div>
+      <a class="ls-menu-group" href="https://litera.studio/upakovka-i-etiketki" aria-expanded="false" aria-controls="sub1"><span class="ls-menu-group-name">Упаковка и <span class="ls-nw">этикетки <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></span></span></a>
+      <div class="ls-menu-sub" id="sub1" hidden>
+        <div>
+          <a class="ls-menu-all" href="https://litera.studio/upakovka-i-etiketki">Все услуги раздела</a>
+          <a href="https://litera.studio/dizajn-i-pechat-kashirovannyh-korobok-iz-zhyostkogo-kartona">Кашированные коробки</a>
+          <a href="https://litera.studio/dizajn-i-pechat-korobok-iz-kartona">Картонные коробки</a>
+          <a href="https://litera.studio/dizajn-i-pechat-korobok-iz-mgk">Коробки из МГК</a>
+          <a href="https://litera.studio/dizajn-i-pechat-korobok-s-lozhementom">Ложементы и вставки</a>
+          <a href="https://litera.studio/dizajn-naklejki">Этикетки и наклейки</a>
+          <a href="#" data-soon>Упаковочные материалы</a> <!-- страницы ещё нет, новая подгруппа -->
+        </div>
+      </div>
+      <a class="ls-menu-group" href="https://litera.studio/razrabotka-dizajna-logotipa-kompanii" aria-expanded="false" aria-controls="sub2"><span class="ls-menu-group-name">Логотип и фирменный <span class="ls-nw">стиль <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></span></span></a>
+      <div class="ls-menu-sub" id="sub2" hidden>
+        <div>
+          <a class="ls-menu-all" href="https://litera.studio/razrabotka-dizajna-logotipa-kompanii">Все услуги раздела</a>
+          <a href="https://litera.studio/razrabotka-dizajna-maskota-brenda">Маскот бренда</a>
+          <a href="https://litera.studio/razrabotka-brendbuka">Брендбук и гайдлайн</a>
+          <a href="https://litera.studio/dizajn-firmennyh-nositelej">Фирменные носители</a>
+          <a href="https://litera.studio/redizajn-logotipa-i-firmennyh-nositelej">Редизайн логотипа</a>
+        </div>
+      </div>
+      <a class="ls-menu-group" href="brending.html" aria-expanded="false" aria-controls="sub3"><span class="ls-menu-group-name">Корпоративный <span class="ls-nw">брендинг <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6.5l4 4 4-4"/></svg></span></span></a>
+      <div class="ls-menu-sub" id="sub3" hidden>
+        <div>
+          <a class="ls-menu-all" href="brending.html">Все услуги раздела</a>
+          <a href="https://litera.studio/korporativnyj-merch">Корпоративный мерч</a>
+          <a href="https://litera.studio/dizajn-suvenirnoj-produkcii">Брендирование сувениров</a>
+          <a href="nabory.html">Подарочные наборы</a>
+        </div>
+      </div>
+    </nav>
+
+  <nav class="ls-menu-more" aria-label="Информация">
+      <a href="projects.html">Работы</a>
+      <a href="blog.html">Блог</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+
+    <div class="ls-menu-foot">
+      <a href="tel:+74950213577">+7 495 021-35-77</a>
+      <a href="mailto:zakaz@litera.studio">zakaz@litera.studio</a>
+      <p class="ls-menu-links">
+        <a href="https://t.me/litera_studio">Telegram</a>
+        <a href="https://api.whatsapp.com/send?phone=79777936481">WhatsApp</a>
+        <a href="https://max.ru/u/f9LHodD0cOIV9InOx6ulNiryFx5jU7n5eIY9DliBnMiKjsrZAmOxnfX0e38">Max</a>
+      </p>
+    </div>
+  </div>

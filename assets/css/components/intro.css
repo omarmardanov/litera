@@ -1,0 +1,115 @@
+/* Первый экран: крошка, заголовок, описание, цена. */
+
+.ls-body{padding:10px 20px 0;position:relative;z-index:2}
+
+.ls-back{display:inline-flex;align-items:center;gap:7px;min-height:36px;margin-bottom:12px;padding-right:10px;
+  color:var(--ink-2);text-decoration:none;font-size:var(--t-ui);
+  transition:color .18s var(--ease)}
+.ls-back svg{flex-shrink:0;transform:translateY(.5px);
+  transition:color .18s var(--ease)}
+.ls-back:hover,.ls-back:hover svg{color:var(--ink)}
+.ls-back:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+h1.ls-title{margin:0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-display);line-height:1.04;
+  text-wrap:balance;letter-spacing:-.012em}
+p.ls-desc{margin:9px 0 0;font-size:var(--t-base);line-height:1.5;color:var(--ink-2);
+  max-width:33ch;text-wrap:pretty}
+
+.ls-meta{display:flex;flex-direction:column;gap:5px;margin:18px 0 0}
+.ls-price-note{font-size:var(--t-cap);color:var(--muted)}
+.ls-price{font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-lead);line-height:1;color:var(--ink);
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ── Перфорация по верхнему краю страницы ────────────────────────────
+   Белый слой наезжает на кадр не ровной линией, а оторванным краем:
+   ряд мелких полукруглых вырезов, как на отрывном талоне или корешке
+   сертификата. Для полиграфии это своя метафора, а не универсальный декор.
+
+   Сделано маской, без картинок и скриптов: радиальный градиент повторяется
+   по горизонтали, вырезая полукруги из верхней кромки. Шаг мелкий —
+   крупные полукруги превращают приём в детский декор.
+
+   Маска накладывается на весь блок, поэтому непрозрачной частью остаётся
+   всё, кроме кромки: второй слой градиента закрашивает остальное. */
+.ls-body{
+  --perf-step:14px;    /* шаг между вырезами */
+  --perf-depth:5px;    /* глубина выреза */
+  --perf-mask:
+    radial-gradient(circle var(--perf-depth) at 50% 0,
+      transparent 98%, #000 100%) 0 0 / var(--perf-step) var(--perf-depth) repeat-x,
+    linear-gradient(#000, #000) 0 var(--perf-depth) / 100% calc(100% - var(--perf-depth)) no-repeat;
+}
+
+@media (max-width: 1023px){
+  .ls-body{
+    /* слой поднят на глубину выреза: иначе вырезы приходятся на белый фон
+       под ним и перфорации не видно, пока страница не поехала.
+       Внутренний отступ вернули с запасом — крошка стояла вплотную
+       к перфорации и читалась как её продолжение */
+    margin-top:calc(var(--perf-depth) * -1);
+    /* padding целиком: в intro.css стоит сокращённое свойство, оно затирает
+       отдельный padding-top. Третий раз наступаем на эти грабли — в новых
+       правилах для .ls-body, .ls-cta и подобных писать padding полностью. */
+    padding:calc(var(--perf-depth) + 26px) 20px 0;
+    -webkit-mask:var(--perf-mask);
+    mask:var(--perf-mask);
+    /* тень повторяет вырезы и даёт краю толщину: без неё слой выглядит
+       наклейкой, а не листом, который лежит поверх кадра */
+    filter:drop-shadow(0 -2px 3px var(--shadow-edge))}
+}
+
+@media (max-width: 1023px){
+  /* Текст первого экрана едет поверх кадра своим слоем и с перфорированным
+     краем. Правила здесь, а не в оболочке: там их перебивало объявление
+     .ls-body из этого файла — он подключается позже. */
+  .ls-body{position:relative;z-index:1;background:var(--paper);
+    margin-top:calc(var(--perf-depth) * -1);
+    padding:calc(var(--perf-depth) + 26px) 20px 0;
+    -webkit-mask:var(--perf-mask);
+    mask:var(--perf-mask);
+    filter:drop-shadow(0 -2px 3px var(--shadow-edge))}
+}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* ── Раскладка первого экрана: общая для карточки и категории ── */
+    /* левая часть выровнена по центру кадра, а не прижата к верху */
+    /* поля ужаты: чем ниже первый экран, тем меньше режется горизонтальный кадр */
+    .ls-body{grid-column:2;grid-row:1;margin:0;align-self:end;
+      display:block;padding:calc(var(--topbar) + 26px) 48px 0 0}
+    h1.ls-title{font-size:clamp(44px,3.9vw,60px);margin-bottom:18px}
+    .ls-back{margin-bottom:22px}
+    p.ls-desc{max-width:32ch}
+    /* Без кадра мера шире: 32 знака держат тёмную колонку рядом с кадром
+       услуги, а на направлении и разделе колонки нет — текст сжимался
+       в четыре строки при пустой правой половине. */
+    .ls-no-hero p.ls-desc{max-width:52ch}
+    .ls-meta{margin-top:20px;justify-self:start;text-align:left}
+    .ls-price{font-size:var(--t-lead)}
+
+    /* ── Цвета только там, где под текстом тёмная плашка ──
+       Без этой оговорки категория получала белый заголовок на белом фоне. */
+    .ls-card:has(.ls-hero) h1.ls-title{color:var(--paper)}
+    .ls-card:has(.ls-hero) .ls-back{color:var(--on-dark-3)}
+    .ls-card:has(.ls-hero) .ls-back:hover,
+    .ls-card:has(.ls-hero) .ls-back:hover svg{color:var(--paper)}
+    .ls-card:has(.ls-hero) p.ls-desc{color:var(--on-dark-4)}
+    /* только цена первого экрана: без уточнения правило красило белым все цены
+       на странице, включая смежные услуги — там она пропадала на белом фоне */
+    .ls-card:has(.ls-hero) .ls-body .ls-price{color:var(--paper)}
+    .ls-card:has(.ls-hero) .ls-body .ls-price-note{color:var(--on-dark-3)}
+}
+
+/* ── Страница без кадра ────────────────────────────────────────────
+   На карточке под шапкой лежит фотография, и крошка стоит на ней — воздух
+   даёт сам кадр. На категории кадра нет, крошка идёт сразу под белой полосой
+   шапки и липла к ней: было 26 пикселей. Даём 40.
+   `padding` целиком, а не отдельным `padding-top`: выше стоит сокращённое
+   свойство, и оно затрёт отдельное. Эти грабли в проекте уже описаны. */
+@media (max-width: 1023px){
+  .ls-no-hero .ls-body{padding:calc(var(--perf-depth) + 40px) 20px 0}
+}
+@media (min-width: 1024px){
+  /* Колонки под кадр нет — текст занимает всю ширину, а не левую половину:
+     в ней «Корпоративный брендинг» рвался на две строки. */
+  .ls-no-hero .ls-body{grid-column:2 / -1;padding:calc(var(--topbar) + 40px) 48px 0 0}
+}

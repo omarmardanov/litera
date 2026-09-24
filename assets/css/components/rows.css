@@ -1,0 +1,115 @@
+/* Строка со снимком: одинаковая в «Материалах и отделке» на карточке услуги
+   и в списке услуг на категории. Тег у строки разный — там пункт списка,
+   здесь ссылка целиком, — поэтому раскладку держит класс, а не элемент. */
+
+.ls-rows{margin:0;padding:0;list-style:none}
+.ls-rows > li{position:relative}
+.ls-rows > li + li{padding-top:20px}
+/* Линия по нижнему краю строки, то есть по низу миниатюры, а не посередине
+   между строками: иначе она висит сама по себе и не держится ни за что.
+   Отбита от текстовой колонки — видно, что миниатюра и текст на одной сетке. */
+.ls-rows > li::after{content:"";position:absolute;bottom:0;left:90px;right:0;
+  height:1px;background:var(--line)}
+.ls-rows > li:last-child::after{display:none}
+
+.ls-row-body{display:grid;grid-template-columns:76px 1fr;column-gap:14px;
+  align-items:center;color:var(--ink);text-decoration:none}
+.ls-row-body:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* текстовая колонка не должна распирать сетку длинным словом */
+.ls-row-body > :last-child{min-width:0}
+
+/* Название и пояснение. Кегли те же, что в соседних блоках со строками
+   («Зачем» и «Как работаем»). Своих правил у строки не было вовсе, и текст
+   шёл браузерным по умолчанию: 16 пикселей чёрным и отступ абзаца в целый
+   кегль сверху и снизу. Из-за этого текстовая колонка становилась выше
+   миниатюры — название вылезало над квадратом, а линия отрывалась
+   от его нижнего края. */
+.ls-row-body b{display:block;font-size:var(--t-base);font-weight:500;line-height:1.35}
+.ls-row-body p,.ls-row-body .ls-note{display:block;margin:4px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+/* заглушка вместо снимка: серый квадрат с загнутым уголком */
+.ls-rows .ls-thumb{position:relative;width:76px;aspect-ratio:1;display:block;background:var(--placeholder)}
+.ls-rows .ls-thumb::after{content:"";position:absolute;top:0;right:0;
+  border-left:16px solid transparent;border-top:16px solid var(--line-strong)}
+/* со снимком заглушка не нужна: уголок убираем, картинка кроет квадрат целиком */
+.ls-rows .ls-thumb:has(img)::after{content:none}
+.ls-rows .ls-thumb img{width:100%;height:100%;display:block;object-fit:cover}
+
+/* ── Увеличение миниатюры на месте ───────────────────────────────────
+   На 76 пикселях фактура читается, но разглядеть её нельзя. Модалку ради
+   одного взгляда открывать тяжело, лупа на наведении не работает пальцем —
+   а мобильного трафика у них больше. Поэтому миниатюра просто вырастает
+   поверх строки: мышью по наведению, пальцем по касанию (класс ставит
+   thumb-zoom.js).
+
+   Растёт от левого края вниз, чтобы не уезжать за край экрана на телефоне
+   и не перекрывать название позиции справа. Тень отделяет её от строк под
+   ней: без тени увеличенный квадрат сливается с соседними миниатюрами. */
+/* position и z-index держим всегда, а не только у увеличенной: если снимать их
+   вместе с классом, квадрат в момент закрытия проваливается под соседние строки
+   и возврат выглядит рывком, хотя сам transform ещё едет. */
+/* ── Увеличение миниатюры на месте ───────────────────────────────────
+   Только на устройствах с наведением. Пальцем строку каталога открывают,
+   а не рассматривают: тап по ссылке должен вести на услугу, и отбирать
+   у него это ради зума неправильно.
+
+   Растёт картинка внутри, а не сам квадрат. Если масштабировать `.ls-thumb`,
+   вместе с ним растёт и зона наведения: курсор уходит вбок, картинка
+   уменьшается, снова оказывается под курсором, наведение включается заново —
+   и снимок дёргается. Зона остаётся 76×76, увеличенная картинка событий
+   не ловит (pointer-events), поэтому переход всегда однонаправленный. */
+.ls-rows .ls-thumb:has(img){position:relative;z-index:3}
+
+@media (hover: hover){
+  .ls-rows .ls-thumb img{transform-origin:left top;
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease)}
+  .ls-rows .ls-thumb:has(img):hover{z-index:5}
+  .ls-rows .ls-thumb:has(img):hover img{transform:scale(2.4);pointer-events:none;
+    box-shadow:0 12px 32px rgba(var(--shade-rgb),.18)}
+
+  /* Лупа в углу: подсказка, что снимок можно рассмотреть. При наведении
+     убираем — в увеличенном кадре она мешает, а не подсказывает. */
+  .ls-rows .ls-thumb:has(img)::before{content:"";position:absolute;right:4px;bottom:4px;
+    width:18px;height:18px;border-radius:50%;z-index:2;
+    background:rgba(var(--paper-rgb),.82) url('../../img/zoom.svg') center / 10px 10px no-repeat;
+    transition:opacity .16s var(--ease)}
+  .ls-rows .ls-thumb:has(img):hover::before{opacity:0}
+}
+
+/* Пальцем — по касанию, и только в материалах: строки каталога и смежных
+   услуг целиком ссылки, тап по ним ведёт на услугу. Класс ставит
+   assets/js/thumb-zoom.js, дальше всё то же, что при наведении. */
+@media (hover: none){
+  .ls-specs .ls-thumb img{transform-origin:left top;
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease)}
+  .ls-specs .ls-thumb.ls-is-zoom{z-index:5}
+  .ls-specs .ls-thumb.ls-is-zoom img{transform:scale(2.4);pointer-events:none;
+    box-shadow:0 12px 32px rgba(var(--shade-rgb),.18)}
+
+  /* Лупа в углу: пальцем тем более не догадаться, что снимок можно
+     рассмотреть. В увеличенном кадре она мешает — убираем. */
+  .ls-specs .ls-thumb:has(img)::before{content:"";position:absolute;right:4px;bottom:4px;
+    width:18px;height:18px;border-radius:50%;z-index:2;
+    background:rgba(var(--paper-rgb),.82) url('../../img/zoom.svg') center / 10px 10px no-repeat;
+    transition:opacity .16s var(--ease)}
+  .ls-specs .ls-thumb.ls-is-zoom::before{opacity:0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ls-rows .ls-thumb img{transition:none}
+}
+
+/* Название и цена в одну строку: цена справа отдельной колонкой сжимала бы
+   текст в узкую полосу. Используется и в каталоге, и в смежных услугах. */
+.ls-rows .ls-row{display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:4px 12px}
+
+
+/* ── Две колонки ───────────────────────────────────────────────────
+   Обёртка для групп списков (группы услуг раздела): на телефоне прозрачна,
+   на широком экране ставит группы в две колонки. */
+.ls-rows-cols{display:contents}
+
+@media (min-width: 1024px){
+  .ls-rows-cols{display:grid;grid-template-columns:1fr 1fr;column-gap:110px}
+}

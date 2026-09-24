@@ -1,0 +1,38 @@
+/* Ещё в разделе: строки-ссылки со стрелками. */
+
+.ls-related{margin-top:var(--gap-block);padding:0 20px}
+/* заголовок в две строки: ссылка садится на последнюю, а не висит у первой */
+.ls-related-head{display:flex;justify-content:space-between;gap:12px;
+  align-items:flex-end;align-items:last baseline}
+/* длинное название раздела разбиваем на равные строки, а не по остатку */
+.ls-related h2{text-wrap:balance}
+/* тап-цель как в шапке блока работ: поля растят область, отступ её возвращает */
+.ls-related-head a{padding:14px 0;margin:-14px 0;
+  font-size:var(--t-ui);color:var(--ink);white-space:nowrap;
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line)}
+.ls-related-head a:hover{text-decoration-color:var(--ink)}
+
+/* Строки собирает общий компонент .ls-rows: миниатюра, название, пояснение.
+   Своих правил для списка здесь больше нет — они конфликтовали с ним. */
+.ls-related .ls-rows{margin-top:18px}
+/* Линия и под последней строкой, как в строках разделов на направлении:
+   в двух колонках иначе низ левой был с линией, а правой — без. */
+.ls-related .ls-rows > li:last-child::after{display:block}
+.ls-related .ls-price{white-space:nowrap;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-ui);
+  color:var(--ink);font-variant-numeric:tabular-nums}
+.ls-related a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Две колонки: одной строкой в 760 пикселей справа оставалось почти
+       пятьсот пустых. Список один, колонки раскладывает браузер — сверху
+       вниз и поровну, редактор ничего не делит. Большой зазор нарочно: цена
+       прижата к правому краю колонки и иначе вставала вплотную к соседней.
+       Отступ между строками — margin: у верха колонки браузер его обнуляет,
+       и первые строки обеих колонок стоят на одной высоте. */
+    .ls-related .ls-rows{max-width:none;columns:2;column-gap:110px}
+    .ls-related .ls-rows > li{break-inside:avoid}
+    .ls-related .ls-rows > li + li{padding-top:0;margin-top:20px}
+}

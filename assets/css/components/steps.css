@@ -1,0 +1,159 @@
+/* Как мы работаем: нумерованные шаги со сроками. */
+
+.ls-how{margin-top:var(--gap-block);padding:0 20px}
+.ls-how ol{margin:22px 0 0;padding:0;list-style:none;counter-reset:step}
+.ls-how li{position:relative;display:grid;grid-template-columns:34px 1fr;column-gap:14px;padding:0}
+/* Отступ снизу, а не сверху: линия отсчитывается от края блока, и верхний
+   отступ сдвигал цифру вниз, а линию нет — она въезжала в цифры 2 и 3. */
+.ls-how li:not(:last-child){margin-bottom:22px}
+/* Номер по центру своей колонки: линия идёт по оси колонки, и если цифры
+   прижаты влево, она проходит рядом с ними, а не под ними. */
+.ls-how li::before{counter-increment:step;content:counter(step);
+  display:block;width:34px;text-align:center;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-lead);
+  line-height:1;color:var(--glyph);
+  transition:color .18s var(--ease),scale .22s var(--ease)}
+
+/* Наведение: номер берёт цвет направления и слегка подрастает, а отрезок
+   линии до следующего шага протягивается тем же цветом. Так подсвечивается
+   не только сам шаг, но и переход к следующему — блок про порядок работ,
+   и связь между шагами тут важнее отдельной цифры.
+
+   Плашку под цифру не ставим: на телефоне номер стоит по центру колонки,
+   на широком экране прижат влево и шириной по самой цифре — квадрат
+   выглядел бы по-разному в двух раскладках.
+
+   Только там, где есть мышь: на телефоне подсветка залипала бы после тапа. */
+@media (hover: hover) and (pointer: fine){
+  /* Красится не один шаг, а весь путь до него: наведённый и все, что стоят
+     раньше. `li:has(~ li:hover)` — это и есть «за мной есть наведённый».
+     Подрастает при этом только сам наведённый: если растут все, ряд дёргается. */
+  .ls-how li:hover::before,
+  .ls-how li:has(~ li:hover)::before{color:var(--dir-ink)}
+  .ls-how li:hover::before{scale:1.12}
+  /* Номер загорается тогда, когда до него дотянулась линия, — те же задержки.
+     Увеличение при этом мгновенное: на движение курсора надо ответить сразу,
+     а цвет пусть догоняет. */
+  .ls-how li:nth-child(2):is(:hover, :has(~ li:hover))::before{
+    transition:color .18s var(--ease) .22s, scale .22s var(--ease)}
+  .ls-how li:nth-child(3):is(:hover, :has(~ li:hover))::before{
+    transition:color .18s var(--ease) .44s, scale .22s var(--ease)}
+  .ls-how li:nth-child(4):hover::before{
+    transition:color .18s var(--ease) .66s, scale .22s var(--ease)}
+  .ls-how li::before{transform-origin:0 50%}
+
+  /* Линия остаётся серой, а поверх неё протягивается цветная: анимируем
+     размер фона, а не размеры элемента, — раскладка не трогается.
+     Здесь линия вертикальная, поэтому растёт высота. */
+  .ls-how li:not(:last-child)::after{
+    background-image:linear-gradient(var(--dir-ink),var(--dir-ink));
+    background-repeat:no-repeat;background-size:100% 0;
+    transition:background-size .32s var(--ease)}
+  /* Отрезок ведёт от своего шага к следующему, поэтому красится у тех,
+     за кем стоит наведённый: наводим на третий — залиты 1→2 и 2→3,
+     а линия от третьего дальше остаётся серой. */
+  .ls-how li:not(:last-child):has(~ li:hover)::after{background-size:100% 100%}
+
+  /* Заливка идёт волной от первого шага к наведённому, а не вспыхивает
+     во всех отрезках разом: задержка растёт по порядку. Она короче самой
+     заливки, поэтому сегменты перекрываются и читаются как одна линия,
+     которая тянется.
+
+     Задержка висит на том же селекторе с `:has`, что и заливка, — значит
+     действует только на закрашивание. Когда курсор ушёл, селектор перестаёт
+     совпадать, задержки нет, и линия гаснет сразу: ждать обратной волны
+     некому. */
+  .ls-how li:nth-child(2):has(~ li:hover)::after{transition-delay:.22s}
+  .ls-how li:nth-child(3):has(~ li:hover)::after{transition-delay:.44s}
+}
+
+/* На телефоне наведения нет, и связь между шагами пропадала совсем: четыре
+   пункта опять читались как независимые. Здесь волну ведёт прокрутка —
+   шаг доходит до середины экрана, загорается его номер, и от него вниз
+   протягивается линия к следующему. Наверх прокрутили — волна так же
+   откатывается.
+
+   Отсчёт идёт по view()-таймлайну самого шага, поэтому скрипт не нужен.
+   Где таймлайны не поддержаны и где просят меньше движения, всё остаётся
+   как было: серая линия и серые номера. */
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .ls-how li{view-timeline:--step block}
+    /* Порядок как при наведении: номер загорается, когда до него дотянулась
+       линия, и только потом идёт отрезок к следующему шагу. Диапазоны узкие
+       и стоят встык — иначе третий номер загорается раньше, чем к нему
+       дошла линия от второго: у каждого шага свой отсчёт, а сдвинуты они
+       друг относительно друга всего на высоту шага. */
+    .ls-how li::before{animation:ls-how-num linear both;
+      animation-timeline:--step;animation-range:cover 44% cover 50%}
+    /* Линия остаётся серой, цветная протягивается поверх размером фона —
+       раскладка не трогается. */
+    .ls-how li:not(:last-child)::after{
+      background-image:linear-gradient(var(--dir-ink),var(--dir-ink));
+      background-repeat:no-repeat;background-size:100% 0;
+      animation:ls-how-line linear both;
+      animation-timeline:--step;animation-range:cover 50% cover 60%}
+  }
+}
+@keyframes ls-how-num{to{color:var(--dir-ink)}}
+@keyframes ls-how-line{to{background-size:100% 100%}}
+
+/* Только шаги: без `li` правила задевали итог под списком — съедали его
+   отступ и раздували число до кегля заголовка шага. */
+.ls-how li b{font-size:var(--t-base);font-weight:500;line-height:1.35}
+.ls-how .ls-term{color:var(--ink)}
+.ls-how li p{margin:4px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+/* Линия через шаги: четыре пункта читаются как независимые, а это
+   последовательность. На телефоне линия вертикальная и идёт по колонке
+   номеров, соединяя их сверху вниз; у последнего шага её нет. */
+.ls-how li:not(:last-child)::after{content:"";position:absolute;
+  left:17px;top:36px;bottom:-14px;width:1px;
+  /* именно background-color: shorthand сбрасывал бы градиент подсветки,
+     который кладётся сверху при наведении */
+  background-color:var(--line)}
+
+/* Суммарный срок: ответ на вопрос «когда получу», который иначе
+   пришлось бы считать в уме. */
+/* Итог стоит по колонке текста шагов (34 номер + 14 зазор), а не по номерам:
+   иначе читался хвостом последнего шага. Срок не рвётся переносом. */
+.ls-how-total{margin:32px 0 0 48px;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+.ls-how-total b{font-weight:500;color:var(--ink);white-space:nowrap}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Шаги: в ряд, а не лесенкой сверху вниз. Выравниваем по верхнему краю —
+       иначе заголовки в две строки утягивают шаг вниз и ряд едет ступеньками. */
+    .ls-how ol{display:grid;grid-template-columns:repeat(4,1fr);column-gap:32px;
+      align-items:start}
+    .ls-how li{padding-top:0;align-content:start}
+    .ls-how li + li{padding-top:0}
+    .ls-how li p{max-width:none}
+    /* Номер переезжает наверх, а не стоит слева: иначе горизонтальная линия
+       проходит ровно по строке заголовка и перечёркивает его. */
+    /* Номер, заголовок и описание — строки общей сетки (subgrid): заголовок
+       в две строки у одного шага сдвигает описания у всех, и они начинаются
+       на одной высоте. `div` растворён, чтобы `b` и `p` стали её ячейками. */
+    .ls-how li{display:grid;grid-row:span 3;grid-template-rows:subgrid;
+      grid-template-columns:none;row-gap:0}
+    .ls-how li > div{display:contents}
+    /* по левому краю, в одну линию с заголовком: центрирование нужно только
+       на телефоне, где под цифрой проходит вертикальная линия */
+    .ls-how li::before{display:block;width:auto;text-align:left;
+      margin-bottom:14px;font-size:var(--t-sub)}
+    /* Линия на уровне номера, от него до следующего шага. У последнего её нет.
+       Зазоры с обеих сторон: без них она упирается в цифры вплотную
+       и читается как перечёркивание, а не как связь. */
+    /* 26 — по самой широкой цифре (15 пикселей в Raptor) плюс зазор.
+       От единицы отступ выйдет чуть больше, но она узкая, и это незаметно. */
+    .ls-how li:not(:last-child)::after{left:26px;right:-20px;top:13px;bottom:auto;
+      width:auto;height:1px}
+    /* Линия легла горизонтально — протяжка идёт по ширине, а не по высоте. */
+    @media (hover: hover) and (pointer: fine){
+      .ls-how li:not(:last-child)::after{background-size:0 100%}
+      .ls-how li:not(:last-child):has(~ li:hover)::after{background-size:100% 100%}
+    }
+    /* отступ считается от списка, а первая колонка самая длинная —
+       с малым полем строка липла к её тексту и читалась как продолжение */
+    .ls-how-total{margin:64px 0 0;font-size:var(--t-base)}
+}

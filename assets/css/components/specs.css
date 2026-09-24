@@ -1,0 +1,71 @@
+/* Материалы и отделка: шаблонный блок, общий для всех услуг. Бумага,
+   форматы, способы печати и отделки заполняются один раз на весь сайт
+   и не зависят от конкретной страницы. Всё уникальное для услуги живёт
+   выше, в блоке «Ваш лучший …».
+
+   Группы позиций и раскрывающийся список. */
+
+.ls-specs{margin-top:var(--gap-block);padding:0 20px}
+.ls-specs h3{margin:44px 0 0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-h3);letter-spacing:-.005em;color:var(--ink)}
+.ls-specs .ls-rows{margin-top:16px}
+/* Правил `h2 + h3` и `details + h3` здесь больше нет: заголовки лежат внутри
+   `.ls-spec-group`, соседями `h2` и `details` не являются, и оба правила никогда
+   не срабатывали. Отступ группам даёт `.ls-specs h3`. */
+.ls-more{margin-top:11px}
+.ls-more summary{display:inline-block;font-size:var(--t-ui);color:var(--ink);cursor:pointer;
+  padding:13px 0;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line);list-style:none}
+.ls-more summary::-webkit-details-marker{display:none}
+.ls-more summary:hover{text-decoration-color:var(--ink)}
+.ls-more .ls-rows{margin-top:4px}
+.ls-more .ls-s-open,.ls-more[open] .ls-s-closed{display:none}
+.ls-more[open] .ls-s-open{display:inline}
+
+/* Колонки материалов появляются только на широком экране.
+   На телефоне обёртка прозрачна: группы идут сквозным потоком. */
+.ls-spec-col{display:contents}
+@media (min-width: 1024px){
+  .ls-spec-col{display:block}
+}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Материалы: группы в две колонки. Столбиком блок вырастал до 2005 пикселей —
+       простыня на два с половиной экрана, а строка тянулась на все 1240
+       при коротком описании. Двумя колонками высота падает вдвое,
+       и линия перестаёт уходить в пустоту.
+
+       Колонки раскладываются потоком: браузер сам решает, где разорвать,
+       но группу целиком не рвёт — заголовок с её строками остаётся вместе. */
+    /* Сетка, а не колонки. Колонки браузер перекладывает при любом изменении
+       высоты: раскрыл «Формат» — «Печать» прыгнула в соседнюю колонку.
+       Для человека это выглядит как поломка, логику перестроения он не читает.
+
+       В сетке группа занимает свою ячейку навсегда: раскрытие меняет высоту
+       только своей строки, соседи стоят. Порядок чтения слева направо —
+       привычнее, чем сверху вниз и обратно наверх.
+
+       Группы разной длины не растягиваются: под короткой остаётся воздух.
+       Это честнее прыжков. */
+    .ls-specs{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;
+      align-items:start}
+    .ls-specs h2{grid-column:1 / -1}
+    /* Колонки живут своей жизнью: раскрытие группы в одной не двигает соседнюю.
+       В общей сетке строки связаны, и группа справа уезжала вниз, оставляя
+       над собой пустоту. */
+    .ls-spec-col{min-width:0}
+    /* Группа целиком не рвётся: заголовок, строки и раскрытие остаются вместе.
+       Без обёртки браузер уносил «Ещё 3 варианта» в соседнюю колонку. */
+    .ls-spec-group{margin-bottom:48px}
+    /* Название группы крупнее названия строки: при равном кегле (18 и 18)
+       иерархия пропадала и группа читалась как ещё одна позиция списка. */
+    .ls-specs h3{margin-top:0}
+    .ls-specs h2{margin-bottom:34px}
+    /* Миниатюры крупнее: 76 на широком экране выглядят марками, а это
+       единственное место, где показан сам материал. */
+    .ls-specs .ls-rows .ls-thumb{width:104px}
+    .ls-specs .ls-row-body{grid-template-columns:104px 1fr;column-gap:18px}
+    .ls-specs .ls-rows > li + li{padding-top:24px}
+    .ls-specs .ls-rows > li::after{left:122px}
+}

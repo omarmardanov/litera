@@ -1,0 +1,83 @@
+/* Первый экран главной: кадр, растворяющийся в чёрное поле, и текст на нём.
+
+   Шапка прозрачная, под ней кадр — как на карточке услуги и на кейсе.
+   Дальше кадр не обрывается, а уходит в чёрный фон, и уже на чёрном стоят
+   заголовок, описание и кнопка. От карточки услуги отличие в том, что там
+   текст лежит поверх снимка сбоку, а здесь снимок и текст не спорят: сначала
+   кадр, потом слово.
+
+   Белый слой страницы начинается сразу с плиток направлений. */
+
+.ls-home-lead{position:relative;background:var(--ink)}
+/* Обычная прокрутка, без липкости: на услуге кадр стоит, а страница наезжает
+   на него слоем (правило `.ls-hero{position:sticky}` в hero.css), здесь первый
+   экран уезжает вверх целиком вместе с текстом. */
+.ls-home-lead .ls-home-hero{position:relative}
+
+/* Кадр начинается под шапкой, а не уходит под неё: композиция тут лежит
+   у самого верха снимка, и под прозрачной шапкой продукция читалась как
+   подложка меню. Поле сверху ровно в высоту шапки, и она стоит на чёрном. */
+.ls-home-hero{background:var(--ink);padding-top:var(--topbar)}
+.ls-home-hero img{height:calc(100vw / 1.9);max-height:52vh;
+  object-position:50% 40%}
+/* Низ кадра уходит в фон: без этого между снимком и чёрным полем видна
+   линия обреза. Растворение высокое — треть кадра, — иначе переход читается
+   полосой, а не продолжением. */
+.ls-home-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:20%;pointer-events:none;
+  background:linear-gradient(var(--ink-0), var(--ink))}
+
+.ls-home-head{position:relative;z-index:1;padding:0 var(--side) 40px;
+  margin-top:-8px;text-align:center}
+.ls-home-head .ls-title{color:var(--paper)}
+.ls-home-head .ls-desc{margin:10px auto 0;max-width:34ch;color:var(--on-dark-4)}
+/* Кнопка и мессенджеры лежат внутри текстового блока, поля даёт он: свои
+   `padding:0 20px` из `.ls-cta` сдвигали бы кнопку со строки заголовка. */
+.ls-home-head .ls-cta,.ls-home-head .ls-cta-alt{background:none}
+.ls-home-head .ls-cta{margin-top:22px;padding:0;justify-content:center}
+.ls-home-head .ls-cta .ls-btn-main{background:var(--paper);color:var(--ink)}
+.ls-home-head .ls-cta .ls-btn-main:hover{background:var(--line)}
+/* Правый отступ и левое выравнивание строке мессенджеров даёт value.css:
+   там она стоит в колонке тёмной плашки услуги. Здесь колонки нет. */
+.ls-home-head .ls-cta-alt{margin-top:14px;padding:0;text-align:center;
+  color:var(--on-dark-2)}
+.ls-home-head .ls-cta-alt a{color:var(--paper)}
+.ls-home-head .ls-cta-alt a span{text-decoration-color:var(--line-dark-2)}
+
+/* Кнопка по содержимому уже с планшета: на 768 во всю колонку она
+   растягивалась на 680 пикселей и читалась полосой. */
+@media (min-width: 600px){
+  .ls-home-head .ls-cta .ls-btn{flex:0 0 auto;min-width:280px}
+}
+
+@media (min-width: 1024px){
+  /* Кадр и текст стоят в первой строке сетки — той же, что шапка: иначе кадр
+     начинается под ней, а не уходит под неё. */
+  .ls-home-lead{grid-column:1 / -1;grid-row:1}
+  /* Кадр остаётся обычным блоком: десктопное правило `.ls-hero` в hero.css
+     растягивает его на всю тёмную плашку услуги (`height:100%`, min-height 470),
+     а здесь плашки нет — от этого кадр вырастал на 862 пикселя и заливал
+     чёрным всё до заголовка. */
+  /* Кадр целиком, без обрезки: полоса во всю ширину окна (около 2,5:1)
+     срезала с исходника верх и низ — крышку коробки, угол папки. Теперь
+     кадр своей пропорции по центру, высота по экрану, чтобы заголовок
+     и кнопка остались на первом экране. Края растворяются в чёрное
+     маской со всех сторон: фон снимка на тон светлее поля, и без этого
+     читались рамка и линия под шапкой. Растворение низа — маской же,
+     поэтому общий `::after` здесь не нужен. */
+  .ls-home-hero{height:auto;min-height:0;padding-top:var(--topbar)}
+  .ls-home-hero img{width:auto;max-width:100%;height:min(54vh, 500px);aspect-ratio:auto;
+    margin-inline:auto;object-fit:contain;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),
+      linear-gradient(transparent,#000 12%,#000 72%,transparent);
+    -webkit-mask-composite:source-in;
+    mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent),
+      linear-gradient(transparent,#000 12%,#000 72%,transparent);
+    mask-composite:intersect}
+  .ls-home-hero::before,.ls-home-hero::after{display:none}
+  .ls-home-head{padding-bottom:64px;margin-top:-24px}
+  .ls-home-head .ls-title{max-width:22ch;margin-inline:auto}
+  /* Мера уже, чем на услуге: по центру короткие строки читаются ровнее,
+     а последнее слово не висит отдельной строкой. */
+  .ls-home-head .ls-desc{max-width:46ch;font-size:var(--t-h3)}
+}

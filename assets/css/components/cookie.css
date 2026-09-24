@@ -1,0 +1,34 @@
+/* Уведомление о сборе данных. Внизу экрана, а не поверх первого:
+   на их сайте баннер перекрывает H1 на мобильной категории. */
+
+.ls-cookie{position:fixed;left:0;right:0;bottom:0;z-index:8;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--paper);
+  transform:translateY(100%);
+  transition:transform .32s var(--ease)}
+.ls-cookie.ls-is-shown{transform:none}
+
+.ls-cookie p{margin:0;font-size:var(--t-cap);line-height:1.4;color:var(--on-dark-2)}
+.ls-cookie a{color:var(--paper);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line-dark-2)}
+.ls-cookie a:hover{text-decoration-color:var(--paper)}
+
+/* вид и размер берёт у `.ls-btn btn-light btn-s`, здесь только место в полосе */
+.ls-cookie-ok{flex:0 0 auto}
+.ls-cookie a:focus-visible,.ls-cookie-ok:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+/* На десктопе у баннера не было своих правил: он брал мобильные поля в 20
+   и вставал не по левой линии страницы, а кнопка липла к тексту, оставляя
+   справа пустую половину полосы. */
+@media (min-width: 1024px){
+  .ls-cookie{padding:16px var(--side);
+    justify-content:space-between;gap:40px}
+  /* Текст умещается в строку: 118 знаков при кегле 12 — это 763 пикселя,
+     а под содержимое даже при окне 1024 остаётся 928. Переносить нечего. */
+  .ls-cookie p{max-width:none}
+  /* тап-цель 44 нужна пальцу, мышью хватит 40 */
+  .ls-cookie-ok{height:40px}
+}

@@ -1,0 +1,266 @@
+/* Направления на главной: развилка сразу после первого экрана.
+
+   Человек с главной идёт выбирать, а не читать о студии: даже брендовые
+   запросы у них товарные — «этикетки на заказ литера». Поэтому первым блоком
+   стоит развилка на четыре вида работ.
+
+   Строками, а не плитками. Четыре одинаковых прямоугольника — приём карточки
+   услуги, и главная из-за них читалась той же страницей. Строка во всю ширину
+   работает типографикой: названия крупные, между ними линии, кадр появляется
+   по наведению.
+
+   Подмена кадра держится на CSS. Снимок лежит внутри своей строки и на широком
+   экране позиционируется в правую половину блока; наведение на строку делает
+   его видимым. Скрипт для этого не нужен. */
+
+/* На телефоне видимого заголовка нет: полосы идут сразу под первым экраном
+   и в подписи не нуждаются, заголовок остаётся только для скринридера.
+   На широком экране блок — крупный список, и над ним строка «Что делаем»
+   с общим счётом. */
+.ls-dirs-head{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width: 600px){
+  .ls-dirs-head{position:static;width:auto;height:auto;overflow:visible;clip:auto;
+    display:flex;justify-content:space-between;align-items:last baseline;
+    padding-top:var(--gap-block);margin-bottom:28px}
+  .ls-dirs-head p{margin:0;font-size:var(--t-ui);color:var(--muted)}
+  /* В конце страницы направления блок стоит между формой и футером:
+     колонкам с кадрами нужен воздух с обеих сторон, встык они давили. */
+  .ls-card > .ls-dirs.ls-dirs-more,
+  .ls-card > .ls-dirs.ls-dirs-more:last-child{padding-bottom:var(--gap-block)}
+}
+/* Отступа сверху нет ни на какой ширине: блок идёт вплотную за первым
+   экраном и продолжает его. */
+.ls-dirs{margin-top:0;padding:0 var(--side)}
+.ls-dirs-in{margin-top:0}
+/* На странице направления тот же блок стоит в конце: встык за формой
+   и встык перед футером, без заголовка и отступов. Белые полосы между
+   серой формой, серыми плитками и тёмным футером читались швами. */
+.ls-dirs.ls-dirs-more{margin-top:0}
+/* Только на телефоне: без медиазапроса правило шло после широкоэкранного
+   `padding-bottom:var(--gap-block)` и перебивало его — колонки с кадрами
+   упирались в футер. */
+@media (max-width: 599px){
+  .ls-card > .ls-dirs.ls-dirs-more:last-child{padding-bottom:0}
+}
+/* Последняя полоса упиралась кадром в тёмный футер. Полоса ниже на 44,
+   кадр во всю её высоту, но нижняя треть растворяется в серый поля —
+   к футеру подходит чистый серый. Текст остаётся на той же высоте,
+   что у соседних полос. */
+@media (max-width: 599px){
+  .ls-dirs-more li:last-child a{min-height:212px}
+  .ls-dirs-more li:last-child .ls-dir-shot::before{content:"";position:absolute;
+    left:0;right:0;bottom:0;height:120px;z-index:0;pointer-events:none;
+    background:linear-gradient(to bottom, transparent, var(--shot-bg))}
+  .ls-dirs-more li:last-child .ls-dir-text{margin-bottom:58px}
+}
+.ls-dirs ul{margin:0;padding:0;list-style:none}
+.ls-dirs li{border-top:1px solid var(--line)}
+.ls-dirs li:last-child{border-bottom:1px solid var(--line)}
+/* Строка: номер, название, счётчик услуг, под ними пояснение и кадр.
+
+   Места в сетке заданы явно, каждому элементу своя клетка. Без этого кадр
+   попадал в первую колонку — ту, где стоит номер, — и на телефоне выходил
+   узкой картинкой, прижатой к левому краю, а название ужималось в остаток
+   ширины и рвалось на три строки. */
+.ls-dirs a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:baseline;column-gap:12px;padding:20px 0;
+  color:var(--ink);text-decoration:none}
+.ls-dir-num{grid-area:1 / 1}
+.ls-dir-text{grid-area:1 / 2 / auto / -1}
+.ls-dir-count{grid-area:1 / 3}
+.ls-dir-shot{grid-area:2 / 1 / auto / -1}
+.ls-dir-num{font-size:var(--t-cap);line-height:1.2;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  transition:color .18s var(--ease)}
+.ls-dir-count{font-size:var(--t-cap);line-height:1.2;color:var(--muted);
+  white-space:nowrap}
+.ls-dirs a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ls-dirs b{display:block;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-lead);line-height:1.1;letter-spacing:-.015em;
+  transition:color .18s var(--ease)}
+.ls-dir-note{display:block;margin-top:6px;
+  font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+/* На телефоне наведения нет: кадр просто стоит под названием — и во всю
+   ширину экрана, а не по полю секции. Отрицательные поля выводят его из полей
+   страницы: снимок в 350 пикселей на телефоне выглядит миниатюрой, а во всю
+   ширину — витриной. Тот же приём, что у ленты возможностей на карточке. */
+.ls-dir-shot{display:block;margin:14px calc(-1 * var(--side)) 0;
+  overflow:hidden;background:var(--placeholder)}
+.ls-dir-shot img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+
+
+
+@media (min-width: 600px){
+  /* Витрина: колонки в ряд, в каждой кадр 4:5, номер с линией в цвет
+     направления, название, пояснение и счёт. Колонок столько, сколько
+     направлений: на главной четыре, в «Других направлениях» три.
+     Строки колонок — общая сетка (subgrid): название в две строки у одного
+     направления сдвигает пояснения у всех, и они стоят на одной высоте. */
+  .ls-dirs ul{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);
+    grid-template-rows:repeat(5,auto);column-gap:20px}
+  .ls-dirs li,.ls-dirs li:last-child{border:0;display:grid;grid-row:span 5;
+    grid-template-rows:subgrid}
+  .ls-dirs a{grid-row:span 5;grid-template-rows:subgrid;grid-template-columns:none;
+    align-items:start;padding:0}
+  .ls-dir-text{display:contents}
+  .ls-dir-shot{grid-area:1 / 1;position:relative;width:100%;aspect-ratio:4 / 5;
+    margin:0;overflow:hidden;background:var(--surface-2)}
+  .ls-dir-shot img,.ls-dir-shot.is-set img{width:100%;height:100%;aspect-ratio:auto;
+    object-fit:cover;transition:scale .5s var(--ease)}
+  .ls-dir-num{grid-area:2 / 1;display:flex;align-items:center;gap:10px;margin-top:18px}
+  .ls-dir-num::after{content:"";flex:1;height:1px;
+    background:linear-gradient(90deg,var(--dir),var(--line) 60%)}
+  .ls-dirs b{grid-area:3 / 1;margin-top:12px;font-size:var(--t-sub);line-height:1.1;
+    transition:color .18s var(--ease)}
+  .ls-dir-note{grid-area:4 / 1;margin-top:8px}
+  .ls-dir-count{grid-area:5 / 1;justify-self:start;margin-top:14px;
+    font-size:var(--t-ui);color:var(--ink)}
+  .ls-dir-count::after{content:" →"}
+}
+/* Планшет: четыре колонки в 600–1023 выходят по 130 пикселей, поэтому
+   на главной два ряда по два. Кадр квадратный, а не 4:5: снимки наборов
+   сами квадратные, а два ряда высоких кадров растягивали блок на два экрана.
+   В «Других направлениях» три колонки в ряд; название на ступень ниже,
+   `--t-h3`: на 600 колонка 160 пикселей, а «Корпоративный» кеглем
+   `--t-sub` занимает 167 и выпирает. */
+@media (min-width: 600px) and (max-width: 1023px){
+  .ls-dirs:not(.ls-dirs-more) ul{grid-auto-flow:row;
+    grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ls-dirs:not(.ls-dirs-more) li:nth-child(n+3) .ls-dir-shot{margin-top:40px}
+  .ls-dir-shot{aspect-ratio:1}
+  .ls-dirs-more b{font-size:var(--t-h3)}
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 600px){
+  /* Наведение: кадр в рамке цвета направления и чуть приближается,
+     название берёт тот же цвет — фирменный `--dir`, без затемнения. */
+  .ls-dirs li:hover .ls-dir-shot{outline:2px solid var(--dir);outline-offset:-2px}
+  .ls-dirs li:hover .ls-dir-shot img{scale:1.03}
+  .ls-dirs li:hover b{color:var(--dir)}
+}
+
+/* Снимок фирменного набора: раскладка сверху на сером фоне, квадрат.
+   Квадрат у всех четырёх одинаковый — иначе при переходе между строками кадр
+   дышал бы по высоте и блок выглядел бы собранным из разных съёмок.
+
+   Ни подложки, ни рамки: фон у снимка свой и он уже часть кадра, а цветная
+   обводка вокруг такой карточки читалась бы коробкой. Связь строки и кадра
+   держит цвет названия. */
+.ls-dir-shot.is-set{background:none}
+.ls-dir-shot.is-set img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
+
+/* ── Телефон: полосы вместо строк со снимком под ними ──────────────
+   Задача: четыре названия видны без прокрутки, но кадры остаются во всю
+   ширину. Строка со снимком под ней съедала по 450 пикселей на направление —
+   четыре подряд не помещались и на два экрана.
+
+   Решение: полоса. Кадр во всю ширину, но невысокий, название лежит поверх
+   него на светлом градиенте. Снимки светлые, поэтому шторка белая, а текст
+   остаётся чёрным — так же читается, как на белом фоне.
+
+   Аккордеон не берём: он прячет кадры за лишним касанием, а кадр здесь
+   и есть главный довод. */
+@media (max-width: 599px){
+  /* Плитки прижаты к первому экрану: это его продолжение, а не отдельная
+     секция — человек прочитал, кто вы, и тут же выбирает направление.
+     Полный шаг между секциями рвал бы эту связку. */
+  /* Плитки продолжают первый экран без белой полосы между чёрным полем
+     и первой плиткой: полоса читалась швом, а не воздухом. */
+  .ls-dirs{margin-top:0}
+
+  /* Плитки идут впритык, без белых промежутков: четыре серых прямоугольника
+     на белом читались отдельными карточками, хотя это один список. Между ними
+     тонкая линия цвета бумаги: обычный `--line` на сером почти пропадает,
+     а белая читается просветом между листами. */
+  .ls-dirs li{border:0}
+  .ls-dirs li + li{margin-top:0;border-top:1px solid var(--paper)}
+  /* Карточка — сетка в одну ячейку: кадр лежит подложкой на всю высоту,
+     счётчик в верхней строке, текст прижат к нижней. Высота растёт
+     по тексту: при фиксированных 168 заголовок в три строки упирался
+     в счётчик. */
+  .ls-dirs a{position:relative;display:grid;grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto 1fr;align-items:stretch;
+    min-height:168px;padding:0;margin:0 calc(-1 * var(--side))}
+  /* `.is-set` в селекторе обязателен: правило для наборов снимает фон,
+     и без него полоса оставалась белой, а стык с кадром — видимым. */
+  .ls-dir-shot,
+  .ls-dir-shot.is-set{display:block;position:relative;margin:0;grid-area:1 / 1 / 3 / 2;
+    background:var(--shot-bg, var(--placeholder))}
+  /* Снимок не растянут на полосу, а уменьшен и положен справа, как
+     в макете. Кадр виден целиком, ничего не срезается; слева остаётся
+     поле того же цвета, что фон съёмки, и на нём живёт текст. */
+  /* Селектор с `.is-set` — иначе правило для наборов (два класса) сильнее
+     этого и снимок опять растягивается на всю полосу. */
+  /* Картинка не задаёт высоту карточки: лежит поверх подложки, прижата
+     вправо и тянется на всю её высоту. */
+  .ls-dir-shot img,
+  .ls-dir-shot.is-set img{position:absolute;top:0;right:0;width:auto;height:100%;display:block;
+    object-fit:contain;aspect-ratio:1}
+  /* Растворение левого края снимка в фон полосы. Идёт до 62% ширины кадра:
+     дальше начинается сам предмет, и гасить его уже нельзя. */
+  /* Левый край снимка растворяется в поле. Растворение длинное и доходит
+     почти до правого края: на кадрах, где серый темнее общего, короткий
+     градиент не догашивал край и была видна линия обреза. */
+  .ls-dir-shot::after{content:"";position:absolute;left:0;top:0;bottom:0;
+    right:24px;pointer-events:none;
+    background:linear-gradient(to right,
+      var(--shot-bg) 62%, transparent)}
+  /* Шторки нет: снимки студийные, низ у них почти всегда чистый серый фон,
+     и чёрный текст на нём читается сам. Градиент только мутил кадр. */
+  /* Название внизу во всю ширину полосы: счётчик ушёл наверх, к номеру,
+     иначе длинное «Логотип и фирменный стиль» переносилось на вторую строку
+     и налезало на цифру. */
+  /* Полоса собрана как в макете: у контейнера свой фон
+     под цвет съёмки, снимок сдвинут вправо, а слева он растворяется в этот
+     фон градиентом. Текст ложится на чистое поле, а не на предметы, и всё это
+     без перегенерации кадров — квадратные снимки годятся как есть.
+
+     Цвет фона у каждого кадра свой, снят пробой по углам файла: съёмки
+     сгенерированы отдельно и серый в них чуть разный. */
+  /* Название и примеры — одним блоком в левом нижнем углу полосы. Блоком,
+     а не двумя отдельно позиционированными строками: у обоих плавающая
+     высота, и порознь они налезали друг на друга, как только текст
+     переносился. */
+  /* Счётчик наверху, название и примеры внизу: первым в поле зрения идёт
+     объём направления, а название с примерами читается последним, у самой
+     кромки, где взгляд уже готов к переходу. */
+  .ls-dir-text{grid-area:2 / 1;align-self:end;margin:24px 158px 14px var(--side);
+    z-index:1;display:flex;flex-direction:column;gap:4px}
+  /* По шкале, а не «на глаз»: название — `--t-lead`, примеры — `--t-ui`.
+     До этого стояли 19 и 12, ни одного из них в шкале нет. */
+  .ls-dirs b{font-size:var(--t-lead);line-height:1.12}
+  .ls-dir-note{display:block;margin:0;font-size:var(--t-ui);line-height:1.35}
+  /* Номер на телефоне не нужен — направлений четыре, их не нумеруют глазами.
+     А счётчик услуг возвращается вниз левого поля, туда, где под текстом
+     оставалась пустота: он отвечает на немой вопрос «сколько там внутри»
+     и заодно делает из поля осмысленный угол, а не пробел.
+
+     Плашки под ним больше нет: поле чистое, подложка не нужна. Стрелка
+     показывает, что полоса — ссылка: на телефоне ни курсора, ни наведения,
+     и без неё это просто картинка с подписью. */
+  .ls-dir-num{display:none}
+  .ls-dir-count{grid-area:1 / 1;justify-self:start;margin:16px 0 0 var(--side);z-index:1;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:0;background:none;color:var(--muted)}
+  .ls-dir-count::after{content:"→";font-size:var(--t-ui);line-height:1;
+    color:var(--ink);transition:translate .18s var(--ease)}
+  .ls-dirs a:active .ls-dir-count::after{translate:3px 0}
+}
+
+/* Фон полос общий, а не свой у каждой: четыре разных серых рядом читались
+   как брак вёрстки, хотя брались из самих съёмок. Подложка самих снимков
+   приведена к этому же тону программно — сдвигом всего кадра, — поэтому
+   стыка не видно и растворению не приходится ничего вытягивать.
+
+   Тон светлее исходных съёмок: тёмно-серая полоса тяжелила страницу
+   и спорила с белым фоном соседних блоков. */
+.ls-dirs{--shot-bg:var(--surface-2)}
+
+/* Строка после списка: «не нашли своё — напишите». Стоит в полях страницы,
+   как текст, а не как пятая плитка. */
+.ls-dirs-else{margin:22px 0 0;font-size:var(--t-base);
+  line-height:1.5;color:var(--ink-2);max-width:52ch}
+/* Ссылка внутри абзаца: правила плитки `.ls-dirs a` (сетка, блок) на неё
+   не распространяются. */
+.ls-dirs-else a{display:inline;position:static;padding:0;margin:0;
+  color:var(--ink);text-decoration:underline;text-underline-offset:3px}

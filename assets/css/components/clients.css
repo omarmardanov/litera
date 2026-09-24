@@ -1,0 +1,60 @@
+/* Логотипы клиентов. Стоят перед формой: это последний довод до заявки,
+   и рядом с цифрами «13 лет / 1500+ проектов» они работают доказательством,
+   а не декором. Заголовка нет: ряд чужих знаков понятен сам по себе.
+
+   Одна лента во всю ширину экрана, без переносов. Листает её прокрутка
+   страницы: едем вниз — лента идёт влево и показывает следующие знаки,
+   едем вверх — возвращается. Своего жеста не просит и в чужую прокрутку
+   не вмешивается.
+
+   Все знаки серые и приглушённые: чужие фирменные цвета, поставленные
+   в ряд, разваливают страницу и спорят с цветом направления. */
+
+/* По умолчанию ленту листают пальцем; там, где её ведёт прокрутка
+   страницы (ниже), своя прокрутка выключается. Так и без таймлайнов,
+   и при выключенном движении крайний знак не висит обрезанным без выхода. */
+.ls-clients{margin-top:var(--gap-block);
+  overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;
+  /* лента — источник отсчёта для движения; сама она с места не двигается */
+  view-timeline:--clients block}
+.ls-clients::-webkit-scrollbar{display:none}
+.ls-clients ul{--h:44px;display:flex;align-items:center;gap:56px;
+  width:max-content;margin:0;padding:0 20px;list-style:none}
+.ls-clients img{display:block;width:auto;height:calc(var(--h) * var(--k, 1));
+  filter:grayscale(1);opacity:.55}
+
+/* Оптическое выравнивание. Одна высота на всех даёт неровный ряд: у знаков
+   разный формат — от трёхэтажного госблока до однострочной надписи, — и разный
+   запас пустого поля внутри файла. Поэтому высота у каждого своя, подобрана
+   по рендеру, а не по числам в файле. Когда придут обрезанные векторы вместо
+   временных картинок, останется пересчитать только эти строки.
+   `--k` — общий множитель на широком экране, чтобы не держать два набора. */
+.ls-c-ozon{--h:38px}
+.ls-c-sber{--h:34px}
+.ls-c-france{--h:84px}
+.ls-c-ormatek{--h:104px}
+.ls-c-coralclub{--h:22px}
+.ls-c-modum{--h:40px}
+.ls-c-inkerman{--h:52px}
+.ls-c-helikon{--h:78px}
+
+/* Ход ленты: от левого края до правого, ровно на столько, сколько она
+   не помещается в экран. `min` держит ленту на месте, если знаков мало
+   и она короче экрана, — иначе она уехала бы вправо, в пустоту. */
+@keyframes ls-clients-slide{
+  from{transform:translateX(0)}
+  to{transform:translateX(min(0px, calc(100vw - 100%)))}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .ls-clients{overflow:hidden}
+    .ls-clients ul{animation:ls-clients-slide linear both;
+      animation-timeline:--clients;animation-range:cover 0% cover 100%}
+  }
+}
+
+@media (min-width: 1024px){
+  .ls-clients ul{gap:80px;padding:0 48px}
+  .ls-clients ul{--k:1.25}
+}

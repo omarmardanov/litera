@@ -1,0 +1,172 @@
+/* Карточка работы.
+
+   Отдельная от карточки услуги не потому, что «нужна ещё одна страница»,
+   а потому что у неё другая работа. Из поиска на страницы кейсов почти
+   не приходят и заявок с них нет: сюда попадают с ленты
+   работ. Значит страница не привлекает, а дожимает — подтверждает, что мы
+   это делаем, и возвращает в услугу и форму.
+
+   Первый экран поэтому строится наоборот, чем на услуге: там поверх кадра
+   лежит тёмная плашка с заголовком и кнопкой, здесь поверх снимка нет ничего,
+   а крошка и заголовок стоят под ним, на белом. Механика общая — кадр под
+   прозрачной шапкой, затемнение сверху, белый слой наезжает при прокрутке. */
+
+/* Кадр кейса берёт готовый `.ls-hero` (по нему же header.js понимает, что
+   шапке есть на чём быть прозрачной), но не встаёт в сетку первого экрана
+   услуги: там кадр — правая колонка тёмной плашки, здесь он сам по себе. */
+.ls-case-hero img{height:calc(100vw / 1.7 + var(--topbar));max-height:78vh}
+
+@media (min-width: 1024px){
+  /* Кадр занимает всю ширину сетки и стоит в первой строке — там же, где
+     шапка: иначе он начинается под ней, а не уходит под неё. Строка задана
+     явно, потому что у белого слоя ниже она тоже явная (`grid-row:2`),
+     и кадр с автоместом уезжал за него, под текст.
+
+     Sticky и z-index — как у первого экрана услуги: страница наезжает
+     на кадр слоем, а не увозит его вверх. */
+  .ls-case-hero{grid-column:1 / -1;grid-row:1;position:sticky;top:0;z-index:0;
+    height:auto;min-height:0}
+  .ls-case-hero img{height:min(74vh, 680px);aspect-ratio:auto}
+  /* Только верхнее затемнение под шапкой. Боковое, растворяющее кадр в тёмную
+     плашку, здесь не нужно: плашки нет, и слева получалась бы грязь. */
+  .ls-case-hero::before{background:linear-gradient(rgba(var(--ink-rgb),.55) 0,
+    rgba(var(--ink-rgb),.55) var(--topbar), var(--ink-0) calc(var(--topbar) + 120px))}
+}
+
+/* Крошка, заголовок и описание — те же классы, что на первом экране услуги
+   (`.ls-back`, `h1.ls-title`, `p.ls-desc` из intro.css). Своих кеглей и отступов
+   у кейса нет: одинаковые вещи должны быть одинаковыми, а не «примерно так же».
+   Единственное отличие — цвет: на услуге этот текст лежит на тёмной плашке,
+   здесь на белом. Правило в intro.css красит его белым по признаку `.ls-hero`,
+   а кадр на кейсе есть, поэтому цвет возвращаем. */
+.ls-case-head{padding:30px var(--side) 0}
+
+/* Паспорт работы: услуга, теги, особенности, тираж, срок, стоимость. То,
+   за чем на кейс типографии и приходят, — не история про креатив. Пары стоят
+   колонками, а не строками через двоеточие: так их можно читать выборочно,
+   глазами по одной колонке.
+
+   Поля необязательные: чего менеджер не назвал, того в паспорте нет. Пустой
+   прочерк читался бы как «цену не говорим», а это хуже, чем не спрашивать. */
+.ls-case-facts{padding:0 var(--side)}
+.ls-case-facts dl{display:grid;grid-template-columns:repeat(2,1fr);
+  gap:20px 24px;margin:26px 0 0}
+.ls-case-facts dt{font-size:var(--t-cap);line-height:1.35;color:var(--muted)}
+.ls-case-facts dd{margin:4px 0 0;font-size:var(--t-ui);line-height:1.4;color:var(--ink)}
+.ls-case-facts a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line-strong);
+  transition:text-decoration-color .18s var(--ease)}
+.ls-case-facts a:hover{text-decoration-color:var(--ink)}
+
+.ls-case-text{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-case-text h2{margin-bottom:14px}
+.ls-case-text p{margin:0;max-width:62ch;font-size:var(--t-base);line-height:1.5}
+
+/* Шаги нумерованные: студия и сама пишет кейсы в этом формате
+   («что было сделано: 1) 2) 3)»), и это честный порядок работ. */
+.ls-case-steps{margin:0;padding:0 0 0 20px;max-width:62ch}
+.ls-case-steps li{font-size:var(--t-base);line-height:1.5}
+.ls-case-steps li + li{margin-top:10px}
+
+/* Галерея — главное содержимое кейса. Кадры идут в один столбец на телефоне
+   и парами на широком экране; первый остаётся во всю ширину, он общий вид.
+
+   Каждый кадр — кнопка: по клику он открывается крупно в диалоге (pic-modal.js),
+   при наведении слегка наезжает, как плитки работ. Подпись у курсора говорит,
+   что случится по клику, — тот же приём и тот же скрипт, что в ленте работ. */
+.ls-case-gallery{margin-top:var(--gap-block);padding:0 var(--side);
+  display:grid;grid-template-columns:1fr;gap:22px}
+.ls-case-gallery figure{margin:0}
+.ls-case-zoom{display:block;width:100%;padding:0;border:0;background:none;
+  overflow:hidden;cursor:zoom-in}
+.ls-case-zoom img{transition:scale .5s var(--ease)}
+.ls-case-zoom:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media (hover: hover) and (pointer: fine){
+  .ls-case-zoom:hover img{scale:1.03}
+}
+.ls-case-gallery img{display:block;width:100%;height:auto;aspect-ratio:3/2;
+  object-fit:cover;background:var(--placeholder)}
+.ls-case-gallery figcaption{margin:8px 0 0;font-size:var(--t-cap);line-height:1.4;
+  color:var(--muted)}
+
+/* Одиночный кадр между текстовыми блоками. Ширина как у галереи, подпись
+   та же — это тот же кадр, просто вынутый из сетки, чтобы разбить два абзаца
+   подряд. */
+.ls-case-inline{margin:var(--gap-block) 0 0;padding:0 var(--side)}
+.ls-case-inline img{display:block;width:100%;height:auto;aspect-ratio:3/2;
+  object-fit:cover;background:var(--placeholder)}
+.ls-case-inline figcaption{margin:8px 0 0;font-size:var(--t-cap);line-height:1.4;
+  color:var(--muted)}
+
+/* Выход: кнопка в форму и ссылка на услугу. Две цели, а не одна, потому что
+   человек с кейса уходит либо считать свою задачу, либо смотреть услугу
+   целиком. */
+.ls-case-next{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-case-next p{margin:10px 0 0;max-width:52ch;
+  font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+/* Кнопка секции: базовый `.ls-btn` не носит горизонтальных полей — их даёт
+   место, где он стоит. Здесь на телефоне кнопка во всю ширину, дальше —
+   по содержимому, но не уже 260, как у кнопки формы. */
+.ls-case-next-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;
+  margin-top:20px}
+.ls-case-next-cta .ls-btn{width:100%;padding:0 28px}
+
+@media (min-width: 600px){
+  .ls-case-next-cta .ls-btn{width:fit-content;min-width:260px}
+}
+.ls-case-next-link{font-size:var(--t-ui);color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-strong);
+  transition:text-decoration-color .18s var(--ease)}
+.ls-case-next-link:hover{text-decoration-color:var(--ink)}
+
+@media (min-width: 600px){
+  .ls-case-facts dl{grid-template-columns:repeat(3,1fr)}
+}
+
+@media (min-width: 1024px){
+  .ls-case-head{padding-top:48px}
+  /* Потолок ширины у заголовка. Без него строка тянется на все 1240:
+     нынешнее название это одна строка почти во весь контейнер, а в Raptor
+     56-м это больше сотни знаков по ширине — читать такую строку тяжело,
+     глаз теряет начало следующей.
+
+     24ch — примерно 780 пикселей, две строки для нынешнего названия
+     и три-четыре для самого длинного. Мера в `ch` привязана к самому шрифту:
+     сменится кегль — потолок пересчитается сам. */
+  .ls-case-head h1.ls-title{max-width:24ch}
+  /* Цвет возвращаем: в intro.css текст первого экрана красится белым
+     по признаку `.ls-card:has(.ls-hero)` — под ним тёмная плашка. На кейсе
+     кадр тоже есть, но текст лежит на белом. Специфичность повторяем ту же,
+     иначе белый побеждает и заголовок пропадает. */
+  .ls-card:has(.ls-hero) .ls-case-head h1.ls-title{color:var(--ink)}
+  .ls-card:has(.ls-hero) .ls-case-head .ls-back{color:var(--ink-2)}
+  .ls-card:has(.ls-hero) .ls-case-head .ls-back:hover,
+  .ls-card:has(.ls-hero) .ls-case-head .ls-back:hover svg{color:var(--ink)}
+  .ls-card:has(.ls-hero) .ls-case-head p.ls-desc{color:var(--ink-2)}
+  /* Все заполненные поля в один ряд: колонка от 132 пикселей, при контейнере
+     1240 их помещается семь. Пустые поля не выводятся. Верх у всех колонок
+     общий: длинные «Особенности» растут вниз и не двигают соседей. */
+  .ls-case-facts dl{grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+    align-items:start;gap:24px 24px;margin-top:32px}
+  .ls-case-gallery{grid-template-columns:repeat(2,1fr);gap:32px}
+  .ls-case-gallery .is-wide{grid-column:1 / -1}
+}
+
+/* ── Проявление кадров ─────────────────────────────────────────────
+   Кадр слегка всплывает, когда доезжает до экрана: витрина, а не архив.
+   Расстояние маленькое, и движение кончается задолго до того, как кадр
+   встанет в центре, — иначе снимок «догоняет» читателя.
+
+   Только там, где поддержаны view()-таймлайны и не просили меньше движения.
+   Без них кадры просто стоят на месте. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .ls-case-gallery figure{animation:ls-case-rise linear both;
+      animation-timeline:view();animation-range:entry 5% entry 55%}
+  }
+}
+@keyframes ls-case-rise{
+  from{opacity:0;translate:0 22px}
+  to{opacity:1;translate:0 0}
+}

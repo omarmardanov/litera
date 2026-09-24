@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<!-- @include head.html -->
+<!-- @include styles.html -->
+<title>Адвент-календарь — Литера.Студия</title>
+<meta name="description" content="Дизайн и изготовление адвент-календарей: придумаем конструкцию под ваше наполнение, нарисуем и сделаем тираж на своём производстве.">
+
+<!-- Канонический адрес: страница доступна и по адресу с параметрами utm,
+     без этого поиск считает их разными страницами. -->
+<link rel="canonical" href="https://litera.studio/dizajn-advent-kalendarya">
+
+<meta property="og:title" content="Адвент-календарь — дизайн и изготовление">
+<meta property="og:description" content="Дизайн и изготовление адвент-календарей: придумаем конструкцию под ваше наполнение, нарисуем и сделаем тираж на своём производстве.">
+<meta property="og:url" content="https://litera.studio/dizajn-advent-kalendarya">
+<meta property="og:image" content="https://litera.studio/assets/img/advent/hero.jpg">
+
+<!-- Путь для поиска: в выдаче он показывается вместо адреса страницы.
+     Здесь он полный, а на экране крошка сокращена до одного шага вверх —
+     на телефоне цепочка из четырёх звеньев занимает две строки и режется.
+     Разметку нельзя вынести в отдельный файл: по внешней ссылке поисковики
+     структурированные данные не читают. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
+{"@type":"ListItem","position":2,"name":"Полиграфия","item":"https://litera.studio/poligrafiya"},
+{"@type":"ListItem","position":3,"name":"Календари","item":"https://litera.studio/dizajn-kalendarya"},
+{"@type":"ListItem","position":4,"name":"Адвент-календарь","item":"https://litera.studio/dizajn-advent-kalendarya"}]}
+</script>
+<!-- Услуга без цены: на странице её нет, значит и в разметке offers нет —
+     иначе выдача покажет то, чего человек на странице не найдёт. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Дизайн и изготовление адвент-календарей",
+"serviceType":"Полиграфия","url":"https://litera.studio/dizajn-advent-kalendarya",
+"areaServed":{"@type":"City","name":"Москва"},
+"provider":{"@type":"Organization","name":"Литера.Студия","url":"https://litera.studio/",
+"telephone":"+7 495 021-35-77","email":"zakaz@litera.studio",
+"address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU",
+"streetAddress":"Холодильный пер., 3к1с3"}}}
+</script>
+
+<!-- Вопросы: собраны из блока «Частые вопросы» на этой же странице.
+     Правило поиска — разметка обязана дословно совпадать с видимым текстом,
+     поэтому при правке вопросов правится и здесь. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Сколько окошек можно сделать?","acceptedAnswer":{"@type":"Answer","text":"Сколько нужно: 24 или 31 к Новому году, 12 — к Рождеству, 7 — на неделю до дня рождения. Число и размер ячеек считаем от наполнения, а не от шаблона."}},{"@type":"Question","name":"Что нужно знать до начала работы?","acceptedAnswer":{"@type":"Answer","text":"Что будет внутри, сколько штук и когда нужно. Наполнение — главное: размер ячейки считается от предмета с запасом, поэтому лучше прислать образец или хотя бы размеры."}},{"@type":"Question","name":"А если у нас есть только логотип?","acceptedAnswer":{"@type":"Answer","text":"Этого достаточно. Придумаем сюжет, нарисуем иллюстрацию и подберём конструкцию. Если есть фирменный стиль — пришлите гайдлайн, встроимся в него."}},{"@type":"Question","name":"Когда заказывать к Новому году?","acceptedAnswer":{"@type":"Answer","text":"В сентябре — октябре. На дизайн, образец и тираж с кашировкой уходит четыре — шесть недель, а в ноябре производство загружено под праздники. В декабре берёмся за срочные, но выбор конструкций уже."}},{"@type":"Question","name":"Есть ли минимальный тираж?","acceptedAnswer":{"@type":"Answer","text":"Берёмся и за небольшие. Но вырубной штамп и подготовка стоят одинаково и на 30 экземплярах, и на 500, поэтому маленький тираж выходит дороже за штуку. Цифру назовём после первого разговора."}},{"@type":"Question","name":"Можно увидеть образец до тиража?","acceptedAnswer":{"@type":"Answer","text":"Да. Перед тиражом собираем один календарь вживую: по нему видно цвет, плотность картона и как открываются окошки. Тираж запускаем после того, как вы его подержали в руках."}},{"@type":"Question","name":"Из чего делают адвент-календарь?","acceptedAnswer":{"@type":"Answer","text":"Чаще всего — переплётный картон с кашировкой: корпус жёсткий и держит вес. Для лёгкого наполнения подойдёт складная коробка из картона 300–350 г, она заметно дешевле. Под тяжёлое или для отправки почтой — микрогофрокартон."}},{"@type":"Question","name":"Доставляете по России?","acceptedAnswer":{"@type":"Answer","text":"Да, отправляем транспортной компанией в любой город. По Москве привозим сами или отдаём на самовывоз в Холодильном переулке."}}]}
+</script>
+</head>
+<body>
+<!-- Первая цель табуляции: с клавиатуры и со скринридера можно перескочить
+     шапку с меню и попасть сразу в содержимое. -->
+<a class="ls-skip" href="#main">К содержанию</a>
+<main class="ls-card" id="main" data-dir="poligrafiya">
+<!-- @include top.html -->
+
+  <!-- Первый экран одним блоком: на десктопе он прилипает, и страница
+       наезжает на него слоем. Без обёртки заголовок, кнопка и кадр
+       прилипали бы вразнобой — они отдельные элементы сетки. -->
+  <div class="ls-lead">
+    <figure class="ls-hero">
+      <picture>
+          <source srcset="assets/img/advent/hero.webp" type="image/webp">
+          <img fetchpriority="high" src="assets/img/advent/hero.jpg" width="1200" height="800" alt="Кашированный адвент-календарь с новогодней иллюстрацией, дверцы открыты">
+        </picture>
+    </figure>
+
+    <div class="ls-body">
+    <!-- метка для телефона: по ней шапка понимает, что белый слой
+         дошёл до неё. На широком экране работает метка в начале .rest.
+         По ней же на телефоне выезжает виджет связи — то есть когда кадр
+         ушёл под шапку (assets/js/chat.js). -->
+    <i class="ls-body-sentinel ls-chat-sentinel" aria-hidden="true"></i>
+      <nav aria-label="Хлебные крошки">
+        <a class="ls-back" href="https://litera.studio/dizajn-kalendarya">
+          <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
+          Календари
+        </a>
+      </nav>
+      <h1 class="ls-title">Адвент-календарь</h1>
+      <p class="ls-desc">Придумаем конструкцию под ваше наполнение, нарисуем дизайн и сделаем тираж на своём производстве.</p>
+
+    </div>
+
+    <div class="ls-cta">
+      <a class="ls-btn ls-btn-main" href="#zayavka">Обсудить задачу</a>
+    </div>
+
+    <!-- @include msgr.html -->
+  </div>
+
+  <!-- Всё, что ниже первого экрана, — один слой с общим фоном.
+       Иначе в промежутках между секциями просвечивает прилипшая плашка. -->
+  <div class="ls-rest">
+    <!-- метка для широкого экрана: по ней шапка понимает, что белый слой
+         дошёл до неё. На телефоне работает метка выше, в начале страницы. -->
+    <i class="ls-rest-sentinel" aria-hidden="true"></i>
+
+    <!-- Что можно сделать с продуктом. Не «из чего он сделан» — это ниже,
+         в материалах, — а что добавляется сверх обычного тиража. Клиент чаще
+         всего не знает, что так можно, поэтому блок стоит сразу под первым
+         экраном, до объяснений про выгоду.
+
+         Меньше трёх пунктов — блок не показывается: два из четырёх мест
+         в ряду читаются как недосмотр редактора. Больше четырёх — лишние
+         уходят под «ещё», как в материалах. -->
+    <section class="ls-can">
+      <div class="ls-can-head">
+        <h2>Ваш лучший адвент-календарь</h2>
+        <!-- Кнопки появляются только когда лента шире экрана: скрипт
+             считает это сам и прячет их, если прокручивать нечего. -->
+        <div class="ls-can-nav" hidden>
+          <button type="button" class="ls-can-prev" aria-label="Предыдущие"><svg width="15" height="12" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 1 1 7l6.5 6M1 7h16"/></svg></button>
+          <button type="button" class="ls-can-next" aria-label="Следующие"><svg width="15" height="12" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 1 17 7l-6.5 6M17 7H1"/></svg></button>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <span class="ls-can-pic">
+            <picture>
+              <source srcset="assets/img/advent/can-story.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/can-story.jpg" width="416" height="416" alt="Открытые дверцы календаря с иллюстрацией камина и подарков">
+            </picture>
+          </span>
+          <b>Своя история внутри</b>
+          <p>Каждое окошко продолжает одну иллюстрацию — календарь хочется открывать по порядку, а не вскрыть за раз.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic">
+            <picture>
+              <source srcset="assets/img/advent/can-emboss.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/can-emboss.jpg" width="416" height="416" alt="Крышка коробки с логотипом FIRDAWS блинтовым тиснением">
+            </picture>
+          </span>
+          <b>Логотип тиснением</b>
+          <p>На крышке, без краски: фактура читается пальцами и не стирается.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic">
+            <picture>
+              <source srcset="assets/img/advent/can-window.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/can-window.jpg" width="416" height="416" alt="Картонная коробка CHOCOhunter с окошком и шкалой дней">
+            </picture>
+          </span>
+          <b>Окошко-шкала</b>
+          <p>Видно, сколько дней осталось, не открывая коробку.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic">
+            <picture>
+              <source srcset="assets/img/advent/can-numbers.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/can-numbers.jpg" width="416" height="416" alt="Ящички календаря с номерами вразброс">
+            </picture>
+          </span>
+          <b>Номера вразброс</b>
+          <p>Нужный день приходится искать — и это часть игры. Или по порядку, если внутри нарастающий сюжет.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic">
+            <picture>
+              <source srcset="assets/img/advent/can-lid.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/can-lid.jpg" width="416" height="416" alt="Рука достаёт ящичек из адвент-календаря">
+            </picture>
+          </span>
+          <b>Ячейка под каждый предмет</b>
+          <p>Ящички разного размера под разное наполнение — от пробника до свечи.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic" aria-hidden="true"></span>
+          <b>Любое число дней</b>
+          <p>12, 24, 31 — или столько, сколько длится ваш повод. Не только Новый год.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic" aria-hidden="true"></span>
+          <b>Лента или магнит</b>
+          <p>Крышка на завязке или на магнитах: коробка закрывается как шкатулка и живёт после праздника.</p>
+        </li>
+        <li>
+          <span class="ls-can-pic" aria-hidden="true"></span>
+          <b>Именной тираж</b>
+          <p>Имя получателя или логотип клиента печатаем прямо на коробке — для корпоративных подарков без наклеек.</p>
+        </li>
+      </ul>
+      <div class="ls-can-bar" aria-hidden="true"><i></i></div>
+    </section>
+
+    <section class="ls-works">
+      <!-- Надзаголовок объясняет, что это за блок, а режимы набраны как
+           заголовок: они и есть то, что человек выбирает. Счётчик рядом
+           с «Видео» нужен затем, что за невыбранной вкладкой контента
+           не видно — по цифре сразу понятно, есть там что-то или нет. -->
+      <div class="ls-works-head">
+        <div>
+          <!-- Заголовок остаётся в разметке, но не на экране: режимы читаются
+               как название блока, а скринридеру и поиску нужно слово. -->
+          <h2 class="ls-sr-only">Работы</h2>
+          <div class="ls-works-tabs" role="tablist" aria-label="Что показывать">
+            <button type="button" role="tab" aria-selected="true" aria-controls="works-photo" id="tab-photo">Фото<em>3</em></button>
+          </div>
+        </div>
+        <a href="projects.html">В портфолио</a>
+      </div>
+      <!-- Плитки ведут в общее портфолио: отдельных страниц работ пока нет.
+         Когда появятся, CMS подставит их адреса вместо /projects. -->
+    <!-- Подпись работы: `.ls-work-tags` — это «отрасль · особенность». Туда же
+         может встать имя клиента вместо отрасли: «Ozon Реклама · коробка
+         с грамотой». Тогда клиенты подтверждают собой работы, и отдельный
+         список имён внизу не нужен. Пока стоят отрасли. -->
+    <ul class="ls-works-list" id="works-photo" role="tabpanel" aria-labelledby="tab-photo">
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/advent/w-ny-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-1.jpg" width="900" height="600" alt="Закрытый зелёный адвент-календарь с гирляндой и шарами на створках">
+            </picture>
+            <picture>
+              <source srcset="assets/img/advent/w-ny-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/advent/w-ny-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/advent/w-ny-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Календарь с дверцами на 31 день</b>
+          <span class="ls-work-tags">Корпоративный подарок · кашировка, вырубка дверец</span>
+        </a></li>
+        <li class="ls-work"><a href="projects.html" data-cursor="Посмотреть работу">
+          <picture>
+          <source srcset="assets/img/advent/w-firdaws.webp" type="image/webp">
+          <img loading="lazy" decoding="async" src="assets/img/advent/w-firdaws.jpg" width="900" height="600" alt="Шкатулка FIRDAWS с выдвижными ящичками двух оттенков коричневого">
+        </picture>
+          <b>Шкатулка с ящичками FIRDAWS</b>
+          <span class="ls-work-tags">Мода · тиснение, лента, ящички под размер</span>
+        </a></li>
+        <li class="ls-work"><a href="projects.html" data-cursor="Посмотреть работу">
+          <picture>
+          <source srcset="assets/img/advent/w-choco.webp" type="image/webp">
+          <img loading="lazy" decoding="async" src="assets/img/advent/w-choco.jpg" width="900" height="600" alt="Картонные коробки CHOCOhunter с окошком и стопкой шоколадок рядом">
+        </picture>
+          <b>Коробка с окошком CHOCOhunter</b>
+          <span class="ls-work-tags">Шоколад · картон, окошко-шкала</span>
+        </a></li>
+      </ul>
+    </section>
+
+    <!-- Группы обёрнуты, чтобы не разрывались между колонками на десктопе:
+       заголовок, строки и раскрытие «Ещё…» должны остаться вместе. -->
+<section class="ls-value">
+      <h2>Зачем адвент-календарь бизнесу</h2>
+      <ul>
+        <li>
+          <svg class="ls-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+          <b>Не один подарок, а двадцать четыре</b>
+          <p>Обычный подарок открывают раз. Календарь открывают каждый день, и каждый раз — с вашим логотипом перед глазами.</p>
+        </li>
+        <li>
+          <svg class="ls-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+          <b>Стоит на виду до самого праздника</b>
+          <p>Его не убирают в ящик и не передаривают: он нужен каждый день, значит, весь месяц стоит на столе.</p>
+        </li>
+        <li>
+          <svg class="ls-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+          <b>Наполнение — любое</b>
+          <p>Шоколад, косметика, чай, мерч, карточки с промокодами. Конструкцию считаем от предмета, а не наоборот.</p>
+        </li>
+        <li>
+          <svg class="ls-mark" viewBox="0 0 113.12 161.82" fill="currentColor" aria-hidden="true"><path d="m53.39,38.49l-4.17,17.01c-.35,1.45-2.16,1.95-3.21.9l-22.43-22.43c-1.16-1.16-3.15-.34-3.15,1.31v30.92c0,.49.19.96.54,1.31l3.55,3.55c1.2,1.2.35,3.26-1.35,3.26h-.82c-1.06,0-1.92.86-1.92,1.92v22.93c0,1.06.86,1.92,1.92,1.92h13.26c1.24,0,2.15,1.16,1.86,2.37l-2.79,11.37c-.09.35.02.73.3,1.06l17.6,21.04c.93,1.11,3,.99,3.29-.18l5.95-24.28c.35-1.45,2.16-1.95,3.21-.9l24.51,24.52c1.16,1.16,3.15.34,3.15-1.31v-30.91c0-.49-.19-.96-.54-1.31l-11.15-11.15c-.75-.75-.75-1.96,0-2.7l11.12-11.12c1.21-1.21.35-3.27-1.36-3.27h-17.17c-1.24,0-2.15-1.16-1.86-2.37l10.57-43.09c.29-1.18-1.5-2.24-2.83-1.68l-25.34,10.52c-.4.16-.67.45-.75.8Z"/></svg>
+          <b>Его фотографируют</b>
+          <p>Коробку с сюжетом показывают в соцсетях — подарок работает и на тех, кому не достался.</p>
+        </li>
+      </ul>
+    </section>
+
+  <section class="ls-specs">
+      <h2>Материалы и конструкция</h2>
+
+      <!-- Две независимые колонки: раскрытие в одной не должно двигать
+           соседнюю. В сетке строки связаны, и группа справа уезжала вниз. -->
+      <div class="ls-spec-col">
+        <div class="ls-spec-group">
+          <h3>Конструкция</h3>
+          <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/advent/kind-doors.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/advent/kind-doors.jpg" width="416" height="416" alt="Дверцы календаря с номерами, надрезанные по контуру">
+                </picture>
+              </span>
+              <div>
+                <b>Дверцы с вырубкой</b>
+                <p>Окошки надрезаны штампом, открываются пальцем и остаются на петле</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/advent/kind-drawers.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/advent/kind-drawers.jpg" width="416" height="416" alt="Рука выдвигает ящичек из корпуса календаря">
+                </picture>
+              </span>
+              <div>
+                <b>Ящички</b>
+                <p>Выдвижные коробочки в общем корпусе, каждую можно достать целиком</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/advent/kind-window.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/advent/kind-window.jpg" width="416" height="416" alt="Картонные коробки с прорезью и шкалой дней">
+                </picture>
+              </span>
+              <div>
+                <b>Коробка с окошком</b>
+                <p>Картонный пенал, содержимое видно через прорезь</p>
+              </div>
+            </li>
+          </ul>
+          <details class="ls-more">
+            <summary><span class="ls-s-closed">Ещё 2 варианта</span><span class="ls-s-open">Свернуть</span></summary>
+            <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Шкатулка с крышкой</b>
+                <p>Крышка на ленте или магните, внутри ложемент с ячейками</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Нестандартная форма</b>
+                <p>Домик, ёлка или ваш продукт по вырубке — стоит сам</p>
+              </div>
+            </li>
+            </ul>
+          </details>
+        </div>
+        <div class="ls-spec-group">
+          <h3>Материал</h3>
+          <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/advent/mat-kashir.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/advent/mat-kashir.jpg" width="416" height="416" alt="Крупный план кашированной коробки с печатью">
+                </picture>
+              </span>
+              <div>
+                <b>Переплётный картон, кашировка</b>
+                <p>Жёсткий корпус 1,5–2 мм, оклеен запечатанной бумагой. Держит форму и вес</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Картон 300–350 г</b>
+                <p>Складная коробка под лёгкое наполнение, заметно дешевле в тираже</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Микрогофрокартон</b>
+                <p>Лёгкий и прочный — под тяжёлое наполнение и отправку почтой</p>
+              </div>
+            </li>
+          </ul>
+          <details class="ls-more">
+            <summary><span class="ls-s-closed">Ещё 2 варианта</span><span class="ls-s-open">Свернуть</span></summary>
+            <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/materials/paper-designer-300.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/materials/paper-designer-300.jpg" width="416" height="416" alt="Фактура дизайнерской бумаги">
+                </picture>
+              </span>
+              <div>
+                <b>Дизайнерская бумага для оклейки</b>
+                <p>Фактурная или тонированная в массе, хорошо держит тиснение</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Ложемент</b>
+                <p>Картон, изолон или ЭВА — ячейки точно под предмет</p>
+              </div>
+            </li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="ls-spec-col">
+        <div class="ls-spec-group">
+          <h3>Печать</h3>
+          <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/materials/print-digital.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/materials/print-digital.jpg" width="416" height="416" alt="Стопка отпечатанных карточек">
+                </picture>
+              </span>
+              <div>
+                <b>Цифровая печать</b>
+                <p>Выгодна на малых тиражах</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/materials/print-offset.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/materials/print-offset.jpg" width="416" height="416" alt="Печатный лист с раскладкой и метками реза">
+                </picture>
+              </span>
+              <div>
+                <b>Офсет</b>
+                <p>Дешевеет с ростом тиража, имеет смысл от тысячи</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Печать белилами</b>
+                <p>По крафту и тонированной бумаге, чтобы цвет не провалился</p>
+              </div>
+            </li>
+          </ul>
+          <details class="ls-more">
+            <summary><span class="ls-s-closed">Ещё 1 вариант</span><span class="ls-s-open">Свернуть</span></summary>
+            <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Плашка Pantone</b>
+                <p>Точный фирменный цвет, который не собрать из четырёх красок</p>
+              </div>
+            </li>
+            </ul>
+          </details>
+        </div>
+        <div class="ls-spec-group">
+          <h3>Отделка</h3>
+          <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/materials/fin-foil.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/materials/fin-foil.jpg" width="416" height="416" alt="Золотое тиснение на бумаге">
+                </picture>
+              </span>
+              <div>
+                <b>Тиснение фольгой</b>
+                <p>Логотип и номера золотом, серебром или цветной фольгой</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/materials/fin-softtouch.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/materials/fin-softtouch.jpg" width="416" height="416" alt="Палец на бархатистой поверхности софт-тач">
+                </picture>
+              </span>
+              <div>
+                <b>Ламинация софт-тач</b>
+                <p>Бархатная на ощупь, не собирает отпечатки пальцев</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Блинтовое тиснение</b>
+                <p>Вдавленный оттиск без краски и фольги</p>
+              </div>
+            </li>
+          </ul>
+          <details class="ls-more">
+            <summary><span class="ls-s-closed">Ещё 2 варианта</span><span class="ls-s-open">Свернуть</span></summary>
+            <ul class="ls-rows">
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Выборочный УФ-лак</b>
+                <p>Глянцевый рельеф на отдельных элементах</p>
+              </div>
+            </li>
+            <li class="ls-row-body">
+              <span class="ls-thumb" aria-hidden="true"></span>
+              <div>
+                <b>Лента и магниты</b>
+                <p>Завязка, петля или магнитный замок в крышке</p>
+              </div>
+            </li>
+            </ul>
+          </details>
+        </div>
+      </div>
+</section>
+
+      <section class="ls-how">
+    <h2>Как мы работаем</h2>
+    <ol>
+      <li>
+        <div>
+          <b>Разбираемся в задаче</b><p><span class="ls-term">В день обращения.</span> Спросим, что кладёте внутрь, сколько дней и сколько штук. От предмета зависят конструкция, картон и цена.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Придумываем конструкцию и макет</b><p><span class="ls-term">3–5 дней.</span> Пришлём чертёж развёртки и первый вариант дизайна. Правки по макету входят в стоимость.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Собираем образец</b><p><span class="ls-term">3–5 дней.</span> Один календарь вживую: проверите, как открываются окошки и садится наполнение.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Печатаем и собираем тираж</b><p><span class="ls-term">2–3 недели.</span> Печать, вырубка, кашировка и сборка на своём производстве. Забираете сами или привозим по адресу.</p>
+        </div>
+      </li>
+    </ol>
+
+        <p class="ls-how-total">Весь путь от заявки до готового тиража — <b>4–6 недель</b></p>
+  </section>
+
+        <section class="ls-faq">
+      <h2>Частые вопросы</h2>
+      <div class="ls-qa-list">
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Сколько окошек можно сделать?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Сколько нужно: 24 или 31 к Новому году, 12 — к Рождеству, 7 — на неделю до дня рождения. Число и размер ячеек считаем от наполнения, а не от шаблона.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Что нужно знать до начала работы?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Что будет внутри, сколько штук и когда нужно. Наполнение — главное: размер ячейки считается от предмета с запасом, поэтому лучше прислать образец или хотя бы размеры.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">А если у нас есть только логотип?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Этого достаточно. Придумаем сюжет, нарисуем иллюстрацию и подберём конструкцию. Если есть фирменный стиль — пришлите гайдлайн, встроимся в него.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Когда заказывать к Новому году?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>В сентябре — октябре. На дизайн, образец и тираж с кашировкой уходит четыре — шесть недель, а в ноябре производство загружено под праздники. В декабре берёмся за срочные, но выбор конструкций уже.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Есть ли минимальный тираж?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Берёмся и за небольшие. Но вырубной штамп и подготовка стоят одинаково и на 30 экземплярах, и на 500, поэтому маленький тираж выходит дороже за штуку. Цифру назовём после первого разговора.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Можно увидеть образец до тиража?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Да. Перед тиражом собираем один календарь вживую: по нему видно цвет, плотность картона и как открываются окошки. Тираж запускаем после того, как вы его подержали в руках.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Из чего делают адвент-календарь?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Чаще всего — переплётный картон с кашировкой: корпус жёсткий и держит вес. Для лёгкого наполнения подойдёт складная коробка из картона 300–350 г, она заметно дешевле. Под тяжёлое или для отправки почтой — микрогофрокартон.</p>
+        </details>
+        <details class="ls-qa" name="faq">
+          <summary><span class="ls-q">Доставляете по России?</span><span class="ls-sign" aria-hidden="true"></span></summary>
+          <p>Да, отправляем транспортной компанией в любой город. По Москве привозим сами или отдаём на самовывоз в Холодильном переулке.</p>
+        </details>
+      </div>
+    
+
+    </section>
+
+<!-- @include proof.html -->
+
+<!-- @include lead.html -->
+
+        <section class="ls-about">
+      <h2>Об адвент-календарях</h2>
+      <p>Адвент-календарь заказывают, когда нужен подарок, который не забудут
+        через день. Чаще всего — бренды косметики, чая и шоколада под собственный
+        продукт, и компании к Новому году для сотрудников и клиентов. Спрос идёт
+        волной с сентября по ноябрь, и чем ближе праздник, тем меньше конструкций,
+        которые успеем сделать.</p>
+      <details class="ls-more">
+        <summary><span class="ls-s-closed">Читать дальше</span><span class="ls-s-open">Свернуть</span></summary>
+        <p>Конструкция начинается с наполнения. От размера и веса предмета зависят
+        ячейка, картон и способ сборки: под пробники хватит складной коробки
+        с дверцами, под свечи или банки нужен жёсткий корпус с ложементом. Поэтому
+        первым делом мы просим прислать то, что ляжет внутрь, — или хотя бы
+        размеры.</p><p>Дизайн адвент-календаря — не одна картинка, а сюжет на двадцать четыре
+        шага. Хорошо, когда окошки продолжают друг друга и календарь хочется
+        открывать по порядку. Номера можно расставить вразброс — тогда поиск
+        нужного дня становится частью игры. Логотип уместнее тиснением на крышке,
+        чем крупной печатью на каждой дверце.</p>
+      </details>
+    </section>
+
+    <section class="ls-related">
+      <div class="ls-related-head">
+        <h2>Ещё из календарей</h2>
+        <a href="https://litera.studio/dizajn-kalendarya">Весь раздел</a>
+      </div>
+      <ul class="ls-rows">
+          <li>
+            <a class="ls-row-body" href="https://litera.studio/dizajn-kvartalnogo-kalendarya">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/services/kvartalnye.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/services/kvartalnye.jpg" width="416" height="416" alt="Квартальный календарь с тремя блоками">
+                </picture>
+              </span>
+              <span class="ls-text">
+                <span class="ls-row"><b>Квартальные</b></span>
+                <span class="ls-note">Три месяца на стене, с рекламным полем или без</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="ls-row-body" href="https://litera.studio/dizajn-nastolnogo-kalendarya">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/services/nastolnye.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/services/nastolnye.jpg" width="416" height="416" alt="Настольный перекидной календарь-домик">
+                </picture>
+              </span>
+              <span class="ls-text">
+                <span class="ls-row"><b>Настольные</b></span>
+                <span class="ls-note">Домик на пружине, стоит на столе у клиента весь год</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="ls-row-body" href="https://litera.studio/dizajn-perekidnogo-kalendarya">
+              <span class="ls-thumb">
+                <picture>
+                  <source srcset="assets/img/services/perekidnye.webp" type="image/webp">
+                  <img loading="lazy" decoding="async" src="assets/img/services/perekidnye.jpg" width="416" height="416" alt="Перекидной настенный календарь">
+                </picture>
+              </span>
+              <span class="ls-text">
+                <span class="ls-row"><b>Перекидные</b></span>
+                <span class="ls-note">Настенный, двенадцать разворотов под ваши фотографии</span>
+              </span>
+            </a>
+          </li>
+      </ul>
+    </section>
+
+  </div>
+
+</main>
+  <!-- Футер вне общего слоя: страница съезжает с него,
+       поэтому он не может лежать внутри того, что съезжает. -->
+<!-- @include footer.html -->
+<!-- @include cookie.html -->
+<!-- @include chat.html -->
+<!-- @include dialogs.html -->
+<!-- @include scripts.html -->
+</body>
+</html>

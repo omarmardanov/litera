@@ -1,0 +1,143 @@
+/* Требования к макетам. У студии страница выложена 27 картинками: текста нет
+   ни в разметке, ни в опубликованном PDF (там шрифты в кривых). Содержание
+   здесь набрано из исходника вёрстки — студия отдала `.ai`, в нём текст живой.
+   Порядок разделов и якоря — прежние, с сайта студии.
+
+   Порядок блоков: сначала три правила, которые закрывают большую часть
+   возвратов, потом чек-лист по типу изделия, врезка «пришлите, проверим»,
+   и только дальше полный свод разделов. Из поиска на такую страницу не ходят
+   (0 запросов со словом «требования»), приходят из блога и по ссылке
+   от менеджера — значит сверху должно стоять короткое, а не оглавление. */
+
+/* ── Три правила ──────────────────────────────────────────────── */
+.ls-req-rules{margin-top:32px;padding:0 var(--side)}
+.ls-req-rules ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+/* Галочка та же, что в чек-листе ниже: без неё серые плашки читались
+   кнопками, а это правила, которые надо выполнить. */
+.ls-req-rules li{position:relative;padding:14px 16px 14px 42px;background:var(--surface-2)}
+.ls-req-rules b{display:block;font-family:'Raptor V2 Premium',sans-serif;
+  font-weight:700;font-size:var(--t-sub);line-height:1.1;letter-spacing:-.01em}
+.ls-req-rules span{display:block;margin-top:4px;font-size:var(--t-ui);
+  line-height:1.45;color:var(--ink-2)}
+.ls-req-pdf{margin:16px 0 0;display:grid;gap:8px}
+.ls-req-pdf .ls-btn{width:100%}
+
+/* ── Чек-лист по типу изделия ─────────────────────────────────
+   Один список, который меняется по выбранному типу. Переключение
+   на CSS, без скрипта: чипы — обычные радио, нужный список открывает `:has()`.
+   Скрипт здесь лишний — состояние ровно одно и в адресе его держать незачем. */
+.ls-req-check{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-req-check .ls-way{margin-top:14px}
+.ls-req-lists ul{margin:18px 0 0;padding:0;list-style:none;display:none}
+.ls-req-lists li{position:relative;padding:0 0 0 26px;font-size:var(--t-base);
+  line-height:1.5}
+.ls-req-lists li + li{margin-top:10px}
+/* галочка вместо маркера: это чек-лист, его проходят по пунктам */
+.ls-req-lists li::before,
+.ls-req-rules li::before{content:"";position:absolute;left:1px;top:.42em;
+  width:11px;height:6px;border-left:1.5px solid var(--ink);
+  border-bottom:1.5px solid var(--ink);transform:rotate(-45deg)}
+/* в плашке — по первой строке заголовка (20px, высота строки 22) */
+.ls-req-rules li::before{left:17px;top:20px}
+.ls-req-check:has(#pt-flat:checked) #check-flat,
+.ls-req-check:has(#pt-multi:checked) #check-multi,
+.ls-req-check:has(#pt-cut:checked) #check-cut,
+.ls-req-check:has(#pt-fin:checked) #check-fin,
+.ls-req-check:has(#pt-pack:checked) #check-pack{display:block}
+
+.ls-req-cta{margin:var(--gap-block) var(--side) 0}
+
+/* ── Содержание ───────────────────────────────────────────────
+   Оглавление стоит после врезки, а не первым блоком: тому, кто пришёл
+   по ссылке менеджера, нужен свой пункт, а тому, кто пришёл из блога, —
+   короткое правило. Список из 23 строк первым экраном отпугивает. */
+.ls-req-toc{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-req-toc-h{margin:20px 0 0;font-size:var(--t-cap);color:var(--muted)}
+.ls-req-toc ul{margin:8px 0 0;padding:0;list-style:none}
+.ls-req-toc li + li{margin-top:6px}
+.ls-req-toc a{font-size:var(--t-ui);color:var(--ink);text-decoration:underline;
+  text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-strong)}
+.ls-req-toc a:hover{text-decoration-color:var(--ink)}
+
+/* ── Разделы ─────────────────────────────────────────────────── */
+.ls-req-group{margin-top:var(--gap-block);padding:0 var(--side)}
+.ls-req-group h2{margin-bottom:14px}
+.ls-req-group .ls-qa p{margin:0 0 14px;padding-bottom:0;font-size:var(--t-ui);
+  line-height:1.5;color:var(--ink-2)}
+
+/* Содержимое раздела обёрнуто в один блок. Раскрытие в `faq.css` сделано
+   сеткой `auto 0fr` и схлопывает ровно одного соседа `summary`; когда внутри
+   лежали три абзаца подряд, схлопывался только первый, остальные оставались
+   видны у закрытого раздела. Обёртка возвращает механике один элемент. */
+.ls-req-body{padding-bottom:18px}
+.ls-req-body > :first-child{margin-top:0}
+.ls-req-body > :last-child{margin-bottom:0}
+
+/* Подзаголовок внутри раздела: «Отступы, не менее», «Макет по слоям».
+   В брошюре это колонки разворота, на телефоне — ступень под аккордеоном. */
+.ls-req-body h4{margin:22px 0 10px;font-family:'Raptor V2 Premium',sans-serif;
+  font-weight:700;font-size:var(--t-ui);line-height:1.2;letter-spacing:-.005em;
+  color:var(--ink)}
+
+/* Пары «параметр — значение»: формат, масштаб, вылеты, отступы. Повторяются
+   почти в каждом разделе, поэтому таблицей, а не прозой — так их сравнивают
+   глазами между изделиями. Две колонки держатся даже на 320: ключи короткие,
+   длинное уходит в значение. */
+.ls-req-spec{display:grid;grid-template-columns:126px 1fr;margin:0 0 14px;
+  font-size:var(--t-ui);line-height:1.45}
+/* Отбивка у значения, а не у ключа: с `padding-right` на `dt` линия
+   разрывалась посередине строки и таблица читалась лесенкой. */
+.ls-req-spec dt{padding:8px 0;color:var(--muted);
+  border-top:1px solid var(--line)}
+.ls-req-spec dd{margin:0;padding:8px 0 8px 12px;color:var(--ink);
+  border-top:1px solid var(--line)}
+.ls-req-spec dt:first-of-type,.ls-req-spec dt:first-of-type + dd{border-top:0}
+
+.ls-req-ul{margin:0 0 14px;padding:0;list-style:none}
+.ls-req-ul li{position:relative;padding-left:16px;font-size:var(--t-ui);
+  line-height:1.5;color:var(--ink-2)}
+.ls-req-ul li + li{margin-top:8px}
+.ls-req-ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;
+  height:1.5px;background:var(--glyph)}
+
+/* Схема вылетов нарисована разметкой, а не вставлена разворотом из брошюры:
+   на 390 подписи с развёрнутого JPEG сжимаются до 7 px — ровно та беда,
+   от которой уходим. */
+.ls-req-fig{margin:0 0 16px}
+.ls-req-fig svg{display:block;width:100%;height:auto}
+.ls-req-fig-l{font-size:var(--t-micro);fill:var(--muted)}
+.ls-req-fig-c{font-size:var(--t-micro);fill:var(--muted);text-anchor:middle}
+/* Плашка «обращаем внимание» — их приём из брошюры, там она розовая.
+   Здесь контурная: розового в системе нет, а заводить цвет ради одной
+   плашки незачем. */
+.ls-req-group .ls-req-warn{padding:12px 14px;border:1.5px solid var(--ink);
+  color:var(--ink)}
+
+/* Плавное раскрытие: `faq.css` вешает его на прямой абзац, здесь прямой
+   потомок — обёртка. */
+@media (prefers-reduced-motion: no-preference){
+  details.ls-qa > .ls-req-body{overflow:hidden;min-height:0;opacity:0;
+    transition:opacity .22s var(--ease)}
+  details.ls-qa[open] > .ls-req-body{opacity:1;transition-delay:.08s}
+}
+
+@media (min-width: 600px){
+  .ls-req-group .ls-qa p,.ls-req-lists li,.ls-req-ul li{max-width:62ch}
+  .ls-req-spec{grid-template-columns:170px 1fr;max-width:72ch}
+  .ls-req-fig{max-width:420px}
+}
+@media (min-width: 1024px){
+  .ls-req-rules ul{grid-template-columns:repeat(3,1fr)}
+  .ls-req-pdf{grid-template-columns:auto 1fr;align-items:center;gap:16px}
+  .ls-req-pdf .ls-btn{width:fit-content;min-width:220px}
+  /* Каждая группа — своя колонка: подпись над своим списком. Раньше список
+     группы резался на две колонки, и правая половина висела без подписи.
+     Разметка плоская (подпись, список, подпись, список), колонки раскладывает
+     сетка: подписи во второй строке, списки в третьей. */
+  .ls-req-toc{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);
+    grid-template-rows:auto auto 1fr;column-gap:32px}
+  .ls-req-toc h2{grid-row:1;grid-column:1 / -1}
+  .ls-req-toc-h{grid-row:2}
+  .ls-req-toc ul{grid-row:3}
+}

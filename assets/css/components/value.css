@@ -1,0 +1,108 @@
+/* Блок ценности: тезисы с фирменным маркером. */
+
+.ls-value{margin-top:var(--gap-block);padding:0 20px}
+.ls-value ul{margin:22px 0 0;padding:0;list-style:none}
+.ls-value li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}
+.ls-value li + li{margin-top:24px}
+.ls-value .ls-mark{width:19px;height:auto;margin-top:-3px;color:var(--glyph);
+  transition:color .18s var(--ease),scale .22s var(--ease)}
+
+/* Наведение: должно быть видно, на какой пункт наведён курсор.
+   Соседи гаснут, а знак наведённого берёт цвет своего
+   направления. Подчёркивание заголовка пробовали — убрано, гашения и цвета
+   достаточно.
+
+   Только там, где есть мышь: на телефоне наведение эмулируется тапом,
+   и половина блока осталась бы приглушённой после касания. */
+@media (hover: hover) and (pointer: fine){
+  .ls-value li{transition:opacity .18s var(--ease)}
+  /* Гасим соседей, только когда курсор на самом пункте: `ul:hover` срабатывал
+     и в промежутках между строками, и блок тускнел целиком ни от чего.
+     `:not(:hover)` обязателен: `:has()` добавляет вес селектору, и правило
+     гашения перебивало возврат непрозрачности — гас и тот пункт, на который
+     смотрят. */
+  .ls-value ul:has(li:hover) li:not(:hover){opacity:.38}
+  /* Знак берёт цвет направления и слегка подрастает. Масштаб не двигает
+     соседей: `scale` не участвует в раскладке. */
+  .ls-value li:hover .ls-mark{color:var(--dir-ink);scale:1.15}
+}
+.ls-value b{display:block;font-size:var(--t-base);font-weight:500;line-height:1.35}
+/* Только описание пункта: `.ls-value p` задевал и абзац с кнопкой под
+   списком, и тот вставал впритык к последнему пункту с −2. */
+.ls-value li p{grid-column:2;margin:-2px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+.ls-cta{display:flex;margin-top:44px;padding:0 20px}
+.ls-cta-alt{margin-top:14px;padding:0 20px;text-align:center;font-size:var(--t-ui);color:var(--ink)}
+.ls-cta-alt a{display:inline-flex;align-items:center;gap:8px;padding:10px 0;
+  color:var(--ink);font-size:var(--t-ui);text-decoration:none}
+.ls-cta-alt a span{text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line)}
+.ls-cta-alt a:hover span{text-decoration-color:var(--ink)}
+.ls-cta-alt svg,.ls-cta-alt img{flex-shrink:0}
+.ls-cta-alt img{display:block}
+.ls-cta-alt a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ls-cta .ls-btn{flex:1;font-size:var(--t-h3)}
+
+/* Наезд на кадр (телефон): блоки первого экрана едут поверх фотографии
+   собственным слоем. Отступы внутри блоков, а не между ними — внешние
+   оставляли щель, в которую было видно кадр. */
+@media (max-width: 1023px){
+  .ls-cta,.ls-cta-alt{position:relative;z-index:1;background:var(--paper)}
+  .ls-cta{margin-top:0;padding:44px 20px 0}
+  /* Последний блок слоя закрывает низ первого экрана сам: внешний отступ
+     оставлял полосу, в которую был виден кадр. Поэтому margin обнулён
+     в обе стороны, а воздух — внутри блока. */
+  .ls-cta-alt{margin:0;padding:14px 20px 30px}
+  /* до первого заголовка страницы — обычный шаг, а не двойной */
+  .ls-value{margin-top:44px}
+}
+
+/* Мера включается с планшета: до 1024 колонок нет, и абзац растягивался
+   шире, чем на широком экране. */
+@media (min-width: 600px){
+  .ls-value li p{max-width:52ch}
+}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    .ls-cta{grid-column:2;grid-row:2;margin-top:22px;padding:0 48px 0 0;align-self:start}
+    /* на мобильном кнопка во всю ширину, здесь — по содержимому:
+       полоса на пол-экрана выглядит как заплатка */
+    .ls-cta .ls-btn{flex:0 0 auto;min-width:300px}
+    /* строка мессенджеров идёт под кнопкой по левому краю, а не по центру */
+    /* воздух снизу: без него строка мессенджеров упиралась в край плашки */
+    .ls-cta-alt{grid-column:2;grid-row:3;margin:14px 0 0;padding:0 48px 40px 0;
+      text-align:left;align-self:start}
+    /* подпись поверх кадра снизу: говорит, из чего сделана работа,
+       и закрывает нижний край строкой, а не обрывом */
+    /* Здесь стояло `margin-top:72px` с пометкой «плашка заканчивается вместе
+       с первым экраном». Правило было мёртвым: раскладка перечисляла секции
+       списком и ставила всем 96, перебивая его. На живой странице все эти
+       месяцы было 96. Правило убрано, шаг берётся из токена.
+       Мобильный отступ у блока свой, 44 — он выше в этом файле и живой. */
+    /* ── Блоки страницы ─────────────────────────────────────────────────
+       Общее правило: контейнер широкий, а строка текста — нет. Читать строку
+       длиннее 75 знаков тяжело, и именно этим плох их нынешний десктоп:
+       тот же контент растянут по ширине 1440 мелким кеглем. */
+
+    /* Ценность: две колонки, описание не длиннее строки, которую удобно читать */
+    .ls-value ul{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;row-gap:28px}
+    /* Расстояние между тезисами держит только row-gap. Отступ `li + li` от
+       телефона в сетке доставался второму пункту, то есть правой колонке
+       первой строки, — она уезжала на 24 пикселя ниже левой. */
+    .ls-value li + li{margin-top:0}
+    /* Пункт растягивается на высоту строки сетки, и его собственные строки
+       `auto` разбирали лишнюю высоту: у первого тезиса зазор между названием
+       и описанием выходил 34 вместо 22. */
+    .ls-value li{align-content:start}
+    /* Воздуха между названием и описанием: на телефоне строки узкие и группа
+       читается сама, а в колонке 492 пикселя они слипались в один абзац.
+       Отрицательный отступ с телефона снят и добавлено 4. */
+    .ls-value li p{margin-top:4px}
+
+    .ls-card:has(.ls-hero) .ls-cta .ls-btn-main{background:var(--paper);color:var(--ink)}
+    .ls-card:has(.ls-hero) .ls-cta-alt{color:var(--on-dark-4)}
+    .ls-card:has(.ls-hero) .ls-cta-alt a{color:var(--paper)}
+    .ls-card:has(.ls-hero) .ls-cta-alt a span{text-decoration-color:var(--line-dark-2)}
+    .ls-card:has(.ls-hero) .ls-cta-alt a:hover span{text-decoration-color:var(--paper)}
+}

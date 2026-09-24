@@ -1,0 +1,39 @@
+/* Малый тираж: секция после направлений на главной. Отвечает на вопрос
+   «а за мои тридцать штук вообще возьмутся» — в заявках с сайта это
+   спрашивают прямо, и тиражи там чаще всего до сотни штук.
+
+   Крупная «½» слева — сама цифра и есть довод, заголовок её договаривает.
+   Дробь скрыта от скринридера: заголовок читается и без неё. */
+.ls-small{margin-top:var(--gap-block);padding:0 var(--side);
+  display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center}
+/* Дробь и заголовок в одной строке, абзацы под ними на всю ширину. */
+.ls-small p,.ls-small ul{grid-column:1 / -1}
+.ls-small-num{font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:72px;line-height:.9;letter-spacing:-.03em}
+.ls-small h2{margin:0;font-size:var(--t-lead);line-height:1.15}
+.ls-small p{margin:14px 0 0;font-size:var(--t-base);line-height:1.5;
+  color:var(--ink-2);max-width:52ch}
+/* Заявки цитатами: конверт слева и подпись с месяцем — знак, что это письмо
+   из формы, а не сочинённый пример. Кавычки ставит браузер по lang=ru. */
+.ls-small-ex{margin:22px 0 0;padding:0;list-style:none}
+.ls-small-ex li{display:grid;grid-template-columns:auto 1fr;column-gap:12px;
+  padding:14px 0;border-top:1px solid var(--line)}
+.ls-small-ex li:last-child{border-bottom:1px solid var(--line)}
+.ls-small-ico{margin-top:2px;color:var(--muted)}
+.ls-small-ex q{font-size:var(--t-base);line-height:1.45;color:var(--ink-2)}
+.ls-small-ex span{display:block;margin-top:6px;font-size:var(--t-cap);line-height:1.3;color:var(--muted)}
+
+/* Широкий экран: цифра и довод слева, заявки справа. Во всю ширину цитаты
+   шли строками по 800 пикселей и читались плохо, «½» терялась. Слева цифра
+   во всю силу — 200, декоративная, как и 72 на телефоне, вне шкалы. */
+@media (min-width: 1024px){
+  .ls-small{grid-template-columns:5fr 7fr;grid-template-rows:auto auto 1fr;
+    column-gap:80px;align-items:start}
+  .ls-small-num{grid-area:1 / 1;font-size:200px;line-height:.85;letter-spacing:-.04em}
+  .ls-small h2{grid-area:2 / 1;margin-top:24px;font-size:var(--t-h2)}
+  .ls-small p{grid-area:3 / 1;margin-top:16px;max-width:44ch}
+  .ls-small .ls-small-ex{grid-area:1 / 2 / 4 / 3;margin:0}
+  .ls-small-ex li{padding:24px 0}
+  .ls-small-ex q{color:var(--ink)}
+  .ls-small-ex span{margin-top:10px}
+}

@@ -1,0 +1,218 @@
+/* Меню: панель под шапкой. Шапка остаётся настоящей — вордмарк и кнопка на месте,
+   а бургер в ней превращается в крестик. */
+
+/* Панель идёт от самого верха, содержимое отодвинуто внутренним отступом:
+   при старте под шапкой на стыке вылезал то зазор, то её нижняя линия. */
+.ls-menu{position:fixed;inset:0;z-index:5;padding-top:var(--topbar);
+  background:var(--ink);color:var(--paper);
+  overflow-y:auto;overscroll-behavior:contain;
+  transform:translateY(-8px);opacity:0;visibility:hidden;
+  transition:transform .3s var(--ease),opacity .24s var(--ease),
+             visibility 0s linear .3s}
+.ls-menu.ls-is-open{transform:none;opacity:1;visibility:visible;transition-delay:0s}
+
+/* Шапка на время меню становится тёмной — панель под ней того же цвета */
+/* Открытый каталог: шапка уходит в тёмное вместе с панелью. Меняем только
+   набор переменных — кнопка, поле поиска и текст читают их сами. */
+.ls-topbar.ls-menu-open,
+.ls-topbar.ls-menu-open.ls-is-stuck{
+  --bar-bg:var(--ink);
+  --bar-fg:var(--paper);
+  --bar-line:transparent;
+  --bar-fill:var(--fill-dark);
+  --bar-fill-2:var(--fill-dark-2);
+  --bar-fill-3:var(--fill-dark-3);
+  --bar-hint:var(--on-dark-3);
+  --bar-btn-bg:var(--paper);
+  --bar-btn-fg:var(--ink)}
+/* затемнение под шапкой тянется на 164px вниз и ложилось поверх верха меню */
+.ls-topbar.ls-menu-open::before{opacity:0}
+/* в открытом меню кнопка есть всегда, независимо от того,
+   была ли шапка прилипшей в момент открытия */
+/* в открытом меню кнопка есть всегда, даже если шапка не прилипла */
+.ls-topbar.ls-menu-open .ls-topbar-cta{opacity:1;transform:none;pointer-events:auto}
+
+/* Бургер превращается в крестик: те же три линии */
+/* толщина и шаг целыми пикселями: на дробных значениях линии округляются
+   по-разному и нижняя выглядит плотнее остальных */
+.ls-burger .ls-ico{position:relative;display:block;width:20px;height:14px}
+.ls-burger .ls-ico i{position:absolute;left:0;right:0;height:2px;background:currentColor;
+  transition:transform .28s var(--ease),opacity .18s var(--ease)}
+.ls-burger .ls-ico i:nth-child(1){top:0}
+.ls-burger .ls-ico i:nth-child(2){top:6px}
+.ls-burger .ls-ico i:nth-child(3){top:12px}
+.ls-topbar.ls-menu-open .ls-ico i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ls-topbar.ls-menu-open .ls-ico i:nth-child(2){opacity:0}
+.ls-topbar.ls-menu-open .ls-ico i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Поиск: у них 226 услуг в каталоге, искать логично прямо отсюда.
+   Отправляется на тот же адрес, что штатный поиск сайта (GET, параметр s). */
+/* Отдельной кнопки «Искать» нет: страницы результатов тоже нет, подсказки
+   появляются сразу под полем. Лупа осталась значком внутри поля, справа —
+   очистка, и она показывается только когда есть что стирать. */
+.ls-menu-search{position:relative;margin:16px 20px 0}
+.ls-menu-search input{width:100%;height:48px;padding:0 46px;border-radius:0;
+  border:1.5px solid var(--line-dark-3);background:transparent;color:var(--paper);
+  font-family:inherit;font-size:var(--t-base);-webkit-appearance:none}
+.ls-menu-search input::placeholder{color:var(--on-dark-3)}
+/* WebKit рисует в поле поиска свой синий крестик — он выбивается из чёрно-белого меню */
+.ls-menu-search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.ls-menu-search input:focus{outline:none;border-color:var(--paper)}
+.ls-menu-search-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  color:var(--on-dark-3);pointer-events:none}
+.ls-menu-search-clear{position:absolute;right:0;top:0;
+  display:flex;align-items:center;justify-content:center;width:46px;height:48px;
+  padding:0;border:0;cursor:pointer;color:var(--on-dark-3);
+  /* без сброса Safari рисует кнопке свой фон с переливом */
+  appearance:none;-webkit-appearance:none;border-radius:0;background:transparent}
+.ls-menu-search-clear:focus-visible{outline:2px solid var(--paper);outline-offset:-4px}
+
+/* Разделы — главное в меню, поэтому крупно и фирменной гарнитурой */
+/* Подсказки поиска: список услуг прямо под полем, отдельной страницы результатов нет.
+   Группа под названием отвечает на вопрос «куда я попаду» и заодно показывает каталог. */
+.ls-menu-hints{padding:14px 20px 0}
+.ls-menu-hints-title,.ls-menu-hints-empty{margin:0;font-size:var(--t-cap);color:var(--on-dark-3)}
+.ls-menu-hints-empty{line-height:1.4}
+.ls-menu-hints ul{margin:6px 0 0;padding:0;list-style:none}
+.ls-menu-hints a{display:block;padding:10px 0;color:var(--paper);text-decoration:none}
+.ls-menu-hints li + li{border-top:1px solid var(--fill-dark)}
+.ls-menu-hints b{display:block;font-size:var(--t-ui);font-weight:500;line-height:1.3}
+.ls-menu-hints span{display:block;margin-top:2px;font-size:var(--t-cap);color:var(--on-dark-3)}
+.ls-menu-hints a:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+.ls-menu-hints-ask{margin-top:12px;height:44px;padding:0 18px;border:0;cursor:pointer;
+  appearance:none;-webkit-appearance:none;border-radius:0;
+  background:var(--paper);color:var(--ink);
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-ui)}
+.ls-menu-hints-ask:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+
+.ls-menu-main{display:flex;flex-direction:column;padding:16px 20px 0}
+
+/* Заголовок раздела — ссылка на его страницу. На телефоне вся строка
+   раскрывает список (переход там первым пунктом внутри), на широком экране
+   раскрывать нечего и ссылка работает как ссылка. */
+.ls-menu-group{appearance:none;-webkit-appearance:none;width:100%;
+  text-decoration:none;transition:opacity .16s var(--ease);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:7px 0;border:0;background:none;text-align:left;cursor:pointer;
+  color:var(--paper);font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-lead);line-height:1.15;letter-spacing:-.01em}
+/* Стрелка стоит вплотную к названию, а не колонкой у правого края: четыре одинаковых
+   значка в столбик читались как мусор. Цвет — как у текста, иначе мелкий серый значок
+   выглядит случайным. Последнее слово и стрелка не разрываются переносом. */
+.ls-menu-group{justify-content:flex-start}
+.ls-menu-group .ls-nw{white-space:nowrap}
+.ls-menu-group svg{margin-left:6px;vertical-align:-1px;
+  transition:transform .24s var(--ease)}
+.ls-menu-group[aria-expanded="true"] svg{transform:rotate(180deg);color:var(--paper)}
+.ls-menu-group:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+
+/* Категории внутри раздела: раскрываются плавно */
+.ls-menu-sub{display:grid;grid-template-rows:0fr;overflow:hidden;
+  transition:grid-template-rows .28s var(--ease)}
+.ls-menu-sub.ls-is-open{grid-template-rows:1fr}
+.ls-menu-sub > div{min-height:0;display:flex;flex-direction:column;padding:2px 0 10px}
+.ls-menu-sub a{padding:8px 0;color:var(--on-dark-2);text-decoration:none;font-size:var(--t-base);
+  line-height:1.3;transition:color .16s var(--ease)}
+.ls-menu-sub .ls-menu-all{color:var(--paper)}
+
+/* Второстепенные страницы — в строку с переносом: в столбик они занимали
+   вдвое больше места, чем стоят по важности */
+/* Столбиком: в две колонки низ выходил рыхлым, а мессенджеры вставали
+   на одну линию с «Блогом», между которыми нет связи. */
+.ls-menu-more{display:flex;flex-direction:column;margin-top:16px;padding:12px 20px 0;
+  border-top:1px solid var(--line-dark)}
+/* один стиль со ссылками в контактах: в меню и так всё ссылки,
+   отдельный серый вид для страниц был третьим стилем без нужды */
+.ls-menu-more a{padding:10px 0;color:var(--paper);font-size:var(--t-base);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-dark-2)}
+
+/* по близости: внутри группы 22 между строками, между группами 46 —
+   так страницы, контакты и мессенджеры читаются как три разные группы */
+.ls-menu-foot{display:flex;flex-direction:column;
+  padding:18px 20px calc(14px + env(safe-area-inset-bottom,0px))}
+.ls-menu-foot a{padding:11px 0;color:var(--paper);font-size:var(--t-base);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line-dark-2)}
+.ls-menu-links{display:flex;flex-wrap:wrap;gap:0 18px;margin:10px 0 0}
+
+.ls-menu a:hover{text-decoration-color:var(--paper)}
+.ls-menu a:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+/* Панель не занимает весь экран, а падает из-под шапки: на десктопе
+   полноэкранный чёрный лист ради четырёх колонок ссылок — перебор.
+   Разделы раскрыты все сразу, места хватает, аккордеон здесь не нужен
+   (состоянием кнопок распоряжается menu-sections.js). */
+@media (min-width: 1024px){
+  .ls-menu{top:var(--topbar);bottom:auto;padding-top:0;
+    max-height:calc(100dvh - var(--topbar));
+    border-bottom:1px solid var(--line-dark)}
+
+  /* Шапка с фотографией на широком экране прозрачная, и это правило
+     специфичнее общего `.ls-topbar.ls-menu-open` и его перебивало. На карточке
+     сквозь шапку просвечивала фотография, на категории шапка оставалась белой
+     над чёрной панелью каталога. Состояние повторено с той же специфичностью,
+     что и цвет страницы, — по одному правилу на оба случая. */
+  .ls-card:has(.ls-hero) .ls-topbar.ls-menu-open,
+  .ls-card:not(:has(.ls-hero)) .ls-topbar.ls-menu-open{
+    --bar-bg:var(--ink);
+    --bar-fg:var(--paper);
+    --bar-line:transparent;
+    --bar-fill:var(--fill-dark);
+    --bar-fill-2:var(--fill-dark-2);
+    --bar-fill-3:var(--fill-dark-3);
+    --bar-hint:var(--on-dark-3);
+    --bar-btn-bg:var(--paper);
+    --bar-btn-fg:var(--ink)}
+
+  /* В выпадающем каталоге только услуги — ради них его и открывают.
+     Убрано:
+     — поиск: с 1280 он переехал в шапку (ниже этой ширины остаётся здесь,
+       и на телефоне тоже — там список свёрнут в аккордеон);
+     — служебные страницы: «Работы», «Блог» и «Контакты» теперь в шапке,
+       «Кейсы» есть в футере;
+     — контакты и мессенджеры: они в футере, а телефон — в шапке. */
+  .ls-menu-more,.ls-menu-foot{display:none}
+
+  /* Четыре раздела колонками. Порядок в разметке: кнопка, список, кнопка,
+     список — поэтому заполняем по столбцам, и всё встаёт само. */
+  .ls-menu-main{display:grid;grid-auto-flow:column;
+    grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;
+    column-gap:32px;padding:24px var(--side) 0;align-items:start}
+  /* Название раздела — заголовок колонки. Кегль как у групп в футере,
+     чтобы низ и верх страницы говорили одним голосом. */
+  /* Заголовок ведёт на страницу раздела, поэтому отдельный пункт
+     «Все услуги раздела» здесь лишний — он повторялся в каждой колонке. */
+  .ls-menu-group{font-size:var(--t-h3);padding:0;cursor:pointer}
+  /* Отклик наведения — приглушение, а не подчёркивание. Фирменный шрифт
+     плотный и с крупными засечками-срезами, линия под ним читается как часть
+     букв и мешает названию. Названия и так белые, светлеть им некуда. */
+  .ls-menu-group:hover{opacity:.62}
+  /* Пункты внутри, наоборот, светлеют до белого: они приглушены по умолчанию,
+     и без этого наведение на них не отзывалось вовсе. */
+  .ls-menu-sub a:hover{color:var(--paper)}
+  .ls-menu-group svg{display:none}
+  .ls-menu-all{display:none}
+  .ls-menu-sub{grid-template-rows:1fr}
+  .ls-menu-sub > div{padding-top:8px}
+  /* шаг строки 30: у полиграфии одиннадцать пунктов, и на восьмых полях
+     колонка вытягивала панель на лишние 40 пикселей */
+  .ls-menu-sub a{padding:6px 0;font-size:var(--t-ui)}
+
+  /* Второстепенные страницы и контакты — строкой внизу панели.
+     В шапке им места нет (на кейсы заходят редко), но из меню
+     они должны быть достижимы. */
+  /* линия под колонками — нижний край панели */
+  .ls-menu-main{border-bottom:1px solid var(--line-dark);padding-bottom:28px}
+  /* линия во всю ширину панели, а не под каждой половиной отдельно */
+  .ls-menu-main{border-bottom:1px solid var(--line-dark);padding-bottom:24px}
+}
+
+
+/* С 1280 поиск живёт в шапке, в панели его нет. Селектор именно от панели:
+   без этого правило гасило и поле, уже перенесённое в шапку. */
+@media (min-width: 1280px){
+  .ls-menu > .ls-menu-search,.ls-menu > .ls-menu-hints{display:none}
+}

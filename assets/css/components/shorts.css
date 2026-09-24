@@ -1,0 +1,48 @@
+/* Видео из соцсетей. Ролики вертикальные 9:16 — снимались для ленты, и это
+   их родная пропорция. В карточку работы такое не вставить: она 2:1, и
+   вертикаль либо тонет в полях, либо гонит высоту вверх. Поэтому отдельный
+   блок под работами.
+
+   Превью — обычная картинка у нас, само видео живёт во «ВКонтакте» и
+   подгружается только по клику. Так устроено и на текущем сайте: четыре
+   ролика на странице — это 250 КБ превью, а не мегабайты видео. */
+
+/* На телефоне лента: вертикальные кадры высокие, столбиком они съели бы
+   несколько экранов. Прокрутка та же, что у блока работ. */
+.ls-shorts-list{display:flex;gap:12px;margin:14px 0 0;padding:0 0 0 var(--pad);list-style:none;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.ls-shorts-list::-webkit-scrollbar{display:none}
+.ls-shorts-list::after{content:"";flex:0 0 8px}
+.ls-short{flex:0 0 min(46%,190px);scroll-snap-align:start}
+
+.ls-short a{position:relative;display:block;color:inherit;text-decoration:none}
+.ls-short a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* `overflow:hidden` — чтобы наезжающий кадр не вылез за плитку;
+   само движение в motion.css, рядом с наездом на карточке работы. */
+.ls-short a{overflow:hidden}
+.ls-short img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;
+  background:var(--ink-hover);transition:scale .5s var(--ease)}
+
+/* Кнопка проигрывания — матовое стекло: кадры в роликах пёстрые, и сплошная
+   плашка на них читается как заплатка. Стекло размывает то, что под ним,
+   поэтому знак виден на любом кадре, а сама кнопка не спорит с картинкой.
+   Углы прямые — скруглений в макете нет нигде, кроме аватара в форме.
+
+   Где backdrop-filter не поддержан, остаётся полупрозрачная белая плашка:
+   знак тёмный, контраст сохраняется. */
+.ls-short-play{position:absolute;left:50%;top:50%;translate:-50% -50%;
+  width:48px;height:48px;display:grid;place-items:center;
+  background:rgba(var(--paper-rgb),.4);color:var(--ink);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
+  transition:background-color .18s var(--ease)}
+.ls-short a:hover .ls-short-play{background:rgba(var(--paper-rgb),.62)}
+
+@media (min-width: 1024px){
+  /* Ряд без прокрутки: роликов немного, а горизонтальная лента мышью
+     неудобна — то же соображение, что и в блоке работ. */
+  .ls-shorts-list{display:flex;flex-wrap:wrap;gap:20px;overflow:visible;
+    padding-left:var(--side);padding-right:var(--side)}
+  .ls-shorts-list::after{display:none}
+  .ls-short{flex:0 0 230px;scroll-snap-align:none}
+}

@@ -1,0 +1,120 @@
+/* Появление по прокрутке. Целиком на CSS: scroll-driven animations, без скриптов
+   и без библиотек — ни килобайта JS ради движения.
+
+   Три страховки. Первая — @supports: где таймлайнов нет (Safari до 26, старые
+   браузеры), контент просто виден, ничего не ломается. Вторая — prefers-reduced-motion.
+   Третья — движение только на десктопе: на телефоне блоки и так въезжают
+   по одному, а лишняя анимация на слабом железе даёт дёрганый скролл.
+
+   Тон сдержанный: короткие расстояния, никаких вылетов сбоку и параллаксов.
+   Студия печатает бумагу, а не показывает фокусы. */
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+
+    /* Первый экран прилипает, а страница наезжает на него слоем — как лист,
+       который кладут на лист. Пока это происходит, сам экран слегка отступает:
+       чуть уменьшается и темнеет. Так видно, что он уходит на задний план,
+       а не просто перекрыт. Расстояния небольшие: движение должно
+       чувствоваться, а не читаться. */
+
+    /* Только первый экран услуги: он прилипает, и страница на него наезжает.
+       Главная уезжает обычной прокруткой — там отступание сжимало центр
+       к левому краю, и кнопка ползла влево. */
+    /* Картинке дан запас по высоте на весь ход движения: без него она съезжала
+       вверх и снизу открывался чёрный фон плашки. Теперь в начале видно верх
+       кадра, в конце — низ, а край закрыт всегда. */
+    .ls-card:has(.ls-hero:not(.ls-home-hero)) .ls-hero img{height:calc(100% + 56px);
+      animation:drift linear both;
+      animation-timeline:scroll(root);animation-range:0 640px}
+    /* Отступает содержимое, а не сама плашка: если сжимать блок целиком,
+       по краям вылезает белое из-под тёмного поля. */
+    .ls-card:has(.ls-hero:not(.ls-home-hero)) .ls-body,
+    .ls-card:has(.ls-hero:not(.ls-home-hero)) .ls-cta,
+    .ls-card:has(.ls-hero:not(.ls-home-hero)) .ls-cta-alt{animation:ahead linear both;
+      animation-timeline:scroll(root);animation-range:0 640px;
+      transform-origin:0 50%}
+    .ls-card:has(.ls-hero:not(.ls-home-hero)) .ls-hero img{transform-origin:50% 0}
+
+    /* Заглушка вместо снимка не ползёт. Движение рассчитано на фотографию:
+       ей дан запас по высоте, и она уходит вверх, открывая нижний край.
+       У знака запаса нет, он стоит в поле по центру — при том же движении
+       он просто съезжал бы вниз. Правило здесь и с той же специфичностью,
+       что у кадра: иначе высота и сдвиг из hero.css не доживают до экрана. */
+    .ls-card:has(.ls-hero) .ls-hero-blank img{height:var(--mark-h);animation:none}
+
+    /* Секции подходят снизу. Расстояние маленькое — движение должно
+       чувствоваться, а не читаться. */
+    .ls-value,.ls-specs,.ls-how,.ls-faq,.ls-figures,.ls-related,.ls-about,.ls-choose,.ls-catalog,.ls-works{
+      animation:lift linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 46%}
+
+    /* Кадр внутри карточки чуть отъезжает при наведении: рамка стоит,
+       двигается только изображение — так работа выглядит живой, а сетка
+       остаётся спокойной */
+    .ls-work a{overflow:hidden;display:block}
+    .ls-work img{transition:scale .5s var(--ease)}
+    .ls-work a:hover img{scale:1.05}
+    /* Превью ролика ведёт себя так же: разница между работой и роликом
+       не в том, как они отзываются на курсор. */
+    .ls-short a:hover img{scale:1.05}
+
+    /* Карточки работ появляются по очереди прямо в ленте. Только в ленте:
+       шкала `view(inline)` идёт по горизонтальной прокрутке, в сетке
+       страницы работ её нет. */
+    .ls-works-list > .ls-work{animation:card linear both;
+      animation-timeline:view(inline);
+      animation-range:entry 0% entry 60%}
+
+    /* Цифры набирают вес: у крупных знаков это заметнее, чем сдвиг */
+    .ls-figures b{animation:weigh linear both;
+      animation-timeline:view();
+      animation-range:entry 10% cover 30%}
+  }
+}
+
+/* Блок, к которому перешли по якорю, не выезжает. Chrome считает цель
+   перехода по видимой рамке, а она включает сдвиг анимации появления:
+   браузер целился в блок, смещённый на 22 пикселя вниз, а пока ехал, сдвиг
+   отыгрывался — и блок оказывался на 22 выше, то есть под шапкой.
+   Отдельный отступ у каждой цели это только маскировал. */
+:target{animation:none !important}
+
+@keyframes lift{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+@keyframes card{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:none}
+}
+@keyframes weigh{
+  from{opacity:.25;letter-spacing:.04em}
+  to{opacity:1;letter-spacing:-.01em}
+}
+@keyframes drift{
+  from{transform:translateY(0) scale(1)}
+  to{transform:translateY(-56px) scale(.94)}
+}
+@keyframes ahead{
+  from{transform:translateY(0) scale(1);opacity:1}
+  to{transform:translateY(-18px) scale(.965);opacity:.35}
+}
+
+/* Полоса прочитанного под шапкой. Показывает, сколько страницы осталось —
+   на длинной карточке это единственный ориентир. Тонкая и цветом текста:
+   это подсказка, а не элемент управления.
+   Ширина считается прокруткой документа, без единой строки скриптов. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: scroll(root)){
+    .ls-topbar::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;
+      width:100%;transform-origin:0 50%;background:currentColor;opacity:.55;
+      animation:read linear both;animation-timeline:scroll(root)}
+    /* При открытом меню страница зафиксирована, прокрутки нет, и полоса
+       растягивается во всю ширину — читается как лишняя линия под шапкой.
+       В меню она не нужна: читать нечего. */
+    body.ls-is-menu .ls-topbar::after{display:none}
+  }
+}
+@keyframes read{ from{transform:scaleX(0)} to{transform:scaleX(1)} }

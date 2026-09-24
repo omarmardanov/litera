@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Макеты — Литера.Студия</title>
+<!-- Холст с типовыми страницами прототипа под телефон, как артборды в Фигме.
+     Страницы живые: каждый артборд — iframe с настоящей страницей во всю
+     высоту. Смотреть на десктопе. Управление как в Фигме: двумя пальцами
+     по трекпаду — двигать, щипком (или Ctrl + колесо) — масштаб вокруг
+     курсора, тянуть за серое поле — тоже двигать; клавиши + − 0. -->
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#dcdcdf;font:13px/1.4 -apple-system,system-ui,sans-serif;color:#333}
+.view{position:fixed;inset:0;overflow:hidden;cursor:grab}
+.view.is-drag{cursor:grabbing}
+.bar{position:fixed;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:14px;
+  padding:10px 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #ccc}
+.bar b{font-weight:600}
+.bar span{color:#777}
+.bar .zoom{margin-left:auto;display:flex;gap:4px}
+.bar button{font:inherit;padding:5px 10px;border:1px solid #bbb;background:#fff;border-radius:4px;cursor:pointer}
+.bar button[aria-pressed=true]{background:#111;color:#fff;border-color:#111}
+.board{position:absolute;left:0;top:0;transform-origin:0 0;display:flex;gap:56px;align-items:flex-start;width:max-content;padding:80px 60px 60px}
+.frame h2{margin:0 0 10px;font-size:13px;font-weight:600;color:#444}
+.frame h2 small{display:block;font-weight:400;color:#888;font-size:12px;margin-top:2px}
+.frame h2 a{color:inherit;text-decoration:none}
+.frame h2 a:hover{text-decoration:underline}
+.frame iframe{display:block;width:390px;height:800px;border:0;background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 28px rgba(0,0,0,.14)}
+</style>
+</head>
+<body>
+<div class="bar"><b>Прототип litera.studio</b><span>типовые страницы под телефон, 390 px · страницы живые · трекпад: двумя пальцами двигать, щипком масштаб · клавиши + − 0</span>
+  <div class="zoom" role="group" aria-label="Масштаб">
+    <button type="button" data-step="-1" title="Мельче (−)">−</button>
+    <button type="button" data-fit title="Показать всё (0)" id="zoomLabel">50%</button>
+    <button type="button" data-step="1" title="Крупнее (+)">+</button>
+  </div>
+</div>
+<div class="view" id="view"><div class="board" id="board"></div></div>
+<script>
+var PAGES = [
+  ['index.html', 'Главная'],
+  ['poligrafiya.html', 'Направление', 'Полиграфия'],
+  ['category.html', 'Раздел', 'Листовая полиграфия'],
+  ['sertifikat.html', 'Карточка услуги', 'Подарочный сертификат'],
+  ['advent.html', 'Карточка услуги', 'Адвент-календарь'],
+  ['case.html', 'Работа', 'Сертификат BOURBAKI'],
+  ['projects.html', 'Работы', 'фильтр и сетка'],
+  ['blog.html', 'Блог'],
+  ['article.html', 'Статья', 'Какой формат файла подходит для типографии'],
+  ['contacts.html', 'Контакты'],
+  ['trebovaniya.html', 'Требования к макетам', '23 раздела текстом из исходника'],
+  ['brending.html', 'Направление', 'Корпоративный брендинг'],
+  ['nabory.html', 'Раздел', 'Подарочные наборы'],
+  ['nabor-ng.html', 'Карточка услуги', 'Новогодний набор'],
+  ['igry.html', 'Раздел', 'Карты и настольные игры'],
+  ['nastolka.html', 'Карточка услуги', 'Настольная игра'],
+  ['menu-prays.html', 'Раздел', 'Меню и прайсы'],
+  ['menyu.html', 'Карточка услуги', 'Меню'],
+  ['vizitki.html', 'Карточка услуги', 'Визитки']
+];
+var board = document.getElementById('board');
+PAGES.forEach(function (p) {
+  var f = document.createElement('div'); f.className = 'frame';
+  f.innerHTML = '<h2><a href="' + p[0] + '" target="_blank">' + p[1] + '</a>' +
+    (p[2] ? '<small>' + p[2] + '</small>' : '<small>&nbsp;</small>') + '</h2>';
+  // Метка времени в адресе: сервер не шлёт Cache-Control, и браузер держал
+  // страницы в артбордах по Last-Modified — холст показывал вчерашнюю вёрстку
+  // даже после перезагрузки. Ссылка в заголовке артборда остаётся чистой.
+  var i = document.createElement('iframe'); i.src = p[0] + '?t=' + Date.now(); i.title = p[1];
+  i.addEventListener('load', function () {
+    var d = i.contentDocument;
+    // на холсте страница не прокручивается: анимации по прокрутке, липкие
+    // кадры, куки-баннер и виджет связи только мешают
+    var s = d.createElement('style');
+    s.textContent = '*,*::before,*::after{animation:none!important;transition:none!important}' +
+      '.ls-cookie,.ls-chat{display:none!important}' +
+      '.ls-hero,.ls-lead{position:static!important}' +
+      '.ls-card{min-height:0!important}';
+    d.head.appendChild(s);
+    // .ls-card тянется на 100dvh — в iframe это его же высота, и замер
+    // рос бы с каждым разом; поэтому min-height снят выше
+    function fit() {
+      i.style.height = d.documentElement.scrollHeight + 'px';
+    }
+    fit(); setTimeout(fit, 1500); setTimeout(fit, 4000);
+    hookFrame(i); d.addEventListener('keydown', onKey);
+  });
+  f.appendChild(i); board.appendChild(f);
+});
+// ── Управление как в Фигме ──────────────────────────────────────────
+// Холст — transform: translate + scale. Колесо и трекпад двигают, щипок
+// (браузер шлёт его как wheel с ctrlKey) и Ctrl+колесо масштабируют вокруг
+// курсора. Колесо над iframe уходит внутрь iframe, поэтому в каждый документ
+// вписан такой же обработчик, который отдаёт событие сюда.
+var view = document.getElementById('view');
+var label = document.getElementById('zoomLabel');
+var S = 0.5, X = 0, Y = 0;
+function apply() {
+  board.style.transform = 'translate(' + X + 'px,' + Y + 'px) scale(' + S + ')';
+  label.textContent = Math.round(S * 100) + '%';
+}
+function zoomAt(factor, px, py) {
+  var s = Math.min(2, Math.max(0.08, S * factor));
+  X = px - (px - X) * (s / S);
+  Y = py - (py - Y) * (s / S);
+  S = s; apply();
+}
+function onWheel(e, px, py) {
+  e.preventDefault();
+  if (e.ctrlKey || e.metaKey) zoomAt(Math.exp(-e.deltaY * 0.01), px, py);
+  else { X -= e.deltaX; Y -= e.deltaY; apply(); }
+}
+view.addEventListener('wheel', function (e) { onWheel(e, e.clientX, e.clientY); }, { passive: false });
+function hookFrame(i) {
+  // координаты события внутри iframe → экранные: через рамку iframe и масштаб
+  i.contentDocument.addEventListener('wheel', function (e) {
+    var r = i.getBoundingClientRect();
+    onWheel(e, r.left + e.clientX * S, r.top + e.clientY * S);
+  }, { passive: false });
+}
+// тянуть за серое поле
+var drag = null;
+view.addEventListener('pointerdown', function (e) {
+  if (e.target !== view && e.target !== board) return;
+  drag = { x: e.clientX - X, y: e.clientY - Y }; view.classList.add('is-drag'); view.setPointerCapture(e.pointerId);
+});
+view.addEventListener('pointermove', function (e) { if (drag) { X = e.clientX - drag.x; Y = e.clientY - drag.y; apply(); } });
+view.addEventListener('pointerup', function () { drag = null; view.classList.remove('is-drag'); });
+// показать всё: холст целиком по ширине окна
+function fitAll() {
+  var w = board.scrollWidth, h = board.scrollHeight;
+  S = Math.min((innerWidth - 40) / w, (innerHeight - 40) / h, 1);
+  S = Math.max(S, 0.08);
+  X = (innerWidth - w * S) / 2; Y = 60; apply();
+}
+document.querySelectorAll('.bar button[data-step]').forEach(function (b) {
+  b.addEventListener('click', function () { zoomAt(b.dataset.step > 0 ? 1.25 : 0.8, innerWidth / 2, innerHeight / 2); });
+});
+document.querySelector('.bar button[data-fit]').addEventListener('click', fitAll);
+function onKey(e) {
+  if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+  if (e.key === '+' || e.key === '=') zoomAt(1.25, innerWidth / 2, innerHeight / 2);
+  else if (e.key === '-') zoomAt(0.8, innerWidth / 2, innerHeight / 2);
+  else if (e.key === '0') fitAll();
+}
+document.addEventListener('keydown', onKey);
+X = 0; Y = 0; apply();
+</script>
+</body>
+</html>

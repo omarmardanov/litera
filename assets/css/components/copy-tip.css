@@ -1,0 +1,53 @@
+/* Подсказка копирования у контактов. Одна на страницу, лежит в конце body
+   и позиционируется по элементу — своей обёртки у ссылок нет и заводить
+   её ради подсказки не хотелось.
+
+   Чип тёмный с тонкой светлой рамкой и тенью: он всплывает и на белой
+   странице, и на чёрном футере, а два стиля под две поверхности пришлось бы
+   переключать вручную. */
+.ls-copy-tip{position:fixed;z-index:20;pointer-events:none;
+  padding:5px 9px;
+  /* на тон светлее краски: на белой странице это тёмный чип, а на чёрном
+     футере он не сливается с фоном — одной рамки там было мало */
+  background:var(--pop-bg);color:var(--paper);
+  border:1px solid var(--pop-edge);
+  box-shadow:var(--pop-shadow);
+  font-size:var(--t-cap);line-height:1.2;white-space:nowrap;
+  opacity:0;transform:translate(-50%,calc(-100% + 3px));
+  transition:opacity .14s var(--ease),transform .14s var(--ease)}
+.ls-copy-tip.ls-is-on{opacity:1;transform:translate(-50%,-100%)}
+
+/* Состояние «скопировано». Смены текста мало: чип уже висел на экране
+   с надписью «Скопировать», и подмена одного слова проходит мимо глаза.
+   Поэтому меняется весь чип — появляется галочка, фон становится фирменным,
+   и он коротко подпрыгивает. */
+.ls-copy-tip{display:flex;align-items:center;gap:0}
+.ls-copy-ok{flex:none;width:0;opacity:0;overflow:hidden;
+  transition:width .16s var(--ease),opacity .16s var(--ease),margin-right .16s var(--ease)}
+.ls-copy-tip.ls-is-done .ls-copy-ok{width:12px;opacity:1;margin-right:5px}
+/* Инверсия, а не цвет: палитра проекта почти монохромная, и единственные
+   краски в ней фирменные — синий и маджента знака. Розовый чип с чёрным
+   текстом кричал и читался как ошибка. Белый чип на тёмном исходном — смена
+   не менее заметная, но спокойная, и одинаково хорошо видна и на белой
+   странице, и на чёрном футере. */
+.ls-copy-tip.ls-is-done{background:var(--paper);color:var(--ink);
+  border-color:var(--line-strong)}
+.ls-copy-tip.ls-is-done.ls-is-on{animation:ls-copy-pop .26s var(--ease)}
+@keyframes ls-copy-pop{
+  0%{scale:1}
+  40%{scale:1.08}
+  100%{scale:1}
+}
+/* под ссылкой: так подсказка ведёт себя у телефона в шапке, над которым
+   места нет */
+.ls-copy-tip.ls-is-below{transform:translate(-50%,-3px)}
+.ls-copy-tip.ls-is-below.ls-is-on{transform:translate(-50%,0)}
+
+/* Копирование включается только на широком экране: на телефоне звонок
+   и почта работают как задумано, подсказка там лишняя. */
+@media (max-width: 1023px){.ls-copy-tip{display:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .ls-copy-tip,.ls-copy-ok{transition:none}
+  .ls-copy-tip.ls-is-done.ls-is-on{animation:none}
+}

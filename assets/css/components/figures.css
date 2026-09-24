@@ -1,0 +1,17 @@
+/* Полоса показателей: годы, проекты, клиенты. */
+
+.ls-figures{margin-top:var(--gap-block);padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);
+  column-gap:12px;text-align:center}
+.ls-figures b{display:block;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-display);line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.ls-figures span{display:block;margin-top:7px;font-size:var(--t-cap);line-height:1.35;
+  color:var(--muted)}
+/* на 320 «1500+» в 34px не влезает в треть ширины — опускаем на ступень */
+@media (max-width:359px){.ls-figures b{font-size:var(--t-lead)}}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Цифры: те же три в ряд, но с воздухом */
+    .ls-figures{gap:80px}
+}

@@ -1,0 +1,113 @@
+/* Список услуг раздела. Строку рисует общий компонент .ls-rows,
+   здесь только своё: цена в одной строке с названием. */
+
+.ls-catalog{margin-top:var(--gap-group);padding:0 var(--pad)}
+
+/* цена стоит в строке с названием: справа отдельной колонкой она сжимала
+   текст в узкую полосу, и описания ломались на четыре строки */
+/* на 320 «по запросу» рядом с длинным названием не помещается —
+   тогда цена переносится на свою строку, а не уезжает за край */
+.ls-catalog .ls-row{display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:4px 12px}
+
+.ls-catalog a:hover b{text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line)}
+
+/* Группы услуг: заголовок как у групп материалов на карточке. Первая группа
+   без верхнего отступа — секция уже отбита сверху. */
+.ls-cat-group h3{margin:36px 0 0;font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-h3);letter-spacing:-.005em;color:var(--ink)}
+.ls-cat-col:first-child .ls-cat-group:first-child h3{margin-top:0}
+.ls-cat-group .ls-rows{margin-top:14px}
+@media (min-width: 1024px){
+  .ls-cat-col .ls-cat-group:first-child h3{margin-top:0}
+}
+
+/* Плитки вместо строк (`is-tiles` на секции): те же строки, разложены
+   сеткой два в ряд, снимок во всю ширину плитки, под ним название
+   и описание. Снять класс — вернутся строки. */
+.ls-catalog.is-tiles .ls-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px}
+.ls-catalog.is-tiles .ls-rows > li + li{padding-top:0}
+.ls-catalog.is-tiles .ls-rows > li::after{display:none}
+.ls-catalog.is-tiles .ls-row-body{display:block}
+/* Кадр 4:3 на всех ширинах: одна пропорция на весь сайт — одно требование
+   к фото и один размер нарезки в CMS. Обрезка по центру, `object-fit`
+   из rows.css. */
+.ls-catalog.is-tiles .ls-rows .ls-thumb{width:100%;aspect-ratio:4/3}
+.ls-catalog.is-tiles .ls-text{display:block;margin-top:10px}
+.ls-catalog.is-tiles .ls-row b{font-size:var(--t-base);line-height:1.25}
+.ls-catalog.is-tiles .ls-note{margin-top:4px;font-size:var(--t-cap);line-height:1.35}
+/* Подпись не длиннее двух строк: иначе в колонке 183 перечень примеров
+   разворачивался на три строки, плитки выходили трёх разных высот
+   и ряды шли лесенкой. */
+@media (max-width: 1023px){
+  .ls-catalog.is-tiles .ls-note{display:-webkit-box;-webkit-line-clamp:2;
+    -webkit-box-orient:vertical;overflow:hidden}
+}
+@media (min-width: 1024px){
+  .ls-catalog.is-tiles .ls-rows{grid-template-columns:1fr 1fr 1fr;gap:28px 20px}
+}
+
+/* ── Разделы направления строками ──────────────────────────────────
+   Плитка с фотографией на направлении не работает: раздел — это набор
+   услуг, одним предметом его не покажешь, а пять предметов на 170
+   пикселях превращаются в кашу. Строка говорит больше: название,
+   одна фраза и счёт услуг.
+
+   Правило по уровням: услугу показывает предмет, раздел — список,
+   направление — счёт. Чем выше уровень, тем меньше проку от снимка. */
+.ls-catalog.is-plain .ls-rows > li + li{padding-top:0}
+.ls-catalog.is-plain .ls-rows > li::after{left:0}
+/* Две колонки вместо «миниатюра плюс текст»: название с описанием слева,
+   счёт справа. `align-items:baseline` сажает счёт на первую строку
+   названия, а не по центру блока. */
+.ls-catalog.is-plain .ls-row-body{grid-template-columns:1fr auto;column-gap:16px;
+  align-items:baseline;padding:18px 0}
+.ls-catalog.is-plain .ls-row-body b{font-size:var(--t-sub);font-weight:600;
+  line-height:1.2;letter-spacing:-.01em}
+/* Кадры разделов — только на широком экране (ниже, в плитках). */
+.ls-catalog.is-plain .ls-thumb{display:none}
+/* Цвет направления малым акцентом: начало каждой линии в цвет
+   направления, плавно уходящий в серый, и название в цвет вместо подчёркивания при наведении —
+   подчёркивание вместе с линиями давало лишнюю полосу. Текст берёт
+   `--dir-ink`: жёлтый брендинга буквами на белом не читается. */
+/* На ховере цвет заливает линию целиком слева направо: сплошной слой
+   поверх градиента растёт по `background-size` от нуля до всей ширины. */
+.ls-catalog.is-plain .ls-rows > li::before{content:"";position:absolute;bottom:0;left:0;right:0;
+  z-index:1;height:1px;background:
+    linear-gradient(var(--dir),var(--dir)) 0 0 / 0 100% no-repeat,
+    linear-gradient(90deg,var(--dir),var(--line)) 0 0 / 120px 100% no-repeat;
+  transition:background-size .45s var(--ease)}
+.ls-catalog.is-plain .ls-rows > li:hover::before{background-size:100% 100%,120px 100%}
+@media (prefers-reduced-motion: reduce){
+  .ls-catalog.is-plain .ls-rows > li::before{transition:none}
+}
+/* Последняя строка тоже с линией: без неё и без метки она выглядит
+   не кнопкой, а подписью под списком. */
+.ls-catalog.is-plain .ls-rows > li:last-child::after{display:block}
+.ls-catalog.is-plain a:hover b{text-decoration:none;color:var(--dir-ink)}
+/* Счёт не кричит: он подсказка об объёме, а не заголовок. */
+.ls-count{white-space:nowrap;font-size:var(--t-cap);color:var(--muted)}
+
+@media (min-width: 1024px){
+  /* Плитки с кадром раздела, три в ряд. На телефоне кадр 170 пикселей
+     показывал кашу из предметов, и там остаются строки; здесь плитка
+     около 380, кадр читается. Кадры — главные снимки разделов с живого
+     сайта, где их нет — работа раздела из портфолио.
+     Под плиткой та же линия с меткой цвета направления, что у строк. */
+  .ls-catalog.is-plain .ls-rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:40px 20px}
+  .ls-catalog.is-plain .ls-rows > li{padding-bottom:18px}
+  .ls-catalog.is-plain .ls-row-body{grid-template-columns:minmax(0,1fr) auto;padding:0}
+  .ls-catalog.is-plain .ls-thumb{display:block;grid-column:1 / -1;width:100%;
+    aspect-ratio:4 / 3;margin-bottom:16px;overflow:hidden}
+  .ls-catalog.is-plain .ls-thumb img{transition:scale .5s var(--ease)}
+  .ls-catalog.is-plain .ls-note{max-width:none}
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px){
+  /* Увеличение с лупой из rows.css — для мелких снимков материалов;
+     плитка — ссылка на раздел, ей хватает лёгкого приближения. */
+  .ls-catalog.is-plain .ls-rows .ls-thumb:has(img)::before{content:none}
+  .ls-catalog.is-plain .ls-rows .ls-thumb:has(img):hover img{transform:none;box-shadow:none}
+  .ls-catalog.is-plain .ls-rows > li:hover .ls-thumb img{scale:1.03}
+}

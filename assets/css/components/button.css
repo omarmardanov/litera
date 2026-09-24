@@ -1,0 +1,32 @@
+/* Кнопки. Базовый компонент: сброс, фирменная гарнитура, состояния.
+   Всё, что выглядит как кнопка, берёт этот класс и дополняет его своим —
+   размером, цветом, поведением. До этого один и тот же набор из семи свойств
+   был скопирован в пяти местах: форма, куки-баннер, каналы связи в виджете,
+   кнопка в шапке и подсказки поиска. */
+
+/* без сброса Safari подмешивает кнопкам свой фон */
+.ls-btn{appearance:none;-webkit-appearance:none;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  height:52px;border:0;border-radius:0;cursor:pointer;text-decoration:none;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;font-size:var(--t-base);
+  letter-spacing:-.005em;
+  transition:background-color .18s var(--ease),border-color .18s var(--ease),scale .14s var(--ease)}
+.ls-btn:active{scale:.985}
+.ls-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ── Размеры ──────────────────────────────────────────────────── */
+/* 44 — тап-цель для пальца, 36 — для мыши в шапке */
+/* компактным переносы ни к чему: они стоят в ряду с другими элементами */
+.ls-btn-s{height:44px;padding:0 18px;font-size:var(--t-ui);white-space:nowrap}
+.ls-btn-xs{height:36px;padding:0 14px;font-size:var(--t-ui);white-space:nowrap}
+
+/* ── Цвета ────────────────────────────────────────────────────── */
+.ls-btn-main{background:var(--ink);color:var(--paper)}
+.ls-btn-main:hover{background:var(--ink-hover)}
+/* светлая: на тёмном фоне — баннер, виджет, панель меню */
+.ls-btn-light{background:var(--paper);color:var(--ink)}
+.ls-btn-light:hover{background:var(--line)}
+.ls-btn-light:focus-visible{outline-color:var(--paper)}
+/* контурная: второе действие рядом с текстом — заметна, но не спорит с главной */
+.ls-btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.ls-btn-line:hover{background:var(--ink);color:var(--paper)}

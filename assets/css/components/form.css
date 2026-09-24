@@ -1,0 +1,223 @@
+/* Форма заявки: поля, прикрепление файлов, состояние отправки. */
+
+/* Отступ якоря компонент себе не назначает: он одинаков для всех целей
+   на странице и живёт одним правилом в раскладке — `scroll-padding-top`. */
+.ls-lead-form{position:relative;overflow:hidden;
+  margin-top:var(--gap-block);padding:40px 20px 44px;background:var(--surface)}
+.ls-lead-form .ls-sub{margin:8px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--ink-2);max-width:34ch}
+.ls-lead-form form{margin-top:18px;display:flex;flex-direction:column}
+/* второе и последующие поля ввода отбиваются от предыдущего */
+.ls-lead-form input:not(#contact):not([type=file]):not([type=checkbox]):not([type=radio]){margin-top:10px}
+.ls-lead-form .ls-file-list:not([hidden]) + .ls-file{margin-top:-4px}
+.ls-lead-form form .ls-btn{margin-top:20px}
+.ls-lead-form input,.ls-lead-form .ls-btn{border-radius:0}
+.ls-lead-form input{height:52px;padding:0 16px;border:1.5px solid var(--line-strong);background:var(--paper);
+  font-family:inherit;font-size:var(--t-base);color:var(--ink)}
+.ls-lead-form input::placeholder{color:var(--muted)}
+
+/* Что нужно напечатать: одна строка, растёт по мере ввода (assets/js/form-task.js) */
+/* Поле в две строки на телефоне: подсказка «Что печатаем, тираж, срок,
+   комментарии» — это 328 пикселей, а внутри поля при 390 остаётся 318,
+   и хвост обрезался. С 600 подсказка влезает в строку, там поле обычное.
+   Дальше поле растёт по вводу — assets/js/form-task.js. */
+.ls-lead-form textarea{margin-top:10px;width:100%;height:74px;min-height:74px;padding:14px 16px;
+  border:1.5px solid var(--line-strong);border-radius:0;background:var(--paper);resize:none;overflow:hidden;
+  font-family:inherit;font-size:var(--t-base);line-height:1.4;color:var(--ink)}
+.ls-lead-form textarea::placeholder{color:var(--muted)}
+.ls-lead-form textarea:focus{outline:none;border-color:var(--ink)}
+.ls-lead-form textarea:focus-visible{outline:none;border-color:var(--ink);box-shadow:var(--ring)}
+
+/* Как удобнее ответить: чипы вместо пяти радиокнопок в столбик.
+   Тот же вид берёт срок в блоке расчёта — вид общий, раскладка у каждого
+   своя: здесь лента вбок, там перенос по строкам. */
+/* fieldset по умолчанию не сжимается — из-за этого лента чипов растягивала
+   страницу вместо того, чтобы прокручиваться внутри себя */
+.ls-way{margin:20px 0 0;padding:0;border:0;min-width:0;display:block}
+.ls-way legend{padding:0;font-size:var(--t-ui);color:var(--ink-2)}
+/* Чипы в одну строку: если каналов станет больше, они не переносятся,
+   а прокручиваются вбок, как лента работ. Те же чипы — фильтр на странице
+   работ (`.ls-filter`). */
+/* Лента выходит за поля формы к краям экрана — так видно, что вбок есть продолжение.
+   Безопасно, потому что переполнение обрезает .ls-card (overflow-x:clip). */
+.ls-way-row{display:flex;gap:8px;margin:10px -20px 0;padding-left:20px;
+  min-width:0;overflow-x:auto;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+/* поле справа в конце прокрутки: padding-right у flex-ленты Safari не учитывает */
+.ls-way-row::after{content:"";flex:0 0 12px}
+.ls-way-row::-webkit-scrollbar{display:none}
+.ls-way label{flex:0 0 auto;cursor:pointer}
+.ls-way input{position:absolute;width:1px;height:1px;opacity:0}
+.ls-way span{display:block;padding:9px 14px;border:1.5px solid var(--line-strong);
+  background:var(--paper);font-size:var(--t-ui);line-height:1.2;color:var(--ink-2);
+  transition:border-color .15s var(--ease),color .15s var(--ease),
+             background-color .15s var(--ease)}
+.ls-way label:hover span{border-color:var(--ink);color:var(--ink)}
+.ls-way input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ls-way input:focus-visible + span{box-shadow:var(--ring)}
+/* автозаполнение: браузеры красят поле своим фоном, гасим — форма монохромная */
+.ls-lead-form input:-webkit-autofill,
+.ls-lead-form input:-webkit-autofill:hover{
+  -webkit-text-fill-color:var(--ink);caret-color:var(--ink);
+  box-shadow:0 0 0 1000px var(--paper) inset}
+.ls-lead-form input:-webkit-autofill:focus{
+  box-shadow:0 0 0 1000px var(--paper) inset,var(--ring)}
+.ls-lead-form input:focus{outline:none;border-color:var(--ink)}
+.ls-lead-form input:focus-visible{outline:none;border-color:var(--ink);
+  box-shadow:var(--ring)}
+.ls-lead-form .ls-btn{height:56px;font-size:var(--t-h3)}
+.ls-lead-form .ls-btn:disabled{opacity:.55;cursor:default}
+/* .ls-sent и .ls-sent-mark создаёт assets/js/form-submit.js после отправки */
+.ls-lead-form .ls-sent{margin-top:20px}
+.ls-lead-form .ls-sent p{margin:16px 0 0;font-size:var(--t-base);line-height:1.5;
+  color:var(--ink-2);max-width:34ch}
+.ls-lead-form .ls-sent-mark{display:block;color:var(--ink)}
+.ls-lead-form .ls-sent-mark svg{display:block;width:32px;height:auto}
+.ls-lead-form .ls-sent:focus{outline:none}
+.ls-lead-form .ls-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.ls-lead-form .ls-or{margin:16px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--ink-2)}
+.ls-lead-form .ls-or a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line)}
+.ls-lead-form .ls-or a:hover{text-decoration-color:var(--ink)}
+.ls-lead-form .ls-file{margin-top:24px;display:flex;align-items:center;min-height:44px;cursor:pointer;
+  font-size:var(--t-base);color:var(--ink)}
+.ls-lead-form .ls-file input{position:absolute;width:1px;height:1px;opacity:0}
+.ls-lead-form .ls-file span{text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line)}
+.ls-lead-form .ls-file:hover span{text-decoration-color:var(--ink)}
+.ls-lead-form .ls-file input:focus-visible + span{outline:2px solid var(--ink);outline-offset:3px}
+.ls-lead-form .ls-file-note{margin:0;font-size:var(--t-cap);line-height:1.35;color:var(--muted)}
+/* .ls-err включает assets/js/file-attach.js, когда файл тяжелее лимита */
+.ls-lead-form .ls-file-note.ls-err{color:var(--ink)}
+.ls-lead-form .ls-file-list{margin-top:20px;padding:0;list-style:none;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ls-lead-form .ls-file-list li{display:grid;grid-template-columns:1fr auto auto;align-items:center;
+  gap:10px;min-height:44px;padding:0 6px 0 0;
+  font-size:var(--t-ui);line-height:1.3;color:var(--ink-2)}
+.ls-lead-form .ls-file-list li + li{border-top:1px solid var(--line)}
+/* .ls-n и .ls-s создаёт assets/js/file-attach.js — имя файла и его размер */
+.ls-lead-form .ls-file-list .ls-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ls-lead-form .ls-file-list .ls-s{color:var(--muted);font-variant-numeric:tabular-nums}
+.ls-lead-form .ls-file-list button{width:44px;height:44px;display:flex;align-items:center;
+  justify-content:center;padding:0;border:0;background:none;
+  color:var(--muted);cursor:pointer}
+.ls-lead-form .ls-file-list button:hover{color:var(--ink)}
+.ls-lead-form .ls-file-list button:focus-visible{outline:none;box-shadow:var(--ring)}
+.ls-lead-form .ls-agree{margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
+  font-size:var(--t-cap);line-height:1.4;color:var(--muted);cursor:pointer}
+.ls-lead-form .ls-agree input{appearance:none;-webkit-appearance:none;flex-shrink:0;
+  width:20px;height:20px;padding:0;margin:1px 0 0;border:1.5px solid var(--line-check);border-radius:0;
+  background:var(--paper);
+  cursor:pointer;transition:background-color .15s var(--ease),border-color .15s var(--ease)}
+.ls-lead-form .ls-agree input:checked{border-color:var(--ink);
+  background:var(--ink) url('../../img/check.svg') center / 12px 9px no-repeat}
+.ls-lead-form .ls-agree input:focus-visible{outline:none;border-color:var(--ink);
+  box-shadow:var(--ring)}
+.ls-lead-form .ls-agree a{color:inherit;text-underline-offset:2px}
+/* строка про отзыв согласия: подверстана под текст чекбокса, не под квадрат */
+.ls-lead-form .ls-agree-note{margin:8px 0 0;padding-left:32px;
+  font-size:var(--t-cap);line-height:1.4;color:var(--muted)}
+.ls-lead-form .ls-agree-note a{color:inherit;text-underline-offset:2px}
+
+/* ── Отклик на действие ──────────────────────────────────────────────
+   Интерфейс должен отвечать на касание, иначе непонятно, приняли ввод или нет.
+   Расстояния маленькие: заметно телом, а не глазом. */
+
+/* поле при фокусе слегка приподнимается — видно, куда попал курсор */
+.ls-lead-form input,
+.ls-lead-form textarea{transition:border-color .15s var(--ease),
+  box-shadow .18s var(--ease),translate .18s var(--ease)}
+.ls-lead-form input:focus,
+.ls-lead-form textarea:focus{translate:0 -1px}
+
+/* чип отжимается при нажатии, как физическая кнопка */
+.ls-way label:active span{scale:.97}
+.ls-way span{transition:border-color .15s var(--ease),color .15s var(--ease),
+  background-color .15s var(--ease),scale .12s var(--ease)}
+
+/* галочка согласия: короткий отклик на клик */
+.ls-lead-form .ls-agree input:active{scale:.92}
+.ls-lead-form .ls-agree input{transition:background-color .15s var(--ease),
+  border-color .15s var(--ease),scale .12s var(--ease)}
+
+@media (prefers-reduced-motion: reduce){
+  .ls-lead-form input:focus,.ls-lead-form textarea:focus{translate:none}
+  .ls-way label:active span,.ls-lead-form .ls-agree input:active{scale:1}
+}
+
+/* Пара «телефон + почта»: на телефоне поля идут друг под другом, как раньше,
+   строкой встают только на широком экране. */
+.ls-lead-form .ls-pair{display:contents}
+
+/* Что будет после отправки. На телефоне — обычный блок под формой. */
+.ls-lead-side h3{margin:44px 0 0;font-family:'Raptor V2 Premium',sans-serif;
+  font-weight:700;font-size:var(--t-h3);letter-spacing:-.005em;color:var(--ink)}
+.ls-lead-next{margin:14px 0 0;padding:0 0 0 20px;list-style:decimal;
+  font-size:var(--t-ui);line-height:1.5;color:var(--ink-2)}
+.ls-lead-next li + li{margin-top:8px}
+.ls-lead-next::marker{color:var(--muted)}
+
+
+
+/* Фирменный элемент за формой. На телефоне он маленький и в углу:
+   страница и так узкая, крупная клякса забрала бы всё внимание.
+
+   Знак вставлен разметкой, а не картинкой, и красится цветом направления.
+   Здесь берётся именно фирменный `--dir`, а не затемнённый `--dir-ink`:
+   знак лежит заливкой на 14% прозрачности, читаемость ему не нужна, нужен
+   оттенок. Где направление не задано, цвет равен цвету текста. */
+/* Знак не должен ложиться под текст: на телефоне он стоит в правом верхнем
+   углу, правее конца заголовка (тот кончается около 305 на 375) и выше
+   подзаголовка. Срезан краем плашки сверху и справа. */
+.ls-lead-mark{position:absolute;right:-28px;top:-20px;width:96px;height:auto;
+  color:var(--dir);opacity:.14;pointer-events:none;z-index:0}
+.ls-lead-form > *:not(.ls-lead-mark){position:relative;z-index:1}
+
+@media (min-width: 600px){
+  .ls-lead-form textarea{height:52px;min-height:52px}
+}
+
+/* ── Широкий экран ───────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Форма: серая плашка во всю ширину, поля внутри — нет.
+       Растянутые на 1240 поля выглядят как анкета, а не как заявка.
+       Справа от формы не пустота, а второй канал: мессенджерами пишут
+       заметно чаще, чем звонят, прятать их под кнопкой жалко. */
+    /* Серая плашка получает воздух сверху и снизу: с прежними 26 пикселями
+       она давила на содержимое, хотя по бокам поля уже были как у секций. */
+    .ls-lead-form{display:grid;
+      grid-template-columns:minmax(0,640px) minmax(0,1fr);
+      column-gap:80px;align-items:start;
+      padding-top:72px;padding-bottom:80px}
+    /* На широком — в правом нижнем углу, под колонкой «Что дальше»:
+       её текст кончается на трети высоты формы, ниже пусто. Левый край
+       не заходит на колонку формы (поле + 640 + 80): на 1024 середина
+       экрана приходится внутрь неё, и звезда ложилась на текст согласия. */
+    .ls-lead-mark{right:auto;left:max(calc(50% + 120px), calc(var(--side) + 740px));
+      top:auto;bottom:-60px;width:280px;opacity:.12}
+    .ls-lead-form h2,.ls-lead-form .ls-sub,.ls-lead-form form{grid-column:1}
+    .ls-lead-form .ls-lead-side{grid-column:2;grid-row:2 / span 2;align-self:start;
+      max-width:38ch}
+    .ls-lead-side h3{margin:0}
+    /* шаги мельче заголовка: одинаковый кегль делал их равными по весу,
+       хотя заголовок должен вести */
+    .ls-lead-next{margin-top:16px;font-size:var(--t-ui)}
+    .ls-lead-next li + li{margin-top:10px}
+    .ls-lead-form .ls-or{margin:36px 0 0;font-size:var(--t-ui);line-height:1.5}
+    .ls-lead-form .ls-way-row{flex-wrap:wrap}
+    /* Телефон и почта в строку: поля парные, вместе занимали половину высоты
+       формы и делали её похожей на анкету. */
+    /* Флекс, а не сетка: скрытые подписи внутри пары получали свои ячейки
+       и сдвигали второе поле на десять пикселей вниз. */
+    .ls-lead-form .ls-pair{display:flex;gap:14px;align-items:flex-start}
+    /* отступ между полями нужен, когда они столбиком; в строке он сдвигал
+       почту на десять пикселей ниже телефона */
+    /* отступ у полей задан длинным селектором в компоненте — повторяем его
+       специфичность, иначе почта остаётся на десять пикселей ниже телефона */
+    .ls-lead-form .ls-pair input{flex:1 1 0;min-width:0}
+    .ls-lead-form .ls-pair input:not(#contact):not([type=file]):not([type=checkbox]):not([type=radio]){margin-top:0}
+    /* Кнопка по содержимому: во всю ширину она читается полосой, а не кнопкой.
+       Та же правка, что на первом экране. */
+    /* width:auto не помогает: кнопка — блочный флекс и тянется по родителю.
+       Нужна ширина по содержимому. */
+    .ls-lead-form form .ls-btn{width:fit-content;min-width:300px;padding:0 40px}
+}

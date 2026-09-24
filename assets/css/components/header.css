@@ -1,0 +1,326 @@
+/* Шапка: вордмарк и бургер поверх фотографии. */
+
+.ls-topbar{height:var(--topbar);padding:env(safe-area-inset-top) 20px 0;
+  display:flex;align-items:center;gap:10px;
+  position:sticky;top:0;z-index:6;margin-bottom:calc(-1 * var(--topbar));
+  /* ── Палитра шапки ────────────────────────────────────────────────
+     Шапка бывает в трёх состояниях: прозрачная поверх фотографии, белая
+     полоса и тёмная при открытом каталоге. Раньше каждое состояние
+     прописывалось отдельно для самой шапки, кнопки и поля поиска — правил
+     набиралось два десятка, и при добавлении элемента про часть пар забывали:
+     так кнопка на категории оказалась чёрной на чёрном, а поле осталось
+     светлым на тёмной шапке.
+     Теперь состояние меняет только этот набор переменных, а элементы читают
+     их и не знают ни про страницы, ни про состояния. */
+  --bar-bg:transparent;
+  --bar-fg:var(--paper);
+  --bar-line:transparent;
+  --bar-fill:var(--fill-dark);        /* подложка поля поиска */
+  --bar-fill-2:var(--fill-dark-2);    /* она же по наведению */
+  --bar-fill-3:var(--fill-dark-3);    /* она же в фокусе */
+  --bar-hint:var(--on-dark-3);        /* подпись в поле */
+  --bar-btn-bg:var(--paper);          /* кнопка всегда наоборот к шапке */
+  --bar-btn-fg:var(--ink);
+
+  background:var(--bar-bg);color:var(--bar-fg);border-bottom:1px solid var(--bar-line);
+  /* Переход длиннее короткого скачка, но цвет текста и фон идут вразнобой —
+     иначе на середине они совпадают и шапка на мгновение пропадает.
+     К белому: текст темнеет быстро, пока фон ещё прозрачный.
+     Обратно: текст светлеет с задержкой, когда фон уже стал прозрачным. */
+  transition:background-color .34s var(--ease),color .3s var(--ease) .16s,
+             border-color .34s var(--ease),height .28s var(--ease)}
+.ls-topbar.ls-is-stuck{transition:background-color .34s var(--ease),
+  color .14s var(--ease),border-color .34s var(--ease),height .28s var(--ease)}
+
+/* Затемнение под шапкой: раньше принадлежало фотографии и уезжало вместе с ней.
+   Теперь едет с шапкой и гаснет, когда та становится белой полосой. */
+.ls-topbar::before{content:"";position:absolute;left:0;right:0;top:0;
+  height:calc(var(--topbar) + 110px);z-index:-1;pointer-events:none;
+  transition:opacity .2s var(--ease);
+  background:linear-gradient(
+    var(--ink) 0,
+    rgba(var(--ink-rgb),.88) calc(var(--topbar) * .38),
+    rgba(var(--ink-rgb),.80) calc(var(--topbar) * .7),
+    rgba(var(--ink-rgb),.66) var(--topbar),
+    rgba(var(--ink-rgb),.46) calc(var(--topbar) + 18px),
+    rgba(var(--ink-rgb),.31) calc(var(--topbar) + 34px),
+    rgba(var(--ink-rgb),.20) calc(var(--topbar) + 50px),
+    rgba(var(--ink-rgb),.12) calc(var(--topbar) + 66px),
+    rgba(var(--ink-rgb),.06) calc(var(--topbar) + 82px),
+    rgba(var(--ink-rgb),.02) calc(var(--topbar) + 96px),
+    var(--ink-0) calc(var(--topbar) + 110px))}
+.ls-topbar.ls-is-stuck::before{opacity:0}
+
+/* фотография ушла вверх — шапка становится белой полосой с кнопкой */
+/* Светлая полоса: страница без фотографии и любая страница после прокрутки. */
+.ls-topbar.ls-is-stuck,.ls-no-hero .ls-topbar{
+  --bar-bg:var(--paper);
+  --bar-fg:var(--ink);
+  --bar-line:var(--line);
+  --bar-fill:var(--line);
+  --bar-fill-2:var(--line-strong);
+  --bar-fill-3:var(--line-strong);
+  --bar-hint:var(--muted);
+  --bar-btn-bg:var(--ink);
+  --bar-btn-fg:var(--paper)}
+
+.ls-topbar .ls-wordmark{margin-right:auto}
+.ls-topbar a{color:inherit;text-decoration:none}
+/* Логотип из бренд-ассетов, а не набранное шрифтом название. Показывает его
+   маска: цвет берётся от родителя, поэтому знак чернеет и белеет вместе
+   с шапкой одним правилом, а не двумя файлами.
+
+   На телефоне это цельный файл `logo.svg`, пропорции 167×26. На широком экране
+   логотип пересобран: знак слева во всю высоту, справа название, под ним
+   дескриптор — поэтому знак и название лежат отдельными файлами. Границы
+   вырезаны по настоящим bbox путей, а не на глаз: знак 16.74×25.12,
+   название 146.4×16.87. */
+.ls-wordmark{display:block;width:124px;height:19px;background-color:currentColor;
+  -webkit-mask:url(../../img/logo.svg) no-repeat left center/contain;
+  mask:url(../../img/logo.svg) no-repeat left center/contain}
+.ls-wordmark-mark,.ls-wordmark-name,.ls-wordmark-text{display:none}
+/* Навигация, телефон, подпись под ним и поиск — только на широком экране:
+   на телефоне их место занимает бургер, а весь список лежит в панели меню.
+   Обёртка телефона прозрачна, чтобы на телефоне порядок в шапке не менялся. */
+.ls-topbar-tel{display:contents}
+.ls-topnav,.ls-topbar-phone,.ls-topbar-search,.ls-topbar-tel-note{display:none}
+
+.ls-burger{appearance:none;-webkit-appearance:none;
+  display:flex;align-items:center;justify-content:center;width:44px;height:44px;
+  margin-right:-11px;background:none;border:0;cursor:pointer;color:currentColor}
+.ls-burger:focus-visible{outline:2px solid currentColor;outline-offset:-4px}
+
+/* кнопка в шапке: появляется вместе с белым состоянием */
+/* Вид и размер — от `.ls-btn btn-main btn-xs`; здесь появление вместе с белым
+   состоянием шапки и переход цвета заодно с ней.
+   Цвет текста задан заново: `.ls-topbar a{color:inherit}` выше специфичнее
+   класса `.ls-btn-main`, и на категории кнопка получалась чёрной на чёрном.
+   Через `:not(.ls-btn)` чинить нельзя — это поднимает специфичность правила
+   и гасит подчёркивание по наведению у пунктов навигации. */
+.ls-topbar .ls-topbar-cta{background:var(--bar-btn-bg);color:var(--bar-btn-fg);opacity:0;transform:translateY(-4px);pointer-events:none;
+  transition:opacity .2s var(--ease),transform .2s var(--ease),
+             background-color .34s var(--ease),color .34s var(--ease)}
+.ls-topbar.ls-is-stuck .ls-topbar-cta{opacity:1;transform:none;pointer-events:auto}
+
+/* Страница без фотографии: шапка белая с самого начала, затемнения нет */
+/* без фотографии шапка занимает место в потоке: иначе крошка уезжает под неё */
+/* Без фотографии шапка занимает место в потоке: иначе крошка уезжает под неё.
+   Чтобы сжатие при прокрутке не двигало страницу, разницу высот возвращаем
+   отступом — место под шапкой остаётся прежним, а полоса становится тоньше.
+   Пробовал вместо этого распорку перед шапкой: в колонке-флексе она
+   не удержалась. */
+.ls-no-hero .ls-topbar{margin-bottom:0}
+.ls-no-hero .ls-topbar::before{display:none}
+.ls-no-hero .ls-topbar .ls-topbar-cta{opacity:1;transform:none;pointer-events:auto}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+@media (min-width: 1024px){
+    /* Шапка всегда в первой строке сетки. Без этого она уходит в общий поток
+       и оказывается ниже первого экрана. */
+    .ls-topbar{grid-row:1;margin-bottom:0;
+      padding-left:var(--side);padding-right:var(--side)}
+    /* На широком экране шапка — строка сетки, и высота строки задаётся ею же.
+       Компенсирующий отступ работает так же: строка остаётся прежней. */
+    .ls-topbar .ls-topbar-cta{opacity:1;transform:none;pointer-events:auto}
+    /* Пересобранный логотип: знак во всю высоту, текст в две строки рядом.
+       Высота знака 30 подобрана так, чтобы совпасть с текстовым блоком:
+       название 14 плюс зазор 3 плюс строка дескриптора 13,2 — те же 30. */
+    /* В потоке шапки остаётся только строка названия: знак и дескриптор вынесены
+       из неё. Иначе шапка центровалась по всему блоку из двух строк, и пункты
+       навигации попадали в промежуток между названием и дескриптором —
+       не выровненные ни с тем, ни с другим. Теперь всё стоит по названию. */
+    /* Отступ снизу поднимает логотип на свою половину, 6 пикселей: в потоке
+       шапки лежит только строка названия, а видимый блок — это ещё знак сверху
+       и дескриптор снизу. Без поправки над логотипом оставалось 26 пикселей,
+       под ним 14; теперь поровну. */
+    .ls-topbar .ls-wordmark{position:relative;display:block;margin-bottom:12px;
+      width:147px;height:14px;padding-left:26px;
+      background:none;-webkit-mask:none;mask:none}
+    .ls-wordmark-mark,.ls-wordmark-name{display:block;background-color:currentColor;
+      -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+      -webkit-mask-position:left center;mask-position:left center;
+      -webkit-mask-size:contain;mask-size:contain}
+    /* Знак на 26, а не вровень с текстом на 30: сплошная геометрическая фигура
+       читается тяжелее букв той же высоты и перетягивала на себя. Разница
+       оптическая, поэтому знак просто центрируется по текстовому блоку. */
+    /* Знак центрируется по обеим строкам, а не по одной первой. В потоке
+       остаётся только название (14), под ним висит дескриптор (13,2) —
+       середина текста на 13,6 от верха, знак высотой 26 начинался бы на 0,6.
+       Ставим 0: по геометрии знак и текст сходились, а по краске нет —
+       в маску названия входит выносной элемент «Д», а у строки дескриптора
+       снизу полулиньяж, и настоящая краска текста кончается на пиксель выше.
+       Замерено по пикселям рендера, не на глаз. */
+    .ls-wordmark-mark{position:absolute;left:0;top:0;
+      width:17px;height:26px;
+      -webkit-mask-image:url(../../img/logo-mark.svg);
+      mask-image:url(../../img/logo-mark.svg)}
+    .ls-wordmark-text{display:block}
+    .ls-wordmark-name{width:121px;height:14px;
+      -webkit-mask-image:url(../../img/logo-name.svg);
+      mask-image:url(../../img/logo-name.svg)}
+    /* 11 — единственное значение вне шкалы, и оно здесь оправдано: дескриптор
+       должен быть заметно мельче названия, а ближайший токен 12 сравнивается
+       с ним по массе. */
+    /* Отступ нулевой, а зазор всё равно есть: в маску названия входит выносной
+       элемент «Д», это 2,4 пикселя пустоты снизу, плюс полулиньяж строки
+       дескриптора. При отступе 3 разрыв набегал под семь. */
+    .ls-wordmark-tag{position:absolute;left:26px;top:100%;
+      font-size:var(--t-micro);line-height:1.2;letter-spacing:.01em;opacity:.62;
+      white-space:nowrap}
+    /* на десктопе разделы раскрыты в меню — бургер не нужен */
+    .ls-burger{display:none}
+
+    /* Вордмарк слева, рядом навигация, кнопка расчёта прижата вправо. */
+    .ls-topbar{gap:28px}
+    .ls-topbar .ls-wordmark{margin-right:0}
+    /* правая группа: поиск, телефон и кнопка расчёта. Распорка на телефоне —
+       с 1280 она переезжает на поле поиска, которое встаёт перед ним. */
+    /* Телефон с подписью — как логотип: в потоке шапки остаётся только строка
+       номера, подпись висит под ней. Иначе шапка центровалась бы по блоку
+       из двух строк, и пункты меню разъехались бы с номером. */
+    /* Пара «номер плюс подпись» центруется как целое: нижний отступ в 13
+       поднимает номер на половину строки подписи, и середина пары совпадает
+       с серединой поля и кнопки. Иначе подпись висела ниже ряда и номер
+       читался съехавшим — глаз считает центр пары, а не строки. */
+    .ls-topbar-tel{position:relative;display:block;margin-left:auto;margin-bottom:13px}
+    /* Табличных цифр здесь нет намеренно: они нужны, когда числа стоят
+       столбиком и должны совпадать по разрядам — в цене, в реквизитах.
+       Одиночный номер в строке ссылок от них выглядел разряженным
+       и выпадал из ряда пунктов меню. */
+    .ls-topbar-phone{display:block;font-size:var(--t-ui);white-space:nowrap}
+    /* Кегль и гашение те же, что у дескриптора логотипа: в шапке это одна
+       и та же роль — подпись под главной строкой. */
+    .ls-topbar-tel-note{display:block;position:absolute;top:100%;left:0;
+      margin-top:1px;font-size:var(--t-micro);line-height:1.2;letter-spacing:.01em;
+      white-space:nowrap;opacity:.62}
+    .ls-topnav{display:flex;align-items:center;gap:24px}
+
+    /* Кнопка «Услуги» открывает ту же панель, что и бургер на телефоне:
+       второй навигации в проекте нет и заводить не надо. */
+    .ls-topnav-menu{appearance:none;-webkit-appearance:none;
+      display:flex;align-items:center;gap:6px;
+      padding:0;border:0;background:none;cursor:pointer;color:inherit;
+      font-family:inherit;font-size:var(--t-ui);line-height:1.3}
+    .ls-topnav a{font-size:var(--t-ui)}
+    .ls-topnav-menu svg{transition:transform .24s var(--ease)}
+    .ls-topnav-menu[aria-expanded="true"] svg{transform:rotate(180deg)}
+    /* подчёркивание только по наведению: в шапке четыре элемента подряд,
+       постоянные линии превращают её в частокол */
+    .ls-topnav a,.ls-topbar-phone{text-decoration:underline;text-decoration-color:transparent;
+      text-underline-offset:3px;text-decoration-thickness:1px;
+      transition:text-decoration-color .18s var(--ease)}
+    .ls-topnav a:hover,.ls-topnav-menu:hover,.ls-topbar-phone:hover{text-decoration-color:currentColor}
+    .ls-topnav-menu:hover{text-decoration:underline;text-underline-offset:3px;
+      text-decoration-thickness:1px}
+    .ls-topnav-menu:focus-visible,.ls-topnav a:focus-visible,.ls-topbar-phone:focus-visible{
+      outline:2px solid currentColor;outline-offset:3px}
+
+    /* Со страницей без фотографии (категория) шапка белая. Цвета берёт
+       общий светлый набор выше, здесь только затемнение под ней не нужно. */
+    .ls-card:not(:has(.ls-hero)) .ls-topbar::before{display:none}
+    /* С кадром шапка ведёт себя как на мобильном: пока под ней фотография —
+       прозрачная со светлым текстом; как только страница наехала — белеет
+       и цвета инвертируются. Состояние ставит header.js по метке прокрутки. */
+    .ls-card:has(.ls-hero) .ls-topbar{position:sticky;top:0;z-index:6}
+    .ls-card:has(.ls-hero) .ls-topbar::before{display:none}
+}
+
+
+
+/* ── Сжатие после прокрутки ────────────────────────────────────── */
+/* Вверху шапка просторная, дальше становится компактной полосой: там она уже
+   не первый экран, а служебная строка. Работает на обеих страницах — с тех
+   пор как шапка и без фотографии лежит поверх содержимого, а место под неё
+   держит отступ первого блока, сжатие ничего не двигает. */
+@media (min-width: 1024px){
+  .ls-topbar.ls-is-stuck{height:var(--topbar-stuck)}
+  /* Компенсация сжатия стоит рядом с самим сжатием: на телефоне шапка высоту
+     не меняет, а правило жило снаружи медиазапроса и вычитало два пикселя —
+     содержимое подпрыгивало, и блок по якорю заезжал под шапку. */
+  .ls-no-hero .ls-topbar.ls-is-stuck{margin-bottom:calc(var(--topbar) - var(--topbar-stuck))}
+  /* панель меню падает от нижнего края шапки, а он теперь подвижный */
+  .ls-topbar.ls-is-stuck ~ .ls-menu{top:var(--topbar-stuck)}
+}
+
+
+/* ── От 1280: поле поиска в шапке ───────────────────────────────── */
+/* Ниже этой ширины места нет: шапка без поля уже набирает 976 пикселей
+   из 928 доступных при 1024, и поиск остаётся в панели меню.
+   Закрытое поле нарочно скромное — 200 в ширину и 34 в высоту: это служебный
+   инструмент рядом с телефоном и кнопкой, а не призыв искать. */
+/* Порог 1080. Между навигацией и телефоном свободно 192 пикселя при 1024,
+   дальше растёт вместе с окном. Закрытому полю нужно 200 плюс зазоры —
+   набирается к 1080. Раскрытому нужно 344, и они появляются только к 1240,
+   поэтому в промежутке 1080–1239 на время ввода уступает навигация:
+   поле лежит в слоте абсолютно и растёт влево, ей на место. Человек в этот
+   момент ищет, разделы ему не нужны.
+
+   Тот же порог продублирован в assets/js/menu-search.js: слот в шапке
+   показывает CSS, а поле в него кладёт скрипт. Разойдутся — на промежуточных
+   ширинах в шапке будет пустое место вместо поля.
+
+   Ниже 1080 поиск живёт внутри панели меню: там его негде поставить. */
+@media (min-width: 1080px){
+  /* Слот держит место в шапке, само поле лежит в нём и прижато к правому краю:
+     при раскрытии оно вырастает влево до ширины списка, и поле со списком
+     становятся одной плашкой. 200 хватает закрытому: подпись «Поиск услуг» —
+     это 91 пиксель, а внутри при полях 32 остаётся 136. */
+  .ls-topbar-search{display:block;position:relative;margin-left:auto;
+    width:200px;height:34px}
+  .ls-topbar-tel{margin-left:0}
+  .ls-topbar-search .ls-menu-search{position:absolute;right:0;top:0;
+    width:200px;max-width:none;margin:0;
+    transition:width .22s var(--ease)}
+
+  /* Без обводки, на лёгкой подложке. В шапке кроме этого поля только текстовые
+     ссылки да кнопка расчёта — контур делал из поля вторую кнопку и спорил
+     с ней. Подложка читается как поверхность и в тёмном состоянии мягче. */
+  .ls-topbar-search .ls-menu-search input{height:34px;padding:0 32px;
+    border:0;background:var(--bar-fill);color:inherit;
+    font-size:var(--t-ui);
+    transition:background-color .18s var(--ease)}
+  .ls-topbar-search .ls-menu-search input:hover{background:var(--bar-fill-2)}
+  .ls-topbar-search .ls-menu-search input:focus{background:var(--bar-fill-3)}
+  .ls-topbar-search .ls-menu-search input::placeholder{color:var(--bar-hint)}
+  /* Кольцо фокуса внутрь поля: снаружи его снизу закрывал список подсказок,
+     который подходит вплотную. Отказаться от кольца нельзя — с клавиатуры
+     иначе не видно, где ты. Цвет от шапки: белое на тёмной, тёмное на белой. */
+  .ls-topbar-search .ls-menu-search input:focus-visible{outline:none;
+    box-shadow:inset 0 0 0 2px currentColor}
+  .ls-topbar-search .ls-menu-search-ico{left:9px;width:16px;height:16px}
+  .ls-topbar-search .ls-menu-search-clear{width:32px;height:34px}
+
+
+
+  /* Раскрытое: поле и подсказки — одна тёмная плашка. Поле берёт ширину
+     списка, теряет нижнюю границу и красится в тот же цвет; список подходит
+     вплотную, без верхней границы и без зазора. Состояние ловим по самому
+     списку — своего класса скрипт не ставит. */
+  .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search{width:344px}
+  .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search input,
+  .ls-topbar.ls-is-stuck .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search input,
+  .ls-no-hero .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search input{
+    background:var(--ink);color:var(--paper);
+    border:1px solid var(--line-dark);border-bottom:0}
+  .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search input::placeholder{
+    color:var(--on-dark-3)}
+  .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search-ico,
+  .ls-topbar-search:has(.ls-menu-hints:not([hidden])) .ls-menu-search-clear{
+    color:var(--on-dark-3)}
+
+  /* Список: та же ширина и тот же правый край, что у раскрытого поля, поэтому
+     боковое поле 32 совпадает с отступом набранного текста — у поля слева лупа
+     и набранное начинается на тех же 32 от края. */
+  .ls-topbar-search .ls-menu-hints{position:absolute;top:100%;right:0;left:auto;
+    width:344px;max-height:60vh;overflow-y:auto;
+    padding:12px 32px 14px;background:var(--ink);color:var(--paper);
+    border:1px solid var(--line-dark);border-top:0;z-index:7}
+}
+
+/* Пока места на раскрытое поле не хватает, навигация уступает его на время
+   ввода. `visibility`, а не `display`: строка шапки не должна перестраиваться,
+   иначе телефон и кнопка прыгнут вбок. */
+@media (min-width: 1080px) and (max-width: 1239px){
+  .ls-topbar:has(.ls-menu-hints:not([hidden])) .ls-topnav{visibility:hidden}
+}

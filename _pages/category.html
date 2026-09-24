@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<!-- @include head.html -->
+<!-- @include styles.html -->
+<title>Листовая полиграфия — Литера.Студия</title>
+<meta name="description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг.">
+
+<!-- Канонический адрес и карточка для мессенджеров — как на карточке услуги. -->
+<link rel="canonical" href="https://litera.studio/listovaya-poligrafiya">
+<meta property="og:title" content="Листовая полиграфия — дизайн и печать">
+<meta property="og:description" content="Дизайн и печать листовой полиграфии: визитки, открытки, сертификаты, приглашения. 17 услуг.">
+<meta property="og:url" content="https://litera.studio/listovaya-poligrafiya">
+<meta property="og:image" content="https://litera.studio/assets/img/p1.jpg">
+
+<!-- Путь для поиска: в выдаче он показывается вместо адреса страницы.
+     Разметку нельзя вынести в отдельный файл: по внешней ссылке поисковики
+     структурированные данные не читают. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Главная","item":"https://litera.studio/"},
+{"@type":"ListItem","position":2,"name":"Полиграфия","item":"https://litera.studio/poligrafiya"},
+{"@type":"ListItem","position":3,"name":"Листовая полиграфия","item":"https://litera.studio/listovaya-poligrafiya"}]}
+</script>
+<!-- Список услуг раздела для поиска: тот же перечень, что виден на странице.
+     Собран из разметки скриптом, поэтому названия и адреса совпадают дословно.
+     При правке списка на странице пересобрать и здесь. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Листовая полиграфия","url":"https://litera.studio/listovaya-poligrafiya","mainEntity":{"@type":"ItemList","numberOfItems":17,"itemListElement":[{"@type":"ListItem","position":1,"name":"Визитки","url":"https://litera.studio/dizajn-vizitki"},{"@type":"ListItem","position":2,"name":"Открытки","url":"https://litera.studio/dizajn-otkrytki"},{"@type":"ListItem","position":3,"name":"Подарочные сертификаты","url":"https://litera.studio/dizajn-sertifikata"},{"@type":"ListItem","position":4,"name":"Конверты","url":"https://litera.studio/dizajn-konverta"},{"@type":"ListItem","position":5,"name":"Приглашения","url":"https://litera.studio/dizajn-priglasheniya"},{"@type":"ListItem","position":6,"name":"Бейджи","url":"https://litera.studio/dizajn-bejdzha"},{"@type":"ListItem","position":7,"name":"Листовки","url":"https://litera.studio/dizajn-listovki"},{"@type":"ListItem","position":8,"name":"Грамоты","url":"https://litera.studio/dizajn-gramoty"},{"@type":"ListItem","position":9,"name":"Буклеты и лифлеты","url":"https://litera.studio/dizajn-bukleta-lifleta"},{"@type":"ListItem","position":10,"name":"Дипломы","url":"https://litera.studio/dizajn-diploma"},{"@type":"ListItem","position":11,"name":"Бирки","url":"https://litera.studio/dizajn-birki"},{"@type":"ListItem","position":12,"name":"Абонементы","url":"https://litera.studio/dizajn-abonementov"},{"@type":"ListItem","position":13,"name":"Фирменные бланки","url":"https://litera.studio/dizajn-blanka"},{"@type":"ListItem","position":14,"name":"Билеты","url":"https://litera.studio/dizajn-bileta"},{"@type":"ListItem","position":15,"name":"Флаеры","url":"https://litera.studio/dizajn-flaera"},{"@type":"ListItem","position":16,"name":"Кубарики","url":"https://litera.studio/dizajn-kubarika"},{"@type":"ListItem","position":17,"name":"Сертификаты для салонов","url":"https://litera.studio/dizajn-sertifikata-dlya-salona-krasoty"}]}}
+</script>
+</head>
+<body>
+<!-- Первая цель табуляции: с клавиатуры и со скринридера можно перескочить
+     шапку с меню и попасть сразу в содержимое. -->
+<a class="ls-skip" href="#main">К содержанию</a>
+<main class="ls-card ls-no-hero" id="main" data-dir="poligrafiya">
+<!-- @include top.html -->
+
+  <!-- Первый экран как на направлении: кадр под прозрачной шапкой, на него
+       наезжает серое поле (`page-lead.css`). Раздел — тоже промежуточная
+       страница, и уровень читается тем же приёмом. Отличие от направления:
+       описание и кнопка остаются в поле, поэтому поле само переходит в белый
+       (`is-solo`), а не передаёт переход соседнему блоку. -->
+  <div class="ls-lead">
+    <!-- Кадр первого экрана временно убран. Блок — в _hero-off/category.html -->
+
+    <div class="ls-page-lead is-solo ls-cat-intro">
+    <nav aria-label="Хлебные крошки">
+      <a class="ls-back" href="poligrafiya.html">
+        <svg width="12" height="11" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1L1 7l6 6M1 7h14"/></svg>
+        Полиграфия
+      </a>
+    </nav>
+    <h1 class="ls-title">Листовая полиграфия</h1>
+    <p class="ls-desc">Всё, что печатается на одном листе: от визитки до наградного диплома.
+      Нарисуем макет или напечатаем ваш.</p>
+    </div>
+  </div>
+
+  <!-- Кнопки «Обсудить» на первом экране раздела нет: человек ещё не выбрал
+       из 17 услуг, обсуждать нечего, а кнопка в шапке и так рядом.
+       Единственная ссылка ведёт к подсказке, что выбрать. -->
+  <p class="ls-cat-hint"><a href="#vybor">Что выбрать под задачу</a></p>
+
+  <!-- Метка для виджета связи: на телефоне он выезжает, когда первый экран
+       ушёл под шапку. Кадра здесь нет, поэтому метка своя, а не общая
+       с шапкой (assets/js/chat.js). -->
+  <i class="ls-chat-sentinel" aria-hidden="true"></i>
+
+  <section class="ls-catalog is-tiles">
+    <h2 class="ls-sr-only">Услуги раздела</h2>
+    <!-- Две колонки: список длинный, в одну он растягивал страницу и оставлял
+             пустой правую половину. Раскладку держит общий `.rows-cols`, тот же,
+             что у смежных услуг на карточке.
+             В CMS делить пополам на сервере: услуг в разделе может быть нечётно. -->
+        <!-- Группы по тому, зачем берут, а не по алфавиту: 17 строк подряд
+             на телефоне занимали два экрана без ориентиров. На широком экране
+             группы раскладываются в две колонки, по две в каждой. -->
+        <div class="ls-rows-cols">
+        <div class="ls-cat-col">
+        <div class="ls-cat-group">
+          <h3>Офис и знакомство</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="vizitki.html">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/vizitki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/vizitki.jpg" width="416" height="416" alt="Визитки с тиснением на плотном картоне">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Визитки</b></span>
+            <span class="ls-note">Классика знакомства: плотный картон, тиснение, скругление углов</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-blanka">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/blanki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/blanki.jpg" width="416" height="416" alt="Фирменный бланк с логотипом">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Фирменные бланки</b></span>
+            <span class="ls-note">Для писем и договоров, с реквизитами и логотипом</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-konverta">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/konverty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/konverty.jpg" width="416" height="416" alt="Конверты с фирменным дизайном">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Конверты</b></span>
+            <span class="ls-note">Под сертификат, приглашение или документы</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-kubarika">
+          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Кубарики</b></span>
+            <span class="ls-note">Блок для записей с логотипом, склеенный или в подставке</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        <div class="ls-cat-group">
+          <h3>События</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-priglasheniya">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/priglasheniya.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/priglasheniya.jpg" width="416" height="416" alt="Приглашения на плотной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Приглашения</b></span>
+            <span class="ls-note">Свадьба, открытие, корпоратив — от простых до конвертов с вкладышами</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-bileta">
+          <span class="ls-thumb" aria-hidden="true"></span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Билеты</b></span>
+            <span class="ls-note">С нумерацией, отрывным корешком и защитой от подделки</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-bejdzha">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/bejdzhi.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/bejdzhi.jpg" width="416" height="416" alt="Бейдж на ленте">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Бейджи</b></span>
+            <span class="ls-note">Для мероприятий и персонала, с держателем или лентой</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-diploma">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/diplomy.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/diplomy.jpg" width="416" height="416" alt="Благодарность на чёрной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Дипломы</b></span>
+            <span class="ls-note">Для курсов, конкурсов и внутренних наград</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-gramoty">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/gramoty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/gramoty.jpg" width="416" height="416" alt="Грамота на плотной бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Грамоты</b></span>
+            <span class="ls-note">Наградные бланки на плотной бумаге, с фольгой или тиснением</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        </div>
+        <div class="ls-cat-col">
+        <div class="ls-cat-group">
+          <h3>Раздача и торговля</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-listovki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/listovki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/listovki.jpg" width="416" height="416" alt="Листовка ювелирного бренда">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Листовки</b></span>
+            <span class="ls-note">Раздаточный тираж: акция, открытие, распродажа</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-flaera">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/flaery.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/flaery.jpg" width="416" height="416" alt="Флаер с акцией">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Флаеры</b></span>
+            <span class="ls-note">Небольшой формат под раздачу и вложение</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-bukleta-lifleta">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/buklety.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/buklety.jpg" width="416" height="416" alt="Буклеты с фигурной вырубкой">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Буклеты и лифлеты</b></span>
+            <span class="ls-note">Сложение в два-три фальца, под каталог услуг или инструкцию</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-birki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/birki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/birki.jpg" width="416" height="416" alt="Бирка на рубашке">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Бирки</b></span>
+            <span class="ls-note">На товар и упаковку, с отверстием под шнур</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        <div class="ls-cat-group">
+          <h3>Подарки</h3>
+          <ul class="ls-rows">
+          <li>
+        <a class="ls-row-body" href="sertifikat.html">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/sertifikaty.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/sertifikaty.jpg" width="416" height="416" alt="Подарочный сертификат BOURBAKI в конверте">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Подарочные сертификаты</b></span>
+            <span class="ls-note">Номинал, нумерация, срок действия — деньги вперёд услуги</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-sertifikata-dlya-salona-krasoty">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/salon.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/salon.jpg" width="416" height="416" alt="Сертификат салона красоты на дизайнерской бумаге">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Сертификаты для салонов</b></span>
+            <span class="ls-note">Отраслевой вариант: под процедуры и абонементы</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-abonementov">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/abonementy.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/abonementy.jpg" width="416" height="416" alt="Стопка абонементов">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Абонементы</b></span>
+            <span class="ls-note">На занятия и услуги, с отрывными купонами</span>
+          </span>
+        </a>
+      </li>
+          <li>
+        <a class="ls-row-body" href="https://litera.studio/dizajn-otkrytki">
+          <span class="ls-thumb">
+            <picture>
+              <source srcset="assets/img/services/otkrytki.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/services/otkrytki.jpg" width="416" height="416" alt="Открытка с яркой печатью">
+            </picture>
+          </span>
+          <span class="ls-text">
+            <span class="ls-row"><b>Открытки</b></span>
+            <span class="ls-note">К празднику и к заказу — с конвертом или отдельно</span>
+          </span>
+        </a>
+      </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+  </section>
+
+    <!-- Пары терминов. Вид строки берётся у «Частых вопросов» — тот же
+       компонент `.qa`, — но раскрытия здесь нет: пояснений пять, человек
+       читает их подряд, чтобы выбрать, и прятать их не за чем.
+       Раскрытие висит на `details.qa`, поэтому обычный `div` его не получает.
+       `<dl>` оставлен: для скринридера это пары «термин — пояснение». -->
+  <!-- Пары «это или то» аккордеоном, как вопросы на карточке: заголовки видны
+       сразу, ответ по касанию. В конце ответа ссылки на обе услуги — человек
+       прочитал разницу и уходит на нужную, а не ищет плитку наверху.
+       Колонки с контактами и цифрами здесь нет: на телефоне она висела между
+       парами и работами, цифры стоят перед формой. -->
+  <section class="ls-faq ls-choose" id="vybor">
+    <h2>Что выбрать под задачу</h2>
+    <div class="ls-qa-list">
+      <details class="ls-qa" name="choose">
+        <summary><span class="ls-q">Бейдж или бирка</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <p>Бейдж носит человек — на ленте или клипсе, с именем и должностью. Бирка вешается на товар: состав, размер, цена, отверстие под шнур.</p>
+        <p class="ls-qa-links"><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-bejdzha">Бейджи</a><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-birki">Бирки</a></p>
+      </details>
+      <details class="ls-qa" name="choose">
+        <summary><span class="ls-q">Листовка или флаер</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <p>Листовка крупнее, обычно А5 или А6, и на ней помещается текст: условия акции, адреса, схема проезда. Флаер меньше и рассчитан на раздачу в руки — одна мысль, один призыв.</p>
+        <p class="ls-qa-links"><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-listovki">Листовки</a><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-flaera">Флаеры</a></p>
+      </details>
+      <details class="ls-qa" name="choose">
+        <summary><span class="ls-q">Буклет или лифлет</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <p>Разница в сложении: у буклета один сгиб, у лифлета два и больше. Чем больше сгибов, тем больше блоков текста помещается, но тем аккуратнее нужна вёрстка.</p>
+        <p class="ls-qa-links"><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-bukleta-lifleta">Буклеты и лифлеты</a></p>
+      </details>
+      <details class="ls-qa" name="choose">
+        <summary><span class="ls-q">Диплом или грамота</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <p>Диплом выдают за пройденный курс или занятое место, грамоту — за заслугу или достижение. На печати разницы нет, отличается только текст и вёрстка.</p>
+        <p class="ls-qa-links"><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-diploma">Дипломы</a><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-gramoty">Грамоты</a></p>
+      </details>
+      <details class="ls-qa" name="choose">
+        <summary><span class="ls-q">Сертификат или абонемент</span><span class="ls-sign" aria-hidden="true"></span></summary>
+        <p>Сертификат на сумму: человек тратит номинал, как хочет. Абонемент на количество: восемь занятий, пять процедур. Абонементу нужны отрывные купоны или поле для отметок.</p>
+        <p class="ls-qa-links"><a class="ls-btn ls-btn-line ls-btn-xs" href="sertifikat.html">Сертификаты</a><a class="ls-btn ls-btn-line ls-btn-xs" href="https://litera.studio/dizajn-abonementov">Абонементы</a></p>
+      </details>
+    </div>
+  </section>
+
+    <section class="ls-works">
+      <div class="ls-works-head">
+        <div>
+          <!-- Заголовок остаётся в разметке, но не на экране: режимы читаются
+               как название блока, а скринридеру и поиску нужно слово. -->
+          <h2 class="ls-sr-only">Работы</h2>
+          <div class="ls-works-tabs" role="tablist" aria-label="Что показывать">
+            <button type="button" role="tab" aria-selected="true" aria-controls="works-photo" id="tab-photo">Фото<em>4</em></button>
+            <i aria-hidden="true">·</i>
+            <button type="button" role="tab" aria-selected="false" aria-controls="works-video" id="tab-video">Видео<em>3</em></button>
+          </div>
+        </div>
+        <a href="projects.html">В портфолио</a>
+      </div>
+      <!-- Плитки ведут в общее портфолио: отдельных страниц работ пока нет.
+         Когда появятся, CMS подставит их адреса вместо /projects. -->
+    <!-- Подпись работы: `.ls-work-tags` — это «отрасль · особенность». Туда же
+         может встать имя клиента вместо отрасли: «Ozon Реклама · коробка
+         с грамотой». Тогда клиенты подтверждают собой работы, и отдельный
+         список имён внизу не нужен. Пока стоят отрасли. -->
+    <!-- По одной работе на направление, в том же порядке, что и плитки
+         направлений выше: полиграфия, упаковка, логотип, брендинг. -->
+    <!-- По одной работе на группу услуг выше: офис, события, раздача, подарки.
+         Блок сквозной, состав работ — свой у каждого раздела. -->
+    <ul class="ls-works-list" id="works-photo" role="tabpanel" aria-labelledby="tab-photo">
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/woodberry-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/woodberry-1.jpg" width="900" height="600" alt="Визитки Woodberry Beauty: белая лицевая сторона и оборот с узором">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/woodberry-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/woodberry-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/woodberry-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/woodberry-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Визитки Woodberry Beauty</b>
+          <span class="ls-work-tags">Салон красоты · плотный картон, узор на обороте</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/premia-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-1.jpg" width="900" height="600" alt="Чёрное приглашение с золотой фольгой и раскладным силуэтом Москвы">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/premia-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/premia-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/premia-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Приглашение на премию в туризме</b>
+          <span class="ls-work-tags">Событие · фольга, конверт, объёмная вклейка</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="projects.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/intourist-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/intourist-1.jpg" width="900" height="600" alt="Буклеты Intourist с фигурной вырубкой по верхнему краю">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/intourist-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/intourist-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/intourist-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/intourist-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Буклеты Intourist</b>
+          <span class="ls-work-tags">Туризм · фигурная вырубка, лифлет</span>
+        </a></li>
+        <li class="ls-work ls-has-shots"><a href="case.html" data-cursor="Посмотреть работу">
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <i class="ls-zone" aria-hidden="true"></i>
+          <span class="ls-shots">
+            <picture>
+              <source srcset="assets/img/works/bourbaki-1.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-1.jpg" width="900" height="600" alt="Подарочный сертификат BOURBAKI в конверте с золотой рамкой">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/bourbaki-2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-2.jpg" width="900" height="600" alt="">
+            </picture>
+            <picture>
+              <source srcset="assets/img/works/bourbaki-3.webp" type="image/webp">
+              <img loading="lazy" decoding="async" src="assets/img/works/bourbaki-3.jpg" width="900" height="600" alt="">
+            </picture>
+          </span>
+          <span class="ls-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>Сертификат BOURBAKI</b>
+          <span class="ls-work-tags">Мода · тиснение фольгой, конверт</span>
+        </a></li>
+      </ul>
+          <ul class="ls-shorts-list" id="works-video" role="tabpanel" aria-labelledby="tab-video" hidden>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239176" data-video="191195025_456239176" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v1.jpg" width="405" height="720" alt="Печать подарочных сертификатов">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239214" data-video="191195025_456239214" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v2.jpg" width="405" height="720" alt="Сертификаты с тиснением, крупный план">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+        <li class="ls-short"><a href="https://vk.com/video191195025_456239129" data-video="191195025_456239129" data-cursor="Смотреть ролик" target="_blank" rel="noopener">
+          <img loading="lazy" decoding="async" src="assets/img/shorts/v3.jpg" width="405" height="720" alt="Готовый тираж сертификатов">
+          <i class="ls-short-play" aria-hidden="true"><svg width="15" height="18" viewBox="0 0 15 18" fill="currentColor" aria-hidden="true"><path d="M15 9 0 18V0Z"/></svg></i>
+        </a></li>
+      </ul>
+    </section>
+
+<!-- @include how.html -->
+
+<!-- @include proof.html -->
+
+<!-- @include lead.html -->
+
+  <section class="ls-about">
+    <h2>О листовой полиграфии</h2>
+    <p>Листовая полиграфия — всё, что печатается на одном листе и не требует сшивки:
+      визитки, листовки, открытки, сертификаты, бланки, дипломы. Тираж такой продукции
+      делается быстро, поэтому её берут под срок: к открытию, к празднику, к выставке.</p>
+    <details class="ls-more">
+      <summary><span class="ls-s-closed">Читать дальше</span><span class="ls-s-open">Свернуть</span></summary>
+      <p>Цена зависит от трёх вещей. Первая — бумага: дизайнерская с фактурой стоит дороже
+        мелованной, но и выглядит иначе. Вторая — тираж: подготовка стоит одинаково
+        и на пятидесяти экземплярах, и на тысяче, поэтому за штуку большой тираж выходит
+        заметно дешевле. Третья — отделка: тиснение фольгой, ламинация, скругление углов,
+        нумерация. Отделка добавляет и стоимость, и день-два к сроку.</p>
+      <p>Если макет уже есть, мы проверим его перед печатью и скажем, что поправить:
+        вылеты, цветовой профиль, шрифты в кривых. Если макета нет — нарисуем с нуля
+        и покажем распечатку до тиража, чтобы цвет не оказался сюрпризом.</p>
+    </details>
+  </section>
+
+    <section class="ls-related">
+    <div class="ls-related-head">
+      <h2>Ещё в полиграфии</h2>
+      <a href="poligrafiya.html">Все разделы</a>
+    </div>
+    <!-- В CMS делить пополам на сервере: разделов может быть нечётное число. -->
+    <ul class="ls-rows">
+        <li>
+          <a class="ls-row-body" href="https://litera.studio/dizajn-mnogostranichnoj-produkcii">
+            <span class="ls-thumb" aria-hidden="true"></span>
+            <span class="ls-text">
+              <span class="ls-row"><b>Многостраничные издания</b></span>
+              <span class="ls-note">Каталоги, брошюры, журналы — сшивка на скобу или пружину</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="ls-row-body" href="https://litera.studio/dizajn-kalendarya">
+            <span class="ls-thumb" aria-hidden="true"></span>
+            <span class="ls-text">
+              <span class="ls-row"><b>Календари</b></span>
+              <span class="ls-note">Настенные, карманные и домики — под подарок и под рассылку</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="ls-row-body" href="https://litera.studio/svadebnaya-poligrafiya">
+            <span class="ls-thumb" aria-hidden="true"></span>
+            <span class="ls-text">
+              <span class="ls-row"><b>Свадебная полиграфия</b></span>
+              <span class="ls-note">Приглашения, рассадка, конверты в одном оформлении</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="ls-row-body" href="https://litera.studio/pechati-papki-plastikovye-karty">
+            <span class="ls-thumb" aria-hidden="true"></span>
+            <span class="ls-text">
+              <span class="ls-row"><b>Папки, печати, пластиковые карты</b></span>
+              <span class="ls-note">Фирменные папки, оснастка печатей, карты лояльности</span>
+            </span>
+          </a>
+        </li>
+    </ul>
+  </section>
+</main>
+<!-- @include footer.html -->
+<!-- @include cookie.html -->
+<!-- @include chat.html -->
+<!-- @include dialogs.html -->
+<!-- @include scripts.html -->
+</body>
+</html>

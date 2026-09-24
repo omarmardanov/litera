@@ -1,0 +1,67 @@
+/* Связь в углу экрана — наш вид виджета Битрикс24. Как у них: не по колонке
+   страницы, а в углу окна с отступом; по клику раскрывается список каналов.
+
+   Квадраты, а не круги: круглых форм в проекте нет нигде, квадрат из крошки
+   в своё время убрали именно как чужеродную фигуру. */
+/* Слой ниже панели меню (5) и шапки (6): на телефоне панель раскрывается
+   во весь экран, и кнопка не должна висеть поверх неё. */
+.ls-chat{position:fixed;right:20px;bottom:20px;z-index:4;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+
+/* Пока висит баннер о куках, виджет поднимается над ним. Селектор соседа
+   работает, потому что в разметке он стоит после баннера. */
+.ls-cookie.ls-is-shown ~ .ls-chat{bottom:calc(20px + 72px)}
+.ls-cookie.ls-is-shown ~ .ls-chat{bottom:calc(20px + 72px)}
+
+/* Кнопка. Рамка и тень нужны обе: на белой странице держит тень,
+   на чёрном футере — светлая рамка, иначе чёрный квадрат пропадает. */
+.ls-chat-fab{appearance:none;-webkit-appearance:none;
+  display:flex;align-items:center;justify-content:center;
+  width:56px;height:56px;padding:0;border-radius:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);
+  border:1px solid var(--pop-edge);
+  box-shadow:var(--pop-shadow);
+  transition:background-color .18s var(--ease)}
+.ls-chat-fab:hover{background:var(--ink-hover)}
+.ls-chat-fab:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.ls-chat-fab svg{display:block}
+/* Значок меняется на крестик — тот же приём, что у бургера. Селектор с классом
+   кнопки обязателен: правило `.ls-chat-fab svg{display:block}` выше специфичнее
+   одиночного класса, и без этого крестик показывался вместе с репликой. */
+.ls-chat-fab .ls-chat-ico-close{display:none}
+.ls-chat-fab[aria-expanded="true"] .ls-chat-ico-talk{display:none}
+.ls-chat-fab[aria-expanded="true"] .ls-chat-ico-close{display:block}
+
+/* Спрятан до прокрутки первого экрана. Класс ставит chat.js и только
+   на телефоне: на первом экране виджет перекрывает кадр и главную кнопку.
+   `visibility` — чтобы спрятанная кнопка не ловила фокус с клавиатуры;
+   уходит с задержкой, иначе исчезновение будет без перехода. */
+.ls-chat{transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.ls-chat.ls-is-away{opacity:0;transform:translateY(10px);visibility:hidden;
+  pointer-events:none;
+  transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s .2s}
+
+/* Список каналов. `hidden` снимается скриптом сразу, видимость держит класс —
+   иначе перехода не будет. */
+.ls-chat-list{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+/* вид и размер — от `.ls-btn btn-light btn-s`; здесь только тень и появление */
+.ls-chat-item{box-shadow:var(--pop-shadow);
+  opacity:0;transform:translateY(8px);pointer-events:none;
+  transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.ls-chat-list.ls-is-open .ls-chat-item{opacity:1;transform:none;pointer-events:auto}
+/* лесенкой снизу вверх: ближний к кнопке появляется первым */
+.ls-chat-list.ls-is-open .ls-chat-item:nth-last-child(1){transition-delay:0s}
+.ls-chat-list.ls-is-open .ls-chat-item:nth-last-child(2){transition-delay:.04s}
+.ls-chat-list.ls-is-open .ls-chat-item:nth-last-child(3){transition-delay:.08s}
+
+@media (prefers-reduced-motion:reduce){
+  .ls-chat,.ls-chat-item{transition:none}
+}
+
+/* ── Широкий экран ─────────────────────────────────────────────── */
+/* Отступ чуть больше, но по-прежнему от края окна, а не по колонке страницы:
+   на живом сайте виджет стоит именно так. */
+@media (min-width: 1024px){
+  .ls-chat{right:24px;bottom:24px}
+  .ls-cookie.ls-is-shown ~ .ls-chat{bottom:calc(24px + 72px)}
+}

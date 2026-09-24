@@ -1,0 +1,104 @@
+/* Чем этот продукт может быть лучше обычного.
+
+   Здесь всё уникальное для услуги: у сертификата это нумерация, именные
+   и QR, у упаковки будет своё. Общее для всех услуг — бумага, форматы,
+   печать и отделка — живёт ниже, в «Материалах и отделке», и заполняется
+   один раз на весь сайт.
+   Не «из чего он сделан» — это ниже, в материалах и отделке, — а что
+   добавляется сверх обычного тиража: нумерация, именные, QR, корешок.
+   Клиент чаще всего не знает, что так можно, поэтому блок стоит сразу
+   под первым экраном.
+
+   Четыре в ряд на широком экране, лента с прокруткой на телефоне —
+   как в блоке работ. Снимок сверху, под ним название и одна строка про то,
+   зачем это нужно: не «что это», а «что вам это даёт». */
+
+.ls-can{margin-top:var(--gap-block);padding:0 20px}
+.ls-can ul{display:flex;gap:12px;margin:22px 0 0;padding:0 0 0 0;list-style:none;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.ls-can ul::-webkit-scrollbar{display:none}
+.ls-can li{flex:0 0 min(74%,300px);scroll-snap-align:start}
+
+/* Заглушка под снимок: тот же серый прямоугольник с уголком, что и в блоке
+   материалов, пока фотографий нет. */
+/* Кадр квадратный: в ряду из четырёх ширина упирается в колонку, поэтому
+   снимок задаётся высотой. Квадрат даёт 290 пикселей вместо 217
+   у горизонтального и не так вытягивает блок, как вертикаль. */
+/* Заглушка под снимок: тот же серый прямоугольник с уголком, что и в блоке
+   материалов, пока фотографий нет. */
+.ls-can-pic{display:block;width:100%;aspect-ratio:1;position:relative;overflow:hidden;
+  background:var(--placeholder);transition:scale .5s var(--ease)}
+.ls-can-pic::after{content:"";position:absolute;top:0;right:0;
+  border-left:18px solid transparent;border-top:18px solid var(--line-strong)}
+/* со снимком заглушка не нужна: уголок убираем, картинка кроет квадрат целиком */
+.ls-can-pic:has(img)::after{content:none}
+.ls-can-pic img{width:100%;height:100%;object-fit:cover;display:block}
+/* Кадр наезжает при наведении — тот же приём, что на карточках работ. */
+.ls-can li{overflow:hidden}
+.ls-can li:hover .ls-can-pic{scale:1.04}
+
+/* Название набрано заголовочным шрифтом и крупно: это не подпись к снимку,
+   а сама мысль — «так тоже можно». Мелким кеглем блок читался как каталог
+   позиций, чем он и не является. */
+.ls-can b{display:block;margin-top:14px;
+  font-family:'Raptor V2 Premium',sans-serif;font-weight:700;
+  font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
+.ls-can p{margin:4px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+@media (min-width: 1024px){
+  /* Ряд без прокрутки: пунктов немного, а тянуть ленту мышью неудобно —
+     то же соображение, что и в блоке работ. */
+  /* Лента и на широком экране: возможностей может быть больше трёх, а прятать
+     их под раскрытием оказалось незаметно. Три карточки видны, остальные —
+     за краем; листают стрелки у заголовка.
+
+     Лента обрезана по контейнеру: за его правую границу ничего не вылезает.
+     Что дальше — показывают стрелки и полоса под лентой.
+
+     Поля даёт сама секция, она в общем списке в layout.css. */
+  .ls-can ul{gap:28px;padding:0}
+  /* Треть контейнера, как было в сетке. */
+  .ls-can li{flex:0 0 calc((100% - 56px) / 3)}
+}
+
+/* ── Шапка блока и прокрутка ───────────────────────────────────────
+   Стрелки стоят у заголовка, а не по краям ленты: по краям они лежат
+   поверх снимков и мешают их разглядывать. */
+.ls-can-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.ls-can-nav{display:flex;gap:2px}
+/* Без рамок: это листание витрины, а не действие на странице. Рамка делала
+   из стрелки кнопку и тянула на себя внимание рядом с заголовком. Размер
+   сохранён — 36 пикселей, чтобы в стрелку было легко попасть. */
+.ls-can-nav button{appearance:none;-webkit-appearance:none;
+  display:grid;place-items:center;width:36px;height:36px;padding:0;
+  border:0;background:none;color:var(--glyph);
+  cursor:pointer;transition:color .15s var(--ease),opacity .15s var(--ease)}
+.ls-can-nav button:hover{color:var(--ink)}
+.ls-can-nav button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* На краю ленты кнопка гаснет, но остаётся на месте: если её убирать,
+   вторая прыгает вбок. */
+.ls-can-nav button[disabled]{opacity:.3;cursor:default}
+
+/* Полоса прокрутки: своя, а не браузерная. Браузерная выглядит по-разному
+   в каждой системе и на macOS исчезает совсем. Бегунок показывает, какая
+   часть ленты видна; тянуть его не нужно — для этого есть стрелки и жест. */
+.ls-can-bar{position:relative;height:2px;margin-top:22px;background:var(--line)}
+.ls-can-bar i{position:absolute;left:0;top:0;height:100%;width:33%;
+  /* серый, а не чёрный: полоса — подсказка, а не элемент управления.
+     Взят --glyph, а не --line-strong: тот почти сливается с дорожкой. */
+  background:var(--glyph);transition:translate .18s var(--ease)}
+
+@media (max-width: 1023px){
+  /* На телефоне листают пальцем — стрелки и полоса не нужны. */
+  .ls-can-nav,.ls-can-bar{display:none}
+
+  /* Лента обрезается по краю экрана, а не по полю секции: у края видно
+     начало следующей карточки, и понятно, что список продолжается.
+     Отрицательные поля выводят ленту из полей секции, своё поле слева
+     возвращает первую карточку на линию заголовка. Хвост в 8 — как
+     в ленте работ: 8 плюс зазор 12 дают справа те же 20. */
+  .ls-can ul{margin-left:calc(-1 * var(--side));margin-right:calc(-1 * var(--side));
+    padding-left:var(--side);scroll-padding-left:var(--side)}
+  .ls-can ul::after{content:"";flex:0 0 8px}
+}

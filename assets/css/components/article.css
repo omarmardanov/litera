@@ -1,0 +1,77 @@
+/* Страница статьи блога.
+
+   Сюда приходят из поиска по конкретной задаче («какой формат файла»),
+   читают и уходят, заявки из блога — редкость. Поэтому у текста один выход
+   в дело — врезка после выводов: «пришлите как есть, проверим», — и дальше
+   те же цифры, логотипы и форма, что на всех страницах. Даты нет, как
+   и в списке: последняя статья августа 2024. */
+
+/* Строка под заголовком: время чтения и тема, тема ведёт в блог */
+.ls-article-meta{margin:14px 0 0;font-size:var(--t-cap);color:var(--muted)}
+.ls-article-meta a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+.ls-article-meta a:hover{color:var(--ink)}
+
+/* Текст. Кегль базовый, интерлиньяж свободнее, чем в интерфейсных
+   абзацах: здесь читают, а не сканируют. Мера 62ch как у текста кейса. */
+.ls-article{margin-top:32px;padding:0 var(--side)}
+.ls-article > *{max-width:62ch}
+.ls-article p{margin:0;font-size:var(--t-base);line-height:1.6;color:var(--ink);text-wrap:pretty}
+.ls-article p + p{margin-top:16px}
+.ls-article h2{margin:40px 0 14px;font-size:var(--t-sub);line-height:1.2;text-wrap:balance}
+.ls-article a:not(.ls-btn){color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:var(--line-strong)}
+.ls-article a:not(.ls-btn):hover{text-decoration-color:var(--ink)}
+.ls-article ol,.ls-article ul{margin:16px 0 0;padding-left:1.4em;font-size:var(--t-base);line-height:1.6}
+.ls-article li + li{margin-top:8px}
+.ls-article li::marker{color:var(--muted)}
+.ls-article ol + p,.ls-article ul + p{margin-top:16px}
+/* Лид: первый абзац крупнее, он же description статьи */
+.ls-article > p:first-child{font-size:var(--t-h3);line-height:1.5;color:var(--ink-2)}
+
+/* Иллюстрация: во всю ширину колонки, подпись серым. На телефоне кадр
+   выходит на поля — иначе картинка 1110×625 ужимается до 350 и деталей
+   (артефакты сжатия, «ступеньки» растра) на ней не видно. */
+.ls-article figure{margin:24px calc(-1 * var(--side)) 0;max-width:none}
+.ls-article figure img{display:block;width:100%;height:auto;background:var(--placeholder)}
+.ls-article figcaption{margin:10px var(--side) 0;font-size:var(--t-cap);line-height:1.45;color:var(--muted)}
+.ls-article figure + p{margin-top:24px}
+
+/* Врезка после выводов: единственный призыв в тексте. Рамка как у контурной
+   кнопки, не серая плашка — плашки на странице уже есть у формы. */
+.ls-article-cta{margin:40px 0 0;padding:20px;border:1.5px solid var(--ink)}
+.ls-article-cta p{margin:0;font-size:var(--t-base);line-height:1.5}
+.ls-article-cta b{font-weight:600}
+/* Кнопка тянется на всю ширину, ссылка переносится под неё — и вставала
+   по левому краю, под серединой кнопки ничего не было. Центрируем, пока
+   кнопка во всю ширину; на широком экране они снова стоят в ряд слева. */
+.ls-article-cta .ls-article-cta-row{display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:center;gap:12px 20px;margin-top:16px}
+.ls-article-cta .ls-btn{width:100%;padding:0 28px}
+/* Цвет и подчёркивание: глобального стиля ссылок в проекте нет, каждый
+   компонент красит свои сам. Здесь был задан только кегль, и ссылка
+   падала в браузерный синий. */
+.ls-article-cta a:not(.ls-btn){font-size:var(--t-ui);color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  text-decoration-color:var(--line);transition:text-decoration-color .18s var(--ease)}
+.ls-article-cta a:not(.ls-btn):hover{text-decoration-color:var(--ink)}
+
+/* Ещё по теме: шапка блока — `.ls-works-head` из works.css, строки —
+   `.ls-rows`, как в списке блога (правила блога на них в blog.css). */
+.ls-article-more{margin-top:var(--gap-block);padding:0 var(--side)}
+/* У `.ls-works-head` свои поля: она рассчитана на секцию во всю ширину, где
+   их больше взять неоткуда. Здесь поля уже дала сама секция, и они удваивались —
+   заголовок стоял на 40, а миниатюры и текст статьи на 20. */
+.ls-article-more .ls-works-head{padding-inline:0}
+.ls-article-more .ls-rows{margin-top:18px}
+
+@media (min-width: 1024px){
+  .ls-article{margin-top:40px}
+  .ls-article figure{margin-inline:0;max-width:62ch}
+  .ls-article figcaption{margin-inline:0}
+  .ls-article-cta{max-width:62ch}
+  .ls-article-cta .ls-article-cta-row{justify-content:flex-start}
+  .ls-article-cta .ls-btn{width:fit-content;min-width:220px}
+  /* Шапка блока той же ширины, что список: «Все статьи» стоит над его
+     правым краем, а не у края контейнера в пятистах пикселях от строк. */
+  .ls-article-more .ls-works-head,
+  .ls-article-more .ls-rows{max-width:62ch}
+}

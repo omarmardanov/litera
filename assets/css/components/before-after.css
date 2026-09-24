@@ -1,0 +1,159 @@
+/* Лечим макеты: чужой макет до правки и после.
+   Литера — дизайн-студия, и «вылечим готовый макет» стоит у неё на первом
+   экране. Показать это словами нельзя, а разницей — можно, и материал для
+   такого блока есть по определению: он остаётся после каждой правки.
+
+   На десктопе шторка идёт за курсором: провёл мышью — увидел разницу,
+   зажимать и тянуть ничего не надо. Под кадром при этом лежит обычный
+   <input type="range">, невидимый, но живой: это клавиатура и телефон,
+   где курсора нет. Без скрипта он тоже работает — просто ползунок
+   не двигает картинку, а показывает сам себя. */
+
+.ls-ba{margin-top:var(--gap-block);padding:0 20px}
+.ls-ba-frame{position:relative;margin-top:22px;overflow:hidden;
+  background:var(--placeholder);touch-action:pan-y}
+.ls-ba-frame img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+
+/* «Стало» лежит поверх «было» и обрезается по позиции шторки. */
+.ls-ba-after{position:absolute;inset:0;
+  clip-path:inset(0 0 0 var(--pos))}
+/* За курсором шторка идёт без перехода — иначе тянется следом с задержкой.
+   Переход включается только на возврат к середине, когда курсор ушёл. */
+.ls-ba-frame.is-easing .ls-ba-after{transition:clip-path .3s var(--ease)}
+.ls-ba-frame.is-easing .ls-ba-handle{transition:left .3s var(--ease)}
+.ls-ba-after img{height:100%}
+
+/* Оба кадра сняты одинаково и отличаются только макетом на карточке —
+   иначе шторка сравнивала бы две фотосъёмки, а не две работы. */
+
+/* Подписи по углам: без них непонятно, какая половина какая. */
+.ls-ba-tag{position:absolute;top:14px;padding:5px 10px;
+  font-size:var(--t-cap);line-height:1.2;background:var(--ink);color:var(--paper)}
+.ls-ba-before .ls-ba-tag{left:14px}
+.ls-ba-after .ls-ba-tag{right:14px}
+
+/* Ручка — стеклянная полоса с тонкой линией внутри. Квадрат убран: шторка
+   и так идёт за курсором, хватать её не нужно, а он закрывал часть кадра.
+
+   Сама полоса размывает то, что под ней, и тем видна на любом макете —
+   и на светлом, и на тёмном. Линия внутри в один пиксель: она обозначает
+   границу, а не делит кадр пополам. Где backdrop-filter не поддержан,
+   остаётся полупрозрачная белая полоса — линия видна всё равно. */
+.ls-ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:10px;
+  translate:-5px 0;pointer-events:none;
+  background:rgba(var(--paper-rgb),.12);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ls-ba-handle::after{content:"";position:absolute;left:50%;top:0;bottom:0;
+  width:1px;translate:-.5px 0;background:rgba(var(--paper-rgb),.8)}
+
+/* На телефоне шторку ведут пальцем, и одной полосы для этого мало: по кадру
+   не видно, что его вообще можно двигать. Поэтому на тач-экране на линии
+   стоят два треугольника — знак «тяни в обе стороны». Тень под ними
+   нужна, чтобы белое читалось и на светлом макете. На десктопе шторка идёт
+   за курсором сама, и метка там лишняя — её убрали вместе с квадратом. */
+@media (hover: none), (pointer: coarse){
+  .ls-ba-handle::before{content:"";position:absolute;left:50%;top:50%;
+    width:38px;height:27px;translate:-50% -50%;
+    background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 24' fill='%23fff'%3E%3Cpath d='M13.5 6.2 13.5 17.8 7.3 12ZM20.5 6.2 20.5 17.8 26.7 12Z'/%3E%3C/svg%3E");
+    filter:drop-shadow(0 1px 2px rgba(var(--shade-rgb),.4))}
+}
+
+/* Сам ползунок невидим, но занимает всю рамку: тянуть можно за любую точку. */
+.ls-ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;
+  appearance:none;-webkit-appearance:none;background:none;cursor:ew-resize}
+.ls-ba-range::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:100%}
+.ls-ba-range::-moz-range-thumb{width:44px;height:100%;border:0;background:none}
+.ls-ba-range:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.ls-ba p{margin:12px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+
+@media (min-width: 1024px){
+  /* Разворот: слева кадр, справа объяснение. Раньше подпись стояла под кадром,
+     а справа от него оставалась пустая полоса — контейнер 1240, а кадр упирался
+     в 900. Теперь полоса занята текстом, и блок читается как разворот:
+     видно движение и рядом сказано, на что смотреть.
+
+     Кадр не растягиваем на всю ширину: снимок 1200×800 при 1240 пришлось бы
+     резать до 2:1, а это уже другая съёмка, не та, что сняли. */
+  .ls-ba{display:grid;grid-template-columns:minmax(0,820px) minmax(0,1fr);
+    column-gap:48px;align-items:start}
+  .ls-ba h2{grid-column:1 / -1}
+  .ls-ba-frame{max-width:none}
+  /* Текст и плашка стоят одной колонкой справа и начинаются от верха кадра,
+     а не от его середины: они объясняют то, что человек видит прямо сейчас.
+     Обёртка нужна, чтобы оба попали в одну клетку сетки: по отдельности
+     плашка уезжала на строку ниже, под кадр. */
+  /* Верх текста ровняется с верхом кадра: у кадра свой отступ от заголовка
+     в 22 пикселя, у колонки его не было, и текст начинался выше. Минус
+     четыре — на межстрочный просвет над первой строкой, иначе буквы стоят
+     ниже кромки кадра, хотя блоки выровнены. */
+  .ls-ba-side{grid-column:2;margin-top:13px}
+  .ls-ba p{margin:0;font-size:var(--t-base);line-height:1.45}
+}
+
+/* ── Показ при появлении ───────────────────────────────────────────
+   Когда блок доезжает до экрана, шторка сама проходит из стороны в сторону:
+   иначе человек видит просто картинку с полосой посередине и не догадывается,
+   что её можно двигать. Один раз, дальше — по курсору.
+
+   Позиция объявлена через @property, иначе переменную нельзя анимировать:
+   браузер считает её обычной строкой и переключает скачком. Где @property
+   не поддержан, показа просто не будет — блок останется рабочим.
+
+   inherits:true обязательно: переменную ставит рамка, а читают её слой
+   «после» и линия внутри. При inherits:false они перестают её видеть
+   и берут начальные 50% — шторка замирает намертво. */
+@property --pos{syntax:'<percentage>';inherits:true;initial-value:50%}
+
+/* Плавность задана внутри кадров, а не одной на всю анимацию: с общим `--ease`
+   каждый отрезок разгонялся и тормозил отдельно, и на поворотах шторка дёргалась.
+   Теперь она трогается с места, идёт ровно и мягко останавливается. */
+@keyframes ls-ba-demo{
+  0%{--pos:50%;animation-timing-function:cubic-bezier(.4,0,1,1)}
+  8%{--pos:50%;animation-timing-function:cubic-bezier(.4,0,1,1)}
+  38%{--pos:84%;animation-timing-function:cubic-bezier(.5,0,.5,1)}
+  72%{--pos:16%;animation-timing-function:cubic-bezier(0,0,.2,1)}
+  100%{--pos:50%}
+}
+.ls-ba-frame.is-demo{animation:ls-ba-demo 2.8s linear both}
+
+@media (prefers-reduced-motion: reduce){
+  .ls-ba-frame.is-demo{animation:none}
+  .ls-ba-frame.is-easing .ls-ba-after,
+  .ls-ba-frame.is-easing .ls-ba-handle{transition:none}
+}
+/* ── Выход из блока: «Покажите свой макет» ─────────────────────────
+   Плашка стоит там, где человек только что своими руками увидел разницу
+   между «до» и «после». Рамка тонкая, без заливки: это не второй первый экран,
+   а продолжение разговора.
+
+   Строка про перетаскивание — только там, где есть мышь: пальцем файл
+   не перетащишь, и обещать этого нельзя. */
+.ls-ba-cta{margin-top:28px;padding:24px;border:1px solid var(--line);
+  transition:border-color .18s var(--ease)}
+.ls-ba-cta b{display:block;font-family:'Raptor V2 Premium',sans-serif;
+  font-weight:700;font-size:var(--t-sub);line-height:1.15;letter-spacing:-.01em}
+.ls-ba-cta p{margin:8px 0 0;font-size:var(--t-ui);line-height:1.45;color:var(--muted)}
+.ls-ba-cta .ls-btn{display:inline-flex;width:auto;margin-top:16px}
+.ls-ba-drop{display:none}
+/* макет тащат на плашку — она отвечает рамкой, чтобы было видно, куда бросать */
+.ls-ba-cta.is-over{border-color:var(--ink)}
+
+@media (hover: hover) and (pointer: fine){
+  .ls-ba-drop{display:block;margin-top:12px;
+    font-size:var(--t-cap);line-height:1.35;color:var(--muted)}
+}
+
+/* Памятка стоит под плашкой, а не внутри неё: в рамке она читалась частью
+   призыва, хотя это просто справка — её открывают до отправки, а не вместо.
+   Подчёркивание у названия — как у ссылок в тексте, чтобы строка читалась
+   ссылкой, а не заголовком. */
+.ls-rows.ls-ba-req{margin-top:28px}
+/* Миниатюра памятки — не вся страница в 76 пикселей, из которой ничего
+   не разобрать, а её левый верхний угол: там цветовая модель и разрешение,
+   по ним лист и узнаётся. */
+.ls-ba-req .ls-thumb img{object-position:left top}
+.ls-ba-req .ls-row-body b{text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line-strong);
+  transition:text-decoration-color .18s var(--ease)}
+.ls-ba-req .ls-row-body:hover b{text-decoration-color:var(--ink)}

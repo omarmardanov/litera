@@ -1,0 +1,62 @@
+/* Вопрос-ответ: строка с заголовком, текстом и линией сверху.
+   Используется дважды: «Частые вопросы» на карточке раскрываются
+   (`<details class="qa">`), «Что выбрать под задачу» на категории стоит
+   раскрытым (`<div class="qa">` внутри `<dl>`).
+
+   Поэтому вид строки не привязан к секции, а механика раскрытия висит
+   на `details.ls-qa`: обычная строка от неё не схлопывается. */
+
+.ls-faq{margin-top:var(--gap-block);padding:0 20px}
+.ls-qa-list{margin:22px 0 0}
+.ls-qa dd{margin-inline-start:0}
+.ls-qa + .ls-qa{border-top:1px solid var(--line)}
+/* Шапка строки: в вопросах это `summary` с плюсом, в парах — `dt`.
+   Отступ общий, иначе у пар заголовок слипается с текстом. */
+.ls-qa summary,.ls-qa > dt{padding:15px 0}
+.ls-qa summary{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  cursor:pointer;list-style:none}
+.ls-qa summary::-webkit-details-marker{display:none}
+/* Вопросы основным шрифтом, а не акцидентным: восемь строк Raptor подряд
+   читаются тяжело — он рисованный и держит внимание, а здесь его нужно
+   отдавать ответу. Заголовок блока остаётся акцидентным. */
+.ls-q{font-family:'Inter Web',Inter,system-ui,sans-serif;font-weight:500;
+  font-size:var(--t-base);line-height:1.35;letter-spacing:-.002em;color:var(--ink)}
+/* Ответ раскрывается плавно. У <details> высоту анимировать нечем, поэтому
+   сетка с нулевой строкой: тот же приём, что в разделах меню.
+   ::details-content поддерживают не все браузеры, а сетка работает везде. */
+/* Текст строки: в вопросах это абзац, в парах — `dd`. Браузерный отступ
+   у `dd` снимаем, колонку держит сам компонент. */
+.ls-qa p,.ls-qa dd{margin:-4px 0 0;padding-bottom:17px;font-size:var(--t-ui);line-height:1.45;
+  color:var(--ink-2)}
+/* Ссылки на услуги под ответом (пары на категории): контурные кнопки
+   в ряд, чтобы их было видно и в них попадал палец. */
+.ls-qa .ls-qa-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:-6px;padding-bottom:20px}
+.ls-qa .ls-qa-links a{display:inline-flex;text-decoration:none}
+/* Ссылки внутри ответов. Глобального стиля ссылок в проекте нет — каждая
+   оформляется в своём компоненте, этот случай был пропущен и ссылка
+   выпадала синей браузерной. */
+.ls-qa p a,.ls-qa dd a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;text-decoration-color:var(--line);
+  transition:text-decoration-color .18s var(--ease)}
+.ls-qa p a:hover,.ls-qa dd a:hover{text-decoration-color:var(--ink)}
+
+@media (prefers-reduced-motion: no-preference){
+  details.ls-qa{display:grid;grid-template-rows:auto 0fr;
+    transition:grid-template-rows .32s var(--ease)}
+  details.ls-qa[open]{grid-template-rows:auto 1fr}
+  details.ls-qa > p{overflow:hidden;min-height:0;
+    opacity:0;transition:opacity .22s var(--ease)}
+  details.ls-qa[open] > p{opacity:1;transition-delay:.08s}
+}
+.ls-qa summary:focus-visible{outline:none;box-shadow:var(--ring)}
+/* плюс, который при раскрытии становится минусом */
+.ls-sign{position:relative;flex-shrink:0;width:13px;height:13px;margin-top:5px}
+.ls-sign::before,.ls-sign::after{content:"";position:absolute;background:var(--glyph);
+  transition:transform .18s var(--ease),opacity .18s var(--ease)}
+.ls-sign::before{left:0;top:6px;width:13px;height:1.5px}
+.ls-sign::after{top:0;left:6px;width:1.5px;height:13px}
+details.ls-qa[open] .ls-sign::after{opacity:0;transform:scaleY(0)}
+.ls-qa summary:hover .ls-sign::before,.ls-qa summary:hover .ls-sign::after{background:var(--ink)}
+
+
+/* ── Широкий экран ─────────────────────────────────────────────── */

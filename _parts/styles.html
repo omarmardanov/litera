@@ -1,0 +1,65 @@
+<!-- ── Набор для любой страницы сайта ──────────────────────────────────
+     Эти файлы можно подключать и на страницах старого дизайна: в них нет
+     ни одного правила, которое красит чужую вёрстку. Всё своё живёт
+     на классах с приставкой `ls-`.
+     Сюда же входят компоненты шапки, меню, футера, виджета и куки-баннера —
+     они помечены ниже. -->
+<link rel="stylesheet" href="assets/css/tokens.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/base.css?v={{v}}">
+
+<!-- ── Только для шаблонов нового дизайна ──────────────────────────────
+     Правила на голых `html`, `body` и `h2`. На чужой странице покрасят фон
+     в тёмный и переведут заголовки на Raptor. -->
+<link rel="stylesheet" href="assets/css/page.css?v={{v}}">
+
+<!-- Кнопка — базовый компонент, поэтому идёт сразу за базой:
+     остальные компоненты должны иметь возможность её перебить.
+     Нужна и общему набору: кнопки есть в шапке, виджете и куки-баннере. -->
+<link rel="stylesheet" href="assets/css/components/button.css?v={{v}}">
+
+<!-- Компоненты. Список одинаков для всех страниц: набор блоков у них
+     разный, но система одна, и лишний файл на 20 строк дешевле, чем два
+     расходящихся списка. Порядок — по следованию на странице, он важен
+     при равной специфичности. -->
+<link rel="stylesheet" href="assets/css/components/shell.css?v={{v}}">
+<!-- общие: идут на любой странице сайта -->
+<link rel="stylesheet" href="assets/css/components/header.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/menu.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/cookie.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/hero.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/intro.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/can.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/case.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/home.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/small.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/dirs.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/page-lead.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/before-after.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/value.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/works.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/shorts.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/rows.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/catalog.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/projects.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/blog.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/article.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/contacts.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/req.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/specs.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/steps.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/faq.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/clients.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/figures.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/form.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/modal.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/text.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/related.css?v={{v}}">
+<!-- общие: идут на любой странице сайта -->
+<link rel="stylesheet" href="assets/css/components/footer.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/copy-tip.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/components/chat.css?v={{v}}">
+
+<!-- Раскладка идёт последней: её медиазапросы должны перебивать компоненты,
+     иначе обёртка-телефон для десктопа не срабатывает. -->
+<link rel="stylesheet" href="assets/css/layout.css?v={{v}}">
+<link rel="stylesheet" href="assets/css/motion.css?v={{v}}">
